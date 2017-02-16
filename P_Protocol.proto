@@ -152,6 +152,7 @@ enum META_TYPE {
 	META_TYPE_S2C_MUTABLE_PROPERTY = 506; //同步玩家易变属性数据
 	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
+	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -233,4 +234,19 @@ message CommonOperationResponse {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_COMMON_OPERATION_RESPONSE ];
 	optional META_TYPE client_type_t = 2;
 	optional bytes client_message = 3;
+}
+
+message Pai {
+	optional int32 card_type = 1;
+	repeated int32 cards = 2;
+}
+//麻将数据同步
+message PaiNotify {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI ];
+	enum CARDS_OPER_TYPE {
+		CARDS_OPER_TYPE_START = 1; //开局
+		CARDS_OPER_TYPE_FAPAI = 2; //发牌
+	}
+	optional CARDS_OPER_TYPE oper_type = 2;
+	optional Pai pais = 3;
 }
