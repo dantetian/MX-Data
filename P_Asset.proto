@@ -198,15 +198,8 @@ message LuckyPlate {
 	optional AssetCommonProp common_prop = 2;
 	//转盘
 	message Plate {
-		enum REWARD_TYPE {
-			REWARD_TYPE_DIAMOND = 1; //钻石
-			REWARD_TYPE_HUANLEDOU = 2; //欢乐豆
-			REWARD_TYPE_ITEM = 3; //物品
-		}
-		optional REWARD_TYPE reward_type = 1; //奖励类型 
-		optional int32 weight = 2; //权重
-		optional int32 item_id = 3; //物品ID
-		optional int32 count = 4; //数量
+		optional int32 weight = 1; //奖励类型 
+		optional int64 common_reward_id = 2; //通用奖励ID[CommonReward]数据
 	}
 	optional int32 plates_count = 3 [ default = 10 ]; //转盘梳理
 	repeated Plate plates = 4; //转盘
