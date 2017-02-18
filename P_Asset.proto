@@ -52,7 +52,12 @@ enum ASSET_TYPE {
 	ASSET_TYPE_LUCKY_PLATE = 8; //幸运转盘
 	ASSET_TYPE_DIALY_BONUS = 9; //每日补助-福利
 	ASSET_TYPE_MALL = 10; //商城
-	ASSET_TYPE_FAN = 11; //番数表
+	ASSET_TYPE_ROOM_FAN = 11; //番数表
+	ASSET_TYPE_ROOM_MODEL = 12; //房间模式
+	ASSET_TYPE_ROOM_OPEN = 13; //开房消耗
+	ASSET_TYPE_VOICE_ALTER = 14; //语音提示
+	ASSET_TYPE_FACE = 15; //表情
+	ASSET_TYPE_AVATAR = 16; //头像
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -103,7 +108,8 @@ message RoomLimit {
 	optional int32 min_limit = 4; //欢乐豆下限
 	optional int32 max_count = 5; //欢乐豆上限
 	optional int32 max_fan = 6; //最大番数
-	optional int32 cost_count = 7; //消耗欢乐豆数量
+	optional int32 cost_count = 7; //每局消耗欢乐豆数量
+	optional int32 base_count = 8; //每番消耗欢乐豆数量
 }
 
 //通用限制
@@ -152,6 +158,7 @@ message MJCard {
 	message Card {
 		optional int32 value = 1; //牌值
 		optional bytes model_path = 2;	//牌模型或者图片路径
+		optional bytes voice_path = 3;	//声源
 	}
 	optional int32 cards_count = 5 [ default = 9 ]; //牌数量
 	repeated Card cards = 6;
@@ -206,7 +213,7 @@ message DialyBonus {
 	optional int64 common_limit_id = 4; //通用限制ID[CommonLimit]数据
 }
 
-//商城
+//商城数据
 message Mall {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_MALL ];
 	optional AssetCommonProp common_prop = 2;
@@ -216,7 +223,7 @@ message Mall {
 }
 
 //番数
-message Fan {
+message RoomFan {
 	//番数类型
 	enum FAN_TYPE {
 		FAN_TYPE_ZHUANG = 1; //庄家
@@ -240,13 +247,61 @@ message Fan {
 	//番数表
 	message FanElement {
 		optional FAN_TYPE fan_type = 3; //番类型
-		optional int32 mutible = 4; //番数
+		optional bytes name = 4; //名称
+		optional int32 multiple = 5; //番数
 	}
-	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_FAN ];
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM_FAN ];
 	optional AssetCommonProp common_prop = 2;
 	optional int32 fans_count = 3 [ default = 20 ]; //番数量
-	repeated FanElement fans = 4; //番
+	repeated FanElement fans = 4; //番数据
 
+}
+
+//房间模式
+message RoomModel {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM_MODEL ];
+	optional AssetCommonProp common_prop = 2;
+}
+
+//开房消耗
+message RoomOpen {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM_OPEN ];
+	optional AssetCommonProp common_prop = 2;
+	//房卡消耗
+	message CardCost {
+		optional int32 rounds = 1; //局数
+		optional int32 room_cards_count = 2; //消耗房卡数
+	}
+	optional int32 costs_count = 3 [ default = 10 ]; //配置数量
+	repeated CardCost costs = 4; //消耗数据
+}
+
+//声音提示
+message VoiceAlter {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_VOICE_ALTER ];
+	optional AssetCommonProp common_prop = 2;
+	message VoiceElement {
+		optional bytes name = 1; //名字
+		optional bytes voice_path = 2; //声源
+	}
+	optional int32 voices_count = 3 [ default = 10 ]; //声源数量
+	repeated VoiceElement voices = 4; //声源数据
+}
+
+//表情
+message Face {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_FACE ];
+	optional AssetCommonProp common_prop = 2;
+	optional int32 faces_count = 3 [ default = 20 ]; //表情数量
+	repeated bytes faces = 4; //表情路径
+}
+
+//头像
+message Avatar {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_AVATAR ];
+	optional AssetCommonProp common_prop = 2;
+	optional int32 avatars_count = 3 [ default = 20 ]; //头像数量
+	repeated bytes avatars = 4; //头像路径
 }
 /////////////////////////////////////////////////////
 // 物品(作为特殊资源)数据类别定义区
