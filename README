@@ -1,2 +1,3 @@
 // 数据配置工具
 //
+find -type d -empty | xargs -i cp /tmp/.gitkeep {}
