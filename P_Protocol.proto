@@ -14,6 +14,10 @@ package Adoter.Asset;
 // 通用数据定义区
 /////////////////////////////////////////////////////
 
+message Pai {
+	optional int32 card_type = 1;
+	optional int32 card_value = 2;
+}
 
 //使用物品错误
 enum ERR_USE_ITEM_TYPE {

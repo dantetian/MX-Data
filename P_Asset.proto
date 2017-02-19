@@ -128,10 +128,16 @@ message CommonLimit {
 		COOL_DOWN_TYPE_YEAR = 4; //每年
 		COOL_DOWN_TYPE_NEVER = 5; //永不
 	}
+	//清除冷却类型
+	enum COOL_DOWN_CLEAR_TYPE {
+		COOL_DOWN_CLEAR_TYPE_ZERO_TIME = 1; //按照零点清除
+		COOL_DOWN_CLEAR_TYPE_WHEN_OPER = 2; //按照操作时间清除
+	}
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_LIMIT ];
 	optional AssetCommonProp common_prop = 2;
 	optional COMMON_LIMIT_TYPE limit_type = 3; //限制类型
 	optional COOL_DOWN_TYPE cool_down_type = 4; //冷却类型
+	optional COOL_DOWN_CLEAR_TYPE cool_down_clear_type = 5; //清除冷却时间方式
 }
 
 //冷却
