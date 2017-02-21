@@ -63,6 +63,7 @@ enum ASSET_TYPE {
 	ITEM_TYPE_BEGIN = 201; //物品开始
 	ITEM_TYPE_POTION = 202; //药品
 	ITEM_TYPE_EQUIPMENT = 203; //装备
+	ITEM_TYPE_ROOM_CARD = 204; //房卡
 	ITEM_TYPE_GUN = 204; //枪
 }
 
@@ -95,15 +96,16 @@ message AssetCommonProp {
 // 
 /////////////////////////////////////////////////////
 
+//房间类型
+enum ROOM_TYPE {
+	ROOM_TYPE_XINSHOU = 1; //新手房
+	ROOM_TYPE_GAOSHOU = 2; //高手房
+	ROOM_TYPE_DASHI = 3; //大师房
+}
 //房间
 message RoomLimit {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM ];
 	optional AssetCommonProp common_prop = 2;
-	enum ROOM_TYPE {
-		ROOM_TYPE_XINSHOU = 1; //新手房
-		ROOM_TYPE_GAOSHOU = 2; //高手房
-		ROOM_TYPE_DASHI = 3; //大师房
-	}
 	optional ROOM_TYPE room_type = 3; //房间类型
 	optional int32 min_limit = 4; //欢乐豆下限
 	optional int32 max_count = 5; //欢乐豆上限

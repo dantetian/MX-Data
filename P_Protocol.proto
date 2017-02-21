@@ -50,8 +50,14 @@ message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
 	optional int32 local_server_id = 2; //注册服务器
 	optional Inventories inventory = 3; //玩家包裹
+	optional int64 diamond = 4; //钻石总数 
+	optional int64 huanledou = 5; //欢乐豆数 
+	optional int64 total_rounds = 6; //参加的总局数 
+	optional int64 total_win_rounds = 7; //赢牌局数
+	optional int64 streak_wins = 8; //最高连胜
+
 //////////////非存盘数据结构
-	optional PlayerProp player_prop = 4; //玩家临时状态数据
+	optional PlayerProp player_prop = 20; //玩家临时状态数据
 }
 
 //包裹结构
@@ -169,8 +175,7 @@ message EnterGame {
 //房间
 message Room {
 	optional int64 room_id = 1; //房间ID
-	optional bytes room_name = 2; //房间名称
-	optional bytes enter_password = 3; //房间密码
+	optional ROOM_TYPE room_type = 2; //房间信息
 }
 
 //创建房间
