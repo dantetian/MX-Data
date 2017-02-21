@@ -62,8 +62,7 @@ enum ASSET_TYPE {
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
 	ITEM_TYPE_POTION = 202; //药品
-	ITEM_TYPE_EQUIPMENT = 203; //装备
-	ITEM_TYPE_ROOM_CARD = 204; //房卡
+	ITEM_TYPE_ROOM_CARD = 203; //房卡
 	ITEM_TYPE_GUN = 204; //枪
 }
 
@@ -357,6 +356,14 @@ message Item_Potion {
 	optional POTION_TYPE potion_type = 3; //药品类型
 	optional int32 increase_value = 4 [ default = 1 ]; //增加属性
 }
+
+//房卡
+message Item_RoomCard {
+	optional ASSET_TYPE type_t = 1 [ default = ITEM_TYPE_ROOM_CARD ];
+	optional Item_CommonProp item_common_prop = 2; //物品公共属性
+	optional int32 rounds = 3 [ default = 1 ]; //该张房卡可以玩多少局麻将
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
