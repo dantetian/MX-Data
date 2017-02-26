@@ -257,7 +257,7 @@ message PaiNotify {
 }
 
 //创建房间返回
-message CreateRoom_ {
+message S_CreateRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_CREATE_ROOM ];
 	optional Room room = 2; //房间ID
 }
