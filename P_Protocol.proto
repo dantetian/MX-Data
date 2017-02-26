@@ -141,6 +141,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
 	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
+	META_TYPE_S2C_CREATE_ROOM = 510; //创建房间返回
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -253,4 +254,10 @@ message PaiNotify {
 		repeated int32 cards = 2;
 	}
 	optional Pai pais = 3;
+}
+
+//创建房间返回
+message CreateRoom_ {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_CREATE_ROOM ];
+	optional Room room = 2; //房间ID
 }
