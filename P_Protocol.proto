@@ -154,6 +154,7 @@ enum META_TYPE {
 //创建角色
 message CreatePlayer {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_CREATE_PLAYER ];
+	optional int64 player_id = 2;
 }
 
 message Account {
