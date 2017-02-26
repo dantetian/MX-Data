@@ -121,28 +121,28 @@ enum ERROR_CODE {
 //通用协议类型
 /////////////////////////////////////////////////////
 enum META_TYPE {
-	///////////客户端发送数据///////////
-	META_TYPE_C2S_BEGIN = 1; //客户端开始协议
-	META_TYPE_C2S_LOGIN = 2; //登录游戏
-	META_TYPE_C2S_SELECT_SERVER = 3; //选择服务器
-	META_TYPE_C2S_CREATE_PLAYER = 4; //创建角色
-	META_TYPE_C2S_ENTER_GAME = 5; //进入游戏(选择的角色)
-	META_TYPE_C2S_CREATE_ROOM = 6; //创建房间
-	META_TYPE_C2S_ENTER_ROOM = 7; //进入房间
-	META_TYPE_C2S_PAI_OPERATION = 8; //玩家牌操作
-	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
 	///////////服务器发送数据///////////
-	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
-	META_TYPE_S2C_TICKET = 502; //登录认证
-	META_TYPE_S2C_SERVER_LIST = 503; //游戏服务器列表(AS->C)
-	META_TYPE_S2C_PLAYERS = 504; //同步账号下角色数据(AS->C)      
-	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
-	META_TYPE_S2C_MUTABLE_PROPERTY = 506; //同步玩家易变属性数据
-	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
-	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
-	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
-	META_TYPE_S2C_CREATE_ROOM = 510; //创建房间返回
-	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
+	META_TYPE_S2C_BEGIN = 1; //服务器开始协议
+	META_TYPE_S2C_TICKET = 2; //登录认证
+	META_TYPE_S2C_SERVER_LIST = 3; //游戏服务器列表(AS->C)
+	META_TYPE_S2C_PLAYERS = 4; //同步账号下角色数据(AS->C)      
+	META_TYPE_S2C_PLAYER_INFO = 5; //同步玩家角色数据(登录之后同步)
+	META_TYPE_S2C_MUTABLE_PROPERTY = 6; //同步玩家易变属性数据
+	META_TYPE_S2C_ALTER_ERROR = 7; //错误码信息
+	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 8; //通用操作返回协议
+	META_TYPE_S2C_PAI = 9; //麻将牌数据操作
+	META_TYPE_S2C_CREATE_ROOM = 10; //创建房间返回
+	META_TYPE_S2C_COUNT = 255; //服务器协议最大数量
+	///////////客户端发送数据///////////
+	META_TYPE_C2S_BEGIN = 501; //客户端开始协议
+	META_TYPE_C2S_LOGIN = 502; //登录游戏
+	META_TYPE_C2S_SELECT_SERVER = 503; //选择服务器
+	META_TYPE_C2S_CREATE_PLAYER = 504; //创建角色
+	META_TYPE_C2S_ENTER_GAME = 505; //进入游戏(选择的角色)
+	META_TYPE_C2S_CREATE_ROOM = 506; //创建房间
+	META_TYPE_C2S_ENTER_ROOM = 507; //进入房间
+	META_TYPE_C2S_PAI_OPERATION = 508; //玩家牌操作
+	META_TYPE_C2S_COUNT = 1000; //客户端协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
 	META_TYPE_S2S_REGISTER = 1002; //注册服务器
@@ -177,7 +177,7 @@ message EnterGame {
 //房间
 message Room {
 	optional int64 room_id = 1; //房间ID
-	optional ROOM_TYPE room_type = 2; //房间信息
+	//optional ROOM_TYPE room_type = 2; //房间信息
 }
 
 //创建房间
@@ -201,12 +201,15 @@ message PaiOperation {
 		PAI_OPER_TYPE_HUPAI = 2; //胡牌
 		PAI_OPER_TYPE_GANGPAI = 3; //杠牌
 		PAI_OPER_TYPE_PENGPAI = 4; //碰牌
-		PAI_OPER_TYPE_CHIPAI =55; //吃牌
+		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
-	optional int32 card_type = 3; //打牌:麻将类型(万|条|饼...)
-	optional int32 card_index = 5; //打牌:牌在表中索引
-	optional int32 card_value = 6; //打牌:牌值
+	message Pai {
+		optional int32 card_type = 1;
+		optional int32 card_value = 2;
+		optional int32 card_index = 3; //牌在表中索引:校验用
+	}
+	repeated Pai card = 4; //牌数据
 }
 
 /////////////////////////////////////////////////////
@@ -242,7 +245,7 @@ message CommonOperationResponse {
 }
 
 //麻将数据同步
-message PaiNotify {
+message CardsNotify {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI ];
 	enum CARDS_DATA_TYPE {
 		CARDS_DATA_TYPE_START = 1; //开局
