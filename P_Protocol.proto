@@ -34,6 +34,7 @@ enum ERR_USE_ITEM_TYPE {
 //玩家临时属性，不存盘
 message PlayerProp {
 	optional float sight_distance = 1;
+	optional GAME_OPER_TYPE game_oper_state = 2; //玩家状态
 }
 
 //玩家公共数据 
@@ -130,6 +131,7 @@ enum META_TYPE {
 	META_TYPE_C2S_CREATE_ROOM = 6; //创建房间
 	META_TYPE_C2S_ENTER_ROOM = 7; //进入房间
 	META_TYPE_C2S_PAI_OPERATION = 8; //玩家牌操作
+	META_TYPE_C2S_GAME_OPERATION = 9; //玩家游戏操作
 	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -141,6 +143,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
 	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
+	META_TYPE_S2C_CREATE_ROOM = 510; //创建房间返回
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -154,6 +157,7 @@ enum META_TYPE {
 //创建角色
 message CreatePlayer {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_CREATE_PLAYER ];
+	optional int64 player_id = 2;
 }
 
 message Account {
@@ -175,7 +179,7 @@ message EnterGame {
 //房间
 message Room {
 	optional int64 room_id = 1; //房间ID
-	optional ROOM_TYPE room_type = 2; //房间信息
+	//optional ROOM_TYPE room_type = 2; //房间信息
 }
 
 //创建房间
@@ -199,14 +203,27 @@ message PaiOperation {
 		PAI_OPER_TYPE_HUPAI = 2; //胡牌
 		PAI_OPER_TYPE_GANGPAI = 3; //杠牌
 		PAI_OPER_TYPE_PENGPAI = 4; //碰牌
-		PAI_OPER_TYPE_CHIPAI =55; //吃牌
+		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
-	optional int32 card_type = 3; //打牌:麻将类型(万|条|饼...)
-	optional int32 card_index = 5; //打牌:牌在表中索引
-	optional int32 card_value = 6; //打牌:牌值
+	message Pai {
+		optional int32 card_type = 1;
+		optional int32 card_value = 2;
+		optional int32 card_index = 3; //牌在表中索引:校验用
+	}
+	repeated Pai card = 4; //牌数据
 }
 
+//游戏内操作
+enum GAME_OPER_TYPE {
+	GAME_OPER_TYPE_START = 1; //开始游戏
+	GAME_OPER_TYPE_LEAVE = 2; //离开游戏
+}
+//游戏操作
+message GameOperation {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GAME_OPERATION ];
+	optional GAME_OPER_TYPE oper_type = 2; //操作类型
+}
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 //服务器发送协议定义区
@@ -240,7 +257,7 @@ message CommonOperationResponse {
 }
 
 //麻将数据同步
-message PaiNotify {
+message CardsNotify {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI ];
 	enum CARDS_DATA_TYPE {
 		CARDS_DATA_TYPE_START = 1; //开局
@@ -252,4 +269,10 @@ message PaiNotify {
 		repeated int32 cards = 2;
 	}
 	optional Pai pais = 3;
+}
+
+//创建房间返回
+message S_CreateRoom {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_CREATE_ROOM ];
+	optional Room room = 2; //房间ID
 }
