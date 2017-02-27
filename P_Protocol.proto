@@ -121,28 +121,28 @@ enum ERROR_CODE {
 //通用协议类型
 /////////////////////////////////////////////////////
 enum META_TYPE {
-	///////////服务器发送数据///////////
-	META_TYPE_S2C_BEGIN = 1; //服务器开始协议
-	META_TYPE_S2C_TICKET = 2; //登录认证
-	META_TYPE_S2C_SERVER_LIST = 3; //游戏服务器列表(AS->C)
-	META_TYPE_S2C_PLAYERS = 4; //同步账号下角色数据(AS->C)      
-	META_TYPE_S2C_PLAYER_INFO = 5; //同步玩家角色数据(登录之后同步)
-	META_TYPE_S2C_MUTABLE_PROPERTY = 6; //同步玩家易变属性数据
-	META_TYPE_S2C_ALTER_ERROR = 7; //错误码信息
-	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 8; //通用操作返回协议
-	META_TYPE_S2C_PAI = 9; //麻将牌数据操作
-	META_TYPE_S2C_CREATE_ROOM = 10; //创建房间返回
-	META_TYPE_S2C_COUNT = 255; //服务器协议最大数量
 	///////////客户端发送数据///////////
-	META_TYPE_C2S_BEGIN = 501; //客户端开始协议
-	META_TYPE_C2S_LOGIN = 502; //登录游戏
-	META_TYPE_C2S_SELECT_SERVER = 503; //选择服务器
-	META_TYPE_C2S_CREATE_PLAYER = 504; //创建角色
-	META_TYPE_C2S_ENTER_GAME = 505; //进入游戏(选择的角色)
-	META_TYPE_C2S_CREATE_ROOM = 506; //创建房间
-	META_TYPE_C2S_ENTER_ROOM = 507; //进入房间
-	META_TYPE_C2S_PAI_OPERATION = 508; //玩家牌操作
-	META_TYPE_C2S_COUNT = 1000; //客户端协议最大数量
+	META_TYPE_C2S_BEGIN = 1; //客户端开始协议
+	META_TYPE_C2S_LOGIN = 2; //登录游戏
+	META_TYPE_C2S_SELECT_SERVER = 3; //选择服务器
+	META_TYPE_C2S_CREATE_PLAYER = 4; //创建角色
+	META_TYPE_C2S_ENTER_GAME = 5; //进入游戏(选择的角色)
+	META_TYPE_C2S_CREATE_ROOM = 6; //创建房间
+	META_TYPE_C2S_ENTER_ROOM = 7; //进入房间
+	META_TYPE_C2S_PAI_OPERATION = 8; //玩家牌操作
+	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
+	///////////服务器发送数据///////////
+	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
+	META_TYPE_S2C_TICKET = 502; //登录认证
+	META_TYPE_S2C_SERVER_LIST = 503; //游戏服务器列表(AS->C)
+	META_TYPE_S2C_PLAYERS = 504; //同步账号下角色数据(AS->C)      
+	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
+	META_TYPE_S2C_MUTABLE_PROPERTY = 506; //同步玩家易变属性数据
+	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
+	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
+	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
+	META_TYPE_S2C_CREATE_ROOM = 510; //创建房间返回
+	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
 	META_TYPE_S2S_REGISTER = 1002; //注册服务器
