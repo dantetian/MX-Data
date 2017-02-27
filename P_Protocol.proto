@@ -34,6 +34,7 @@ enum ERR_USE_ITEM_TYPE {
 //玩家临时属性，不存盘
 message PlayerProp {
 	optional float sight_distance = 1;
+	optional GAME_OPER_TYPE game_oper_state = 2; //玩家状态
 }
 
 //玩家公共数据 
@@ -130,6 +131,7 @@ enum META_TYPE {
 	META_TYPE_C2S_CREATE_ROOM = 6; //创建房间
 	META_TYPE_C2S_ENTER_ROOM = 7; //进入房间
 	META_TYPE_C2S_PAI_OPERATION = 8; //玩家牌操作
+	META_TYPE_C2S_GAME_OPERATION = 9; //玩家游戏操作
 	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -212,6 +214,16 @@ message PaiOperation {
 	repeated Pai card = 4; //牌数据
 }
 
+//游戏内操作
+enum GAME_OPER_TYPE {
+	GAME_OPER_TYPE_START = 1; //开始游戏
+	GAME_OPER_TYPE_LEAVE = 2; //离开游戏
+}
+//游戏操作
+message GameOperation {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GAME_OPERATION ];
+	optional GAME_OPER_TYPE oper_type = 2; //操作类型
+}
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 //服务器发送协议定义区
