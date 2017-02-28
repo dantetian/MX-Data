@@ -122,16 +122,20 @@ enum ERROR_CODE {
 //通用协议类型
 /////////////////////////////////////////////////////
 enum META_TYPE {
+
+	///////////公共协议定义///////////
+	META_TYPE_SHARE_BEGIN = 1; //开始协议
+	META_TYPE_SHARE_CREATE_PLAYER = 2; //创建角色
+	META_TYPE_SHARE_CREATE_ROOM = 3; //创建房间
+	META_TYPE_SHARE_CARD_OPERATION = 4; //玩家牌操作
+	META_TYPE_SHARE_GAME_OPERATION = 5; //玩家游戏操作
+	META_TYPE_SHARE_COUNT = 300; //共享协议最大数量
 	///////////客户端发送数据///////////
-	META_TYPE_C2S_BEGIN = 1; //客户端开始协议
-	META_TYPE_C2S_LOGIN = 2; //登录游戏
-	META_TYPE_C2S_SELECT_SERVER = 3; //选择服务器
-	META_TYPE_C2S_CREATE_PLAYER = 4; //创建角色
-	META_TYPE_C2S_ENTER_GAME = 5; //进入游戏(选择的角色)
-	META_TYPE_C2S_CREATE_ROOM = 6; //创建房间
-	META_TYPE_C2S_ENTER_ROOM = 7; //进入房间
-	META_TYPE_C2S_PAI_OPERATION = 8; //玩家牌操作
-	META_TYPE_C2S_GAME_OPERATION = 9; //玩家游戏操作
+	META_TYPE_C2S_BEGIN = 301; //客户端开始协议
+	META_TYPE_C2S_LOGIN = 302; //登录游戏
+	META_TYPE_C2S_SELECT_SERVER = 303; //选择服务器
+	META_TYPE_C2S_ENTER_GAME = 304; //进入游戏(选择的角色)
+	META_TYPE_C2S_ENTER_ROOM = 305; //进入房间
 	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -143,7 +147,6 @@ enum META_TYPE {
 	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
 	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
-	META_TYPE_S2C_CREATE_ROOM = 510; //创建房间返回
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -156,7 +159,7 @@ enum META_TYPE {
 
 //创建角色
 message CreatePlayer {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_CREATE_PLAYER ];
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CREATE_PLAYER ];
 	optional int64 player_id = 2;
 }
 
@@ -184,7 +187,7 @@ message Room {
 
 //创建房间
 message CreateRoom {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_CREATE_ROOM ];
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CREATE_ROOM ];
 	optional Room room = 2; //房间信息
 }
 
@@ -197,7 +200,7 @@ message EnterRoom {
 
 //牌操作
 message PaiOperation {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_PAI_OPERATION ];
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CARD_OPERATION ];
 	enum PAI_OPER_TYPE {
 		PAI_OPER_TYPE_DAPAI = 1; //打牌
 		PAI_OPER_TYPE_HUPAI = 2; //胡牌
@@ -221,7 +224,7 @@ enum GAME_OPER_TYPE {
 }
 //游戏操作
 message GameOperation {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GAME_OPERATION ];
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_OPERATION ];
 	optional GAME_OPER_TYPE oper_type = 2; //操作类型
 }
 /////////////////////////////////////////////////////
@@ -271,8 +274,3 @@ message CardsNotify {
 	optional Pai pais = 3;
 }
 
-//创建房间返回
-message S_CreateRoom {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_CREATE_ROOM ];
-	optional Room room = 2; //房间ID
-}
