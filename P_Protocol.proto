@@ -222,6 +222,7 @@ enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_START = 1; //开始游戏
 	GAME_OPER_TYPE_LEAVE = 2; //离开游戏
 }
+
 //游戏操作
 message GameOperation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_OPERATION ];
