@@ -98,9 +98,10 @@ message AssetCommonProp {
 
 //房间类型
 enum ROOM_TYPE {
-	ROOM_TYPE_XINSHOU = 1; //新手房
-	ROOM_TYPE_GAOSHOU = 2; //高手房
-	ROOM_TYPE_DASHI = 3; //大师房
+	ROOM_TYPE_FRIEND = 1; //好友房
+	ROOM_TYPE_XINSHOU = 2; //新手房
+	ROOM_TYPE_GAOSHOU = 3; //高手房
+	ROOM_TYPE_DASHI = 4; //大师房
 }
 //房间
 message RoomLimit {
@@ -108,7 +109,7 @@ message RoomLimit {
 	optional AssetCommonProp common_prop = 2;
 	optional ROOM_TYPE room_type = 3; //房间类型
 	optional int32 min_limit = 4; //欢乐豆下限
-	optional int32 max_count = 5; //欢乐豆上限
+	optional int32 max_limit = 5; //欢乐豆上限
 	optional int32 max_fan = 6; //最大番数
 	optional int32 cost_count = 7; //每局消耗欢乐豆数量
 	optional int32 base_count = 8; //每番消耗欢乐豆数量

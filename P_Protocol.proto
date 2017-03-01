@@ -182,7 +182,7 @@ message EnterGame {
 //房间
 message Room {
 	optional int64 room_id = 1; //房间ID
-	//optional ROOM_TYPE room_type = 2; //房间信息
+	optional ROOM_TYPE room_type = 2; //房间信息
 }
 
 //创建房间
@@ -194,7 +194,7 @@ message CreateRoom {
 //进入房间
 message EnterRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_ENTER_ROOM ];
-	optional int64 room_id = 2; //房间ID
+	optional Room room = 2; //房间ID：如果有值证明玩家进入的是好友房
 	optional bytes enter_password = 3; //房间密码
 }
 
