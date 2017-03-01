@@ -40,34 +40,34 @@ message PlayerProp {
 //玩家公共数据 
 message CommonProp {
 	optional int64 player_id = 1; //玩家ID
-	optional int64 room_id = 2; //房间ID
+	optional int32 local_server_id = 2; //注册服务器
 	optional bytes name = 3; //名字
 	optional int32 level = 4 [ default = 1 ]; //级别
 	optional GENDER_TYPE gender = 5 [ default = GENDER_TYPE_MAN]; //性别
+	optional int64 diamond = 6; //钻石总数 
+	optional int64 huanledou = 7; //欢乐豆数 
+	optional int64 total_rounds = 8; //参加的总局数 
+	optional int64 total_win_rounds = 9; //赢牌局数
+	optional int64 streak_wins = 10; //最高连胜
 }
 
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
-	optional int32 local_server_id = 2; //注册服务器
-	optional Inventories inventory = 3; //玩家包裹
-	optional int64 diamond = 4; //钻石总数 
-	optional int64 huanledou = 5; //欢乐豆数 
-	optional int64 total_rounds = 6; //参加的总局数 
-	optional int64 total_win_rounds = 7; //赢牌局数
-	optional int64 streak_wins = 8; //最高连胜
+	optional int64 room_id = 2; //房间ID
+	optional Inventory inventory = 3; //玩家包裹
 
 //////////////非存盘数据结构
 	optional PlayerProp player_prop = 20; //玩家临时状态数据
 }
 
 //包裹结构
-message Inventories {
-	message Inventory {
+message Inventory {
+	message Element {
 		optional INVENTORY_TYPE inventory_type = 1;
 		repeated Item_Item items = 2; //包裹中存储的物品信息
 	}
-	repeated Inventory inventories = 1; //多个包裹(根据INVENTORY_TYPE_COUNT自动调整数量，所以无用包裹请勿增加[INVENTORY_TYPE]类型)
+	repeated Element inventory = 1; //多个包裹(根据INVENTORY_TYPE_COUNT自动调整数量，所以无用包裹请勿增加[INVENTORY_TYPE]类型)
 }
 
 /////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ enum META_TYPE {
 	META_TYPE_S2C_SERVER_LIST = 503; //游戏服务器列表(AS->C)
 	META_TYPE_S2C_PLAYERS = 504; //同步账号下角色数据(AS->C)      
 	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
-	META_TYPE_S2C_MUTABLE_PROPERTY = 506; //同步玩家易变属性数据
+	META_TYPE_S2C_COMMON_PROPERTY = 506; //同步玩家公共属相数据
 	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
 	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
@@ -276,3 +276,8 @@ message CardsNotify {
 	optional Pai pais = 3;
 }
 
+//玩家属相同步
+message CommonProperty {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_COMMON_PROPERTY ];
+	optional CommonProp common_prop = 2; //玩家基本数据
+}

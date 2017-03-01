@@ -58,6 +58,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_VOICE_ALTER = 14; //语音提示
 	ASSET_TYPE_FACE = 15; //表情
 	ASSET_TYPE_AVATAR = 16; //头像
+	ASSET_TYPE_ACTIVITY = 17; //活动
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -309,6 +310,20 @@ message Avatar {
 	optional AssetCommonProp common_prop = 2;
 	optional int32 avatars_count = 3 [ default = 20 ]; //头像数量
 	repeated bytes avatars = 4; //头像路径
+}
+
+//活动
+message Activity {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ACTIVITY ];
+	optional AssetCommonProp common_prop = 2;
+	enum ACTIVITY_TYPE {
+		ACTIVITY_TYPE_STOP_TIME = 1; //按照结束时间
+		ACTIVITY_TYPE_DURATION = 2; //按照时长
+	}
+	optional ACTIVITY_TYPE activity_type = 3; //活动类型
+	optional int32 start_time = 4; //开始时间
+	optional int32 stop_time = 5; //结束时间
+	optional int32 duration = 6; //持续时间
 }
 /////////////////////////////////////////////////////
 // 物品(作为特殊资源)数据类别定义区
