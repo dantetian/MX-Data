@@ -15,7 +15,7 @@ package Adoter.Asset;
 /////////////////////////////////////////////////////
 
 message Pai {
-	optional int32 card_type = 1;
+	optional CARD_TYPE card_type = 1;
 	optional int32 card_value = 2;
 }
 
@@ -211,7 +211,7 @@ message PaiOperation {
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
 	message Pai {
-		optional int32 card_type = 1;
+		optional CARD_TYPE card_type = 1;
 		optional int32 card_value = 2;
 		optional int32 card_index = 3; //牌在表中索引:校验用
 	}
@@ -273,7 +273,7 @@ message CardsNotify {
 	}
 	optional CARDS_DATA_TYPE data_type = 2;
 	message Pai { //牌数据
-		optional int32 card_type = 1;
+		optional CARD_TYPE card_type = 1; 
 		repeated int32 cards = 2;
 	}
 	optional Pai pais = 3;
