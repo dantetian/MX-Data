@@ -244,7 +244,7 @@ message PlayerList {
 }
 
 //同步玩家角色数据
-message PlayerInfo {
+message PlayerInformation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PLAYER_INFO ];
 	optional Player player = 2;
 }
