@@ -114,8 +114,9 @@ enum ERROR_CODE {
 	ERROR_LOAD = 1;	//加载数据失败
 	ERROR_ROOM_NOT_FOUNT = 2; //房间未找到
 	ERROR_ROOM_PASSWORD = 3; //房间密码错误
-	ERROR_ROOM_FULL = 4; //房间玩家已满
+	ERROR_ROOM_IS_FULL = 4; //房间玩家已满
 	ERROR_ROOM_NOT_AVAILABLE = 5; //没有可进入的房间
+	ERROR_ROOM_NO_PERMISSION = 6; //没有权限进行此操作
 }
 
 /////////////////////////////////////////////////////
@@ -221,6 +222,7 @@ message PaiOperation {
 enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_START = 1; //开始游戏
 	GAME_OPER_TYPE_LEAVE = 2; //离开游戏
+	GAME_OPER_TYPE_KICKOUT = 3; //踢人
 }
 
 //游戏操作
@@ -228,6 +230,7 @@ message GameOperation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_OPERATION ];
 	optional GAME_OPER_TYPE oper_type = 2; //操作类型
 	optional int64 source_player_id = 3; //来自XX玩家的操作
+	optional int64 destination_player_id = 4; //针对XX玩家的操作：踢人
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
@@ -247,7 +250,7 @@ message PlayerInfo {
 }
 
 //错误码提示
-message AlterError {
+message AlterMessage {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ALTER_ERROR ];
 	optional ERROR_TYPE error_type = 2;
 	optional ERROR_SHOW_TYPE error_show_type = 3;
