@@ -15,8 +15,9 @@ package Adoter.Asset;
 /////////////////////////////////////////////////////
 
 message Pai {
-	optional CARD_TYPE card_type = 1;
-	optional int32 card_value = 2;
+	optional CARD_TYPE card_type = 1; //牌类型：饼、条...
+	optional int32 card_value = 2; //牌值
+	optional int32 card_index = 3; //牌在表中索引:校验用
 }
 
 //使用物品错误
@@ -51,11 +52,23 @@ message CommonProp {
 	optional int64 streak_wins = 10; //最高连胜
 }
 
+//通用限制：存盘数据
+message PlayerCommonLimit {
+	optional int64 common_limit_id = 1; //通用限制ID[CommonLimit]数据
+	optional int32 time_stamp = 2; //更新的时间戳
+}
+//冷却：存盘数据
+message PlayerCoolDown {
+	optional int64 cool_down_id = 1; //通用限制ID[CoolDown]数据
+	optional int32 time_stamp = 2; //更新的时间戳
+}
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
 	optional int64 room_id = 2; //房间ID
 	optional Inventory inventory = 3; //玩家包裹
+	repeated PlayerCommonLimit common_limits = 4; //通用限制
+	repeated PlayerCoolDown cool_downs = 5; //冷却
 
 //////////////非存盘数据结构
 	optional PlayerProp player_prop = 20; //玩家临时状态数据
@@ -136,7 +149,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_BEGIN = 1; //开始协议
 	META_TYPE_SHARE_CREATE_PLAYER = 2; //创建角色
 	META_TYPE_SHARE_CREATE_ROOM = 3; //创建房间
-	META_TYPE_SHARE_CARD_OPERATION = 4; //玩家牌操作
+	META_TYPE_SHARE_PAI_OPERATION = 4; //玩家牌操作
 	META_TYPE_SHARE_GAME_OPERATION = 5; //玩家游戏操作
 	META_TYPE_SHARE_COMMON_PROPERTY = 6; //玩家基础属性同步
 	META_TYPE_SHARE_COUNT = 300; //共享协议最大数量
@@ -209,7 +222,7 @@ message EnterRoom {
 
 //牌操作
 message PaiOperation {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CARD_OPERATION ];
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_PAI_OPERATION ];
 	enum PAI_OPER_TYPE {
 		PAI_OPER_TYPE_DAPAI = 1; //打牌
 		PAI_OPER_TYPE_HUPAI = 2; //胡牌
@@ -218,12 +231,7 @@ message PaiOperation {
 		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
-	message Pai {
-		optional CARD_TYPE card_type = 1;
-		optional int32 card_value = 2;
-		optional int32 card_index = 3; //牌在表中索引:校验用
-	}
-	repeated Pai card = 4; //牌数据
+	repeated Pai pais = 4; //牌数据
 }
 
 //游戏内操作

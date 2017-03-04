@@ -147,7 +147,10 @@ message CommonLimit {
 message CoolDown {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COOL_DOWN ];
 	optional AssetCommonProp common_prop = 2;
-	optional int32 time = 3; //冷却时间(单位：秒)
+	enum COOL_DOWN_REASON {
+		COOL_DOWN_REASON_NORMAL = 1; //通用冷却方式
+	}
+	optional int32 duration = 4; //冷却时间(单位：秒)
 }
 
 //麻将牌类型
