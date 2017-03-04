@@ -226,9 +226,11 @@ message DialyBonus {
 message Mall {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_MALL ];
 	optional AssetCommonProp common_prop = 2;
-	optional int32 item_id = 3; //物品ID
+	optional int64 item_id = 3; //物品ID
 	optional int32 item_count = 4; //物品数量
 	optional int32 diamond = 5; //消耗钻石数量
+	optional int32 diamond_show = 6; //显示消耗钻石数量
+	optional int64 activity_id = 7; //关联活动ID[Activity]数据
 }
 
 //番数
