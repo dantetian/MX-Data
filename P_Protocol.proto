@@ -168,7 +168,8 @@ enum META_TYPE {
 	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
 	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
-	META_TYPE_S2C_PAI = 509; //麻将牌数据操作
+	META_TYPE_S2C_PAI_NOTIFY = 509; //通知客户端玩家手中的牌或抓到的牌
+	META_TYPE_S2C_PAI_OPERATION_ALTER = 510; //提示玩家可以进行的操作
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -205,6 +206,7 @@ message EnterGame {
 message Room {
 	optional int64 room_id = 1; //房间ID
 	optional ROOM_TYPE room_type = 2; //房间信息
+	optional bytes enter_password = 3; //房间密码
 }
 
 //创建房间
@@ -217,7 +219,14 @@ message CreateRoom {
 message EnterRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_ENTER_ROOM ];
 	optional Room room = 2; //房间ID：如果有值证明玩家进入的是好友房
-	optional bytes enter_password = 3; //房间密码
+}
+
+enum PAI_CHECK_RETURN {
+	PAI_CHECK_RETURN_NULL = 0; //无法操作
+	PAI_CHECK_RETURN_HU = 1; //胡牌
+	PAI_CHECK_RETURN_GANG = 2; //杠牌
+	PAI_CHECK_RETURN_PENG = 3; //碰牌
+	PAI_CHECK_RETURN_CHI = 4; //吃牌
 }
 
 //牌操作
@@ -281,27 +290,35 @@ message CommonOperationResponse {
 }
 
 //麻将数据同步
-message CardsNotify {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI ];
+message PaiNotify {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_NOTIFY ];
 	enum CARDS_DATA_TYPE {
 		CARDS_DATA_TYPE_START = 1; //开局
 		CARDS_DATA_TYPE_FAPAI = 2; //发牌
 	}
 	optional CARDS_DATA_TYPE data_type = 2;
 	message Pai { //牌数据
-		optional CARD_TYPE card_type = 1; 
-		repeated int32 cards = 2;
+		optional CARD_TYPE card_type = 1; //牌类型:饼条...
+		repeated int32 cards = 2; //牌值
 	}
-	optional Pai pais = 3;
+	repeated Pai pais = 3; //数据
 }
 
 //玩家基础属性同步
 message CommonProperty {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_COMMON_PROPERTY ];
-	enum SYNC_REASON_TYPE {
+	//同步数据的原由
+	enum SYNC_REASON_TYPE { 
 		SYNC_REASON_TYPE_ENTER_ROOM = 1; //加入房间
 	}
 	optional SYNC_REASON_TYPE reason_type = 2;
-	optional int64 player_id = 3;
+	optional int64 player_id = 3; //XX玩家的数据
 	optional CommonProp common_prop = 4; //玩家基本数据
+}
+
+//提示玩家可以进行的操作
+message PaiOperationAlter {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALTER ];
+	optional PAI_CHECK_RETURN check_return = 2; //返回结果：有时候玩家是能吃能碰还能杠，这个需要客户端自己检查
+	optional Pai pai = 3; //牌数据
 }
