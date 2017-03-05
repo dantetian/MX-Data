@@ -298,10 +298,10 @@ message PaiNotify {
 	}
 	optional CARDS_DATA_TYPE data_type = 2;
 	message Pai { //牌数据
-		optional CARD_TYPE card_type = 1; 
-		repeated int32 cards = 2;
+		optional CARD_TYPE card_type = 1; //牌类型:饼条...
+		repeated int32 cards = 2; //牌值
 	}
-	optional Pai pais = 3;
+	repeated Pai pais = 3; //数据
 }
 
 //玩家基础属性同步
