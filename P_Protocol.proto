@@ -32,10 +32,18 @@ enum ERR_USE_ITEM_TYPE {
 // 游戏基本属性定义区
 /////////////////////////////////////////////////////
 
+//玩家座次
+enum POSITION_TYPE {
+	POSITION_TYPE_EAST = 1; //东
+	POSITION_TYPE_SOUTH = 2; //南
+	POSITION_TYPE_EAST = 3; //西
+	POSITION_TYPE_NORTH = 4; //北
+}
 //玩家临时属性，不存盘
 message PlayerProp {
 	optional float sight_distance = 1;
 	optional GAME_OPER_TYPE game_oper_state = 2; //玩家状态
+	optional POSITION_TYPE position = 3; //玩家座次
 }
 
 //玩家公共数据 
@@ -292,16 +300,18 @@ message CommonOperationResponse {
 //麻将数据同步
 message PaiNotify {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_NOTIFY ];
+	//发送牌数据缘由
 	enum CARDS_DATA_TYPE {
 		CARDS_DATA_TYPE_START = 1; //开局
 		CARDS_DATA_TYPE_FAPAI = 2; //发牌
 	}
-	optional CARDS_DATA_TYPE data_type = 2;
+	optional CARDS_DATA_TYPE data_type = 2; //缘由
 	message Pai { //牌数据
 		optional CARD_TYPE card_type = 1; //牌类型:饼条...
 		repeated int32 cards = 2; //牌值
 	}
-	repeated Pai pais = 3; //数据
+	repeated Pai pais = 3; //数据：开局发送
+	optional Pai pai = 4; //数据：发牌发送
 }
 
 //玩家基础属性同步
