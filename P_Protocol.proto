@@ -274,7 +274,7 @@ message GameOperation {
 //同步账号下角色数据
 message PlayerList {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PLAYERS ];
-	repeated Player players = 2;
+	optional int64 player_id = 2;
 }
 
 //同步玩家角色数据
