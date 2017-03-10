@@ -147,6 +147,9 @@ enum ERROR_CODE {
 	ERROR_ROOM_BEANS_MAX_LIMIT = 26; //加入房间，欢乐豆不满足上限
 	ERROR_ROOM_TYPE_NOT_FOUND = 27; //未找到该类型的房间
 	ERROR_ROOM_HAS_BEEN_IN = 28; //已经在房间内
+	
+	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
+	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
 }
 
 /////////////////////////////////////////////////////
@@ -205,7 +208,7 @@ message Login {
 	optional Account account = 2;
 }
 
-//进入游戏
+//进入游戏：实际进入的是游戏大厅
 message EnterGame {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_ENTER_GAME ];
 	optional int64 player_id = 2; //角色ID
@@ -238,6 +241,13 @@ enum PAI_CHECK_RETURN {
 	PAI_CHECK_RETURN_CHI = 4; //吃牌
 }
 
+//牌操作超时限制
+message PaiOperationLimit {
+	optional int64 player_id = 1; //操作玩家
+	optional int32 time_out = 2; //超时时间
+	optional PaiElement pai = 3; //待处理的牌
+}
+
 //牌操作
 message PaiOperation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_PAI_OPERATION ];
@@ -249,7 +259,8 @@ message PaiOperation {
 		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
-	repeated PaiElement pais = 4; //牌数据
+	repeated PaiElement pais = 4; //牌数据：吃、胡牌...
+	optional PaiElement pai = 5; //牌数据：打牌
 }
 
 //游戏内操作
