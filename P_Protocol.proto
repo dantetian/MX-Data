@@ -14,6 +14,12 @@ package Adoter.Asset;
 // 通用数据定义区
 /////////////////////////////////////////////////////
 
+//账号
+message Account {
+	optional bytes username = 1;
+	optional bytes password = 2;
+}
+
 //单张牌
 message PaiElement { 
 	optional CARD_TYPE card_type = 1; //牌类型：饼、条...
@@ -32,6 +38,12 @@ enum ERR_USE_ITEM_TYPE {
 /////////////////////////////////////////////////////
 // 游戏基本属性定义区
 /////////////////////////////////////////////////////
+
+//账号数据：存盘数据
+message User {
+	optional Account account = 1; //账号
+	repeated int64 player_list = 2; //玩家角色
+}
 
 //玩家座次
 enum POSITION_TYPE {
@@ -63,21 +75,27 @@ message CommonProp {
 
 //通用限制：存盘数据
 message PlayerCommonLimit {
-	optional int64 common_limit_id = 1; //通用限制ID[CommonLimit]数据
-	optional int32 time_stamp = 2; //更新的时间戳
+	message Element {
+		optional int64 common_limit_id = 1; //通用限制ID[CommonLimit]数据
+		optional int32 time_stamp = 2; //更新的时间戳
+	}
+	repeated Element elements = 1;
 }
 //冷却：存盘数据
 message PlayerCoolDown {
-	optional int64 cool_down_id = 1; //通用限制ID[CoolDown]数据
-	optional int32 time_stamp = 2; //更新的时间戳
+	message Element {
+		optional int64 cool_down_id = 1; //通用限制ID[CoolDown]数据
+		optional int32 time_stamp = 2; //更新的时间戳
+	}
+	repeated Element elements = 1;
 }
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
 	optional int64 room_id = 2; //房间ID
 	optional Inventory inventory = 3; //玩家包裹
-	repeated PlayerCommonLimit common_limits = 4; //通用限制
-	repeated PlayerCoolDown cool_downs = 5; //冷却
+	optional PlayerCommonLimit common_limit = 4; //通用限制
+	optional PlayerCoolDown cool_down = 5; //冷却
 
 //////////////非存盘数据结构
 	optional PlayerProp player_prop = 20; //玩家临时状态数据
@@ -198,10 +216,6 @@ message CreatePlayer {
 	optional int64 player_id = 2;
 }
 
-message Account {
-	optional bytes username = 1;
-	optional bytes password = 2;
-}
 //登录游戏
 message Login {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
@@ -285,7 +299,7 @@ message GameOperation {
 //同步账号下角色数据
 message PlayerList {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PLAYERS ];
-	optional int64 player_id = 2;
+	repeated int64 player_list = 2; //角色ID
 }
 
 //同步玩家角色数据
