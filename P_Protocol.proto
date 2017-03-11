@@ -271,9 +271,10 @@ message PaiOperation {
 		PAI_OPER_TYPE_GANGPAI = 3; //杠牌
 		PAI_OPER_TYPE_PENGPAI = 4; //碰牌
 		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
+		PAI_OPER_TYPE_GIVEUP = 6; //放弃
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
-	repeated PaiElement pais = 4; //牌数据：吃、胡牌...
+	repeated PaiElement pais = 4; //牌数据：吃牌
 	optional PaiElement pai = 5; //牌数据：打牌
 }
 
@@ -330,6 +331,7 @@ message PaiNotify {
 	enum CARDS_DATA_TYPE {
 		CARDS_DATA_TYPE_START = 1; //开局
 		CARDS_DATA_TYPE_FAPAI = 2; //发牌
+		CARDS_DATA_TYPE_SYNC = 3; //同步
 	}
 	optional CARDS_DATA_TYPE data_type = 2; //缘由
 	//多张牌数据 
