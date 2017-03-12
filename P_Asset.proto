@@ -143,6 +143,7 @@ message CommonLimit {
 	optional COMMON_LIMIT_TYPE limit_type = 3; //限制类型
 	optional COOL_DOWN_TYPE cool_down_type = 4; //冷却类型
 	optional COOL_DOWN_CLEAR_TYPE cool_down_clear_type = 5; //清除冷却时间方式
+	optional int32 max_count = 6; //限制次数
 }
 
 //冷却
