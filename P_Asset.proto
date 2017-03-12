@@ -184,8 +184,8 @@ message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
 	optional AssetCommonProp common_prop = 2;
 	optional int32 max_cards_count = 3 [ default = 136 ]; //牌总数
-	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据，每天1次
-	optional int64 daily_allowance_id = 5; //每日补助福利ID[DailyAllowance]数据，每天N次
+	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据
+	optional int64 daily_allowance_id = 5; //每日补助福利ID[DailyAllowance]数据
 }
 
 //通用奖励
