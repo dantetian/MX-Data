@@ -256,7 +256,7 @@ message Mall {
 		GOODS_TYPE_ITEM = 2; //普通商品
 	}
 	optional GOODS_TYPE goods_type = 3; //商品类型
-	optional int64 item_id = 4; //物品ID(如果是物品)
+	optional int64 item_id = 4; //物品ID
 	optional int32 count = 5; //购买数量
 	optional int32 diamond = 6; //实际消耗钻石数量：实际价格，即折后价格
 	optional int32 diamond_show = 7; //显示消耗钻石数量：折前价格
