@@ -60,6 +60,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_AVATAR = 16; //头像
 	ASSET_TYPE_ACTIVITY = 17; //活动
 	ASSET_TYPE_DAILY_ALLOWANCE = 18; //每日补助,玩家欢乐豆少于多少即可领取数量欢乐豆
+	ASSET_TYPE_COMMON_CONSUME = 19; //通用消耗
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -207,6 +208,24 @@ message CommonReward {
 	repeated Reward rewards = 4; //奖励
 }
 
+//通用消耗
+message CommonConsume {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONSUME ];
+	optional AssetCommonProp common_prop = 2;
+	//消耗类型
+	enum CONSUME_TYPE {
+		CONSUME_TYPE_DIAMOND = 1; //钻石
+		CONSUME_TYPE_HUANLEDOU = 2; //欢乐豆
+		CONSUME_TYPE_ITEM = 3; //物品
+	}
+	message Element {
+		optional CONSUME_TYPE consume_type = 1; //消耗类型 
+		optional int32 item_id = 2; //消耗物品ID(如果是物品)
+		optional int32 consume_count = 3; //消耗数量(通用)
+	}
+	optional int32 elements_count = 3 [ default = 3 ]; //消耗种类数量
+	repeated Element elements = 4; //数据
+}
 //幸运转盘-抽奖玩法
 message LuckyPlate {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_LUCKY_PLATE ];
