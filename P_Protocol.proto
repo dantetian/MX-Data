@@ -78,6 +78,7 @@ message PlayerCommonLimit {
 	message Element {
 		optional int64 common_limit_id = 1; //通用限制ID[CommonLimit]数据
 		optional int32 time_stamp = 2; //更新的时间戳
+		optional int32 count = 3; //当前次数
 	}
 	repeated Element elements = 1;
 }
