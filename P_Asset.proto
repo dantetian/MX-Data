@@ -143,6 +143,7 @@ message CommonLimit {
 	optional COMMON_LIMIT_TYPE limit_type = 3; //限制类型
 	optional COOL_DOWN_TYPE cool_down_type = 4; //冷却类型
 	optional COOL_DOWN_CLEAR_TYPE cool_down_clear_type = 5; //清除冷却时间方式
+	optional int32 max_count = 6; //限制次数
 }
 
 //冷却
@@ -183,8 +184,8 @@ message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
 	optional AssetCommonProp common_prop = 2;
 	optional int32 max_cards_count = 3 [ default = 136 ]; //牌总数
-	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据,每天1次
-	optional int64 daily_allowance_id = 5; //补助福利ID[DailyAllowance]数据,每天N次
+	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据
+	optional int64 daily_allowance_id = 5; //每日补助福利ID[DailyAllowance]数据
 }
 
 //通用奖励
@@ -239,7 +240,7 @@ message LuckyPlate {
 	repeated Plate plates = 4; //转盘
 }
 
-//每日登陆奖励,每日上线发一次
+//每日登陆奖励
 message DailyBonus {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_BONUS ];
 	optional AssetCommonProp common_prop = 2;
@@ -256,11 +257,13 @@ message Mall {
 		GOODS_TYPE_ITEM = 2; //普通商品
 	}
 	optional GOODS_TYPE goods_type = 3; //商品类型
-	optional int64 item_id = 4; //物品ID(如果是物品)
+	optional int64 item_id = 4; //物品ID
 	optional int32 count = 5; //购买数量
 	optional int32 diamond = 6; //实际消耗钻石数量：实际价格，即折后价格
 	optional int32 diamond_show = 7; //显示消耗钻石数量：折前价格
-	optional int64 activity_id = 8; //关联活动控制ID[Activity]数据
+	optional int32 huanledou = 8; //实际消耗欢乐豆数量
+	optional int32 huanledou_show = 9; //显示消耗欢乐豆数量
+	optional int64 activity_id = 10; //关联活动控制ID[Activity]数据
 }
 
 //番数
