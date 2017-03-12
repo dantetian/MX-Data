@@ -50,7 +50,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_MJ_CARD = 6; //麻将牌
 	ASSET_TYPE_COMMON_CONST = 7; //通用常量定义
 	ASSET_TYPE_LUCKY_PLATE = 8; //幸运转盘
-	ASSET_TYPE_DIALY_BONUS = 9; //每日补助-福利
+	ASSET_TYPE_DAILY_BONUS = 9; //每日登陆奖励,每日上线发一次
 	ASSET_TYPE_MALL = 10; //商城
 	ASSET_TYPE_ROOM_FAN = 11; //番数表
 	ASSET_TYPE_ROOM_MODEL = 12; //房间模式
@@ -59,6 +59,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_FACE = 15; //表情
 	ASSET_TYPE_AVATAR = 16; //头像
 	ASSET_TYPE_ACTIVITY = 17; //活动
+	ASSET_TYPE_DAILY_ALLOWANCE = 18; //每日补助,玩家欢乐豆少于多少即可领取数量欢乐豆
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -181,6 +182,8 @@ message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
 	optional AssetCommonProp common_prop = 2;
 	optional int32 max_cards_count = 3 [ default = 136 ]; //牌总数
+	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据,每天1次
+	optional int64 daily_allowance_id = 5; //补助福利ID[DailyAllowance]数据,每天N次
 }
 
 //通用奖励
@@ -196,9 +199,9 @@ message CommonReward {
 		optional REWARD_TYPE reward_type = 1; //奖励类型 
 		optional bytes comments = 2; //描述
 		optional bytes icon_name = 3; //图标
-		optional int32 item_id = 4; //物品ID 
+		optional int64 item_id = 4; //物品ID 
 		optional int32 count = 5; //奖励数量 
-		optional int32 common_limit_id = 6; //通用限制ID 
+		optional int64 common_limit_id = 6; //通用限制ID[CommonLimit]数据
 	}
 	optional int32 rewards_count = 3 [ default = 10 ]; //奖励数量
 	repeated Reward rewards = 4; //奖励
@@ -217,9 +220,9 @@ message LuckyPlate {
 	repeated Plate plates = 4; //转盘
 }
 
-//每日补助-福利
-message DialyBonus {
-	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DIALY_BONUS ];
+//每日登陆奖励,每日上线发一次
+message DailyBonus {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_BONUS ];
 	optional AssetCommonProp common_prop = 2;
 	optional int64 common_reward_id = 3; //奖励ID[CommonReward]数据
 	optional int64 common_limit_id = 4; //通用限制ID[CommonLimit]数据
@@ -327,10 +330,19 @@ message Activity {
 		ACTIVITY_TYPE_DURATION = 2; //按照时长
 	}
 	optional ACTIVITY_TYPE activity_type = 3; //活动类型
-	optional int32 start_time = 4; //开始时间
-	optional int32 stop_time = 5; //结束时间
-	optional int32 duration = 6; //持续时间
+	optional bytes start_time = 4; //开始时间: 2017-01-20 20:00:00
+	optional bytes stop_time = 5; //结束时间: 2017-02-20 20:00:00
 }
+
+//补助福利
+message DailyAllowance {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_ALLOWANCE ];
+	optional AssetCommonProp common_prop = 2;
+	optional int32 huanledou_below = 3 [ default = 2000 ]; //欢乐豆低于数量
+	optional int64 common_reward_id = 4; //奖励ID[CommonReward]数据
+	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
+}
+
 /////////////////////////////////////////////////////
 // 物品(作为特殊资源)数据类别定义区
 //
