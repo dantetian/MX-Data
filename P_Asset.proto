@@ -239,7 +239,7 @@ message LuckyPlate {
 	repeated Plate plates = 4; //转盘
 }
 
-//每日登陆奖励,每日上线发一次
+//每日登陆奖励
 message DailyBonus {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_BONUS ];
 	optional AssetCommonProp common_prop = 2;
@@ -260,7 +260,9 @@ message Mall {
 	optional int32 count = 5; //购买数量
 	optional int32 diamond = 6; //实际消耗钻石数量：实际价格，即折后价格
 	optional int32 diamond_show = 7; //显示消耗钻石数量：折前价格
-	optional int64 activity_id = 8; //关联活动控制ID[Activity]数据
+	optional int32 huanledou = 8; //实际消耗欢乐豆数量
+	optional int32 huanledou_show = 9; //显示消耗欢乐豆数量
+	optional int64 activity_id = 10; //关联活动控制ID[Activity]数据
 }
 
 //番数
