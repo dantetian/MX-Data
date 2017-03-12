@@ -212,6 +212,7 @@ enum META_TYPE {
 	META_TYPE_C2S_ENTER_GAME = 304; //进入游戏(选择的角色)
 	META_TYPE_C2S_ENTER_ROOM = 305; //进入房间
 	META_TYPE_C2S_GET_REWARD = 306; //领取奖励
+	META_TYPE_C2S_BUY_SOMETHING = 307; //购买商品：游戏内商品交易
 	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -327,6 +328,12 @@ message GameOperation {
 	optional GAME_OPER_TYPE oper_type = 2; //操作类型
 	optional int64 source_player_id = 3; //来自XX玩家的操作
 	optional int64 destination_player_id = 4; //针对XX玩家的操作：踢人
+}
+
+//商城购买
+message BuySomething {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_BUY_SOMETHING ];
+	optional int64 mall_id = 2; //购买商品ID[Mall]数据
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

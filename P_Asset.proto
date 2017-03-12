@@ -354,7 +354,6 @@ message Activity {
 	optional AssetCommonProp common_prop = 2;
 	enum ACTIVITY_TYPE {
 		ACTIVITY_TYPE_STOP_TIME = 1; //按照结束时间
-		ACTIVITY_TYPE_DURATION = 2; //按照时长
 	}
 	optional ACTIVITY_TYPE activity_type = 3; //活动类型
 	optional bytes start_time = 4; //开始时间: 2017-01-20 20:00:00
