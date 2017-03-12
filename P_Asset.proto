@@ -232,11 +232,17 @@ message DailyBonus {
 message Mall {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_MALL ];
 	optional AssetCommonProp common_prop = 2;
-	optional int64 item_id = 3; //物品ID
-	optional int32 item_count = 4; //物品数量
-	optional int32 diamond = 5; //消耗钻石数量
-	optional int32 diamond_show = 6; //显示消耗钻石数量
-	optional int64 activity_id = 7; //关联活动ID[Activity]数据
+	enum GOODS_TYPE {
+		GOODS_TYPE_HUANLEDOU = 1; //欢乐豆
+		GOODS_TYPE_ITEM = 2; //普通商品
+	}
+	optional GOODS_TYPE goods_type = 3; //商品类型
+	optional int64 item_id = 4; //物品ID
+	optional int32 item_count = 5; //物品数量
+	optional int32 huanledou_count = 6; //欢乐豆数量
+	optional int32 diamond = 7; //消耗钻石数量:实际价格,即折后价格
+	optional int32 diamond_show = 8; //显示消耗钻石数量:折前价格
+	optional int64 activity_id = 9; //关联活动控制ID[Activity]数据
 }
 
 //番数
