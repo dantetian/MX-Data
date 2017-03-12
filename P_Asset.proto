@@ -257,11 +257,10 @@ message Mall {
 	}
 	optional GOODS_TYPE goods_type = 3; //商品类型
 	optional int64 item_id = 4; //物品ID
-	optional int32 item_count = 5; //物品数量
-	optional int32 huanledou_count = 6; //欢乐豆数量
-	optional int32 diamond = 7; //消耗钻石数量:实际价格,即折后价格
-	optional int32 diamond_show = 8; //显示消耗钻石数量:折前价格
-	optional int64 activity_id = 9; //关联活动控制ID[Activity]数据
+	optional int32 count = 5; //购买数量
+	optional int32 diamond = 6; //消耗钻石数量:实际价格,即折后价格
+	optional int32 diamond_show = 7; //显示消耗钻石数量:折前价格
+	optional int64 activity_id = 8; //关联活动控制ID[Activity]数据
 }
 
 //番数
