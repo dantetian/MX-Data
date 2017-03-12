@@ -14,7 +14,14 @@ package Adoter.Asset;
 // 通用数据定义区
 /////////////////////////////////////////////////////
 
-message Pai {
+//账号
+message Account {
+	optional bytes username = 1;
+	optional bytes password = 2;
+}
+
+//单张牌
+message PaiElement { 
 	optional CARD_TYPE card_type = 1; //牌类型：饼、条...
 	optional int32 card_value = 2; //牌值
 	optional int32 card_index = 3; //牌在表中索引:校验用
@@ -32,10 +39,24 @@ enum ERR_USE_ITEM_TYPE {
 // 游戏基本属性定义区
 /////////////////////////////////////////////////////
 
+//账号数据：存盘数据
+message User {
+	optional Account account = 1; //账号
+	repeated int64 player_list = 2; //玩家角色
+}
+
+//玩家座次
+enum POSITION_TYPE {
+	POSITION_TYPE_EAST = 1; //东
+	POSITION_TYPE_SOUTH = 2; //南
+	POSITION_TYPE_WEST = 3; //西
+	POSITION_TYPE_NORTH = 4; //北
+}
 //玩家临时属性，不存盘
 message PlayerProp {
 	optional float sight_distance = 1;
 	optional GAME_OPER_TYPE game_oper_state = 2; //玩家状态
+	optional POSITION_TYPE position = 3; //玩家座次
 }
 
 //玩家公共数据 
@@ -54,21 +75,46 @@ message CommonProp {
 
 //通用限制：存盘数据
 message PlayerCommonLimit {
-	optional int64 common_limit_id = 1; //通用限制ID[CommonLimit]数据
-	optional int32 time_stamp = 2; //更新的时间戳
+	message Element {
+		optional int64 common_limit_id = 1; //通用限制ID[CommonLimit]数据
+		optional int32 time_stamp = 2; //更新的时间戳
+	}
+	repeated Element elements = 1;
 }
 //冷却：存盘数据
 message PlayerCoolDown {
-	optional int64 cool_down_id = 1; //通用限制ID[CoolDown]数据
-	optional int32 time_stamp = 2; //更新的时间戳
+	message Element {
+		optional int64 cool_down_id = 1; //通用限制ID[CoolDown]数据
+		optional int32 time_stamp = 2; //更新的时间戳
+	}
+	repeated Element elements = 1;
 }
+
+//邮件附件
+message MailAttachment {
+	optional int64 common_reward_id = 1; //通用奖励[CommonReward]数据
+}
+
+//邮件
+message Mail {
+	optional bytes title = 1; //标题
+	optional bytes send_player = 2 [ default = "系统邮件" ]; //发件人
+	optional bytes content = 3; //内容
+	optional int32 send_time = 4; //发送时间
+	optional bool readed = 5; //是否已读
+	optional MailAttachment attachment = 6; //邮件附件
+}
+
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
 	optional int64 room_id = 2; //房间ID
 	optional Inventory inventory = 3; //玩家包裹
-	repeated PlayerCommonLimit common_limits = 4; //通用限制
-	repeated PlayerCoolDown cool_downs = 5; //冷却
+
+	optional PlayerCommonLimit common_limit = 4; //通用限制
+	optional PlayerCoolDown cool_down = 5; //冷却
+
+	repeated Mail mail_list = 10; //邮件列表
 
 //////////////非存盘数据结构
 	optional PlayerProp player_prop = 20; //玩家临时状态数据
@@ -124,10 +170,12 @@ enum ERROR_SHOW_TYPE {
 
 enum ERROR_CODE {
 	ERROR_SUCCESS = 0; //成功
-	ERROR_INNER = 1;	//系统内部错误
-	ERROR_DIAMOND_NOT_ENOUGH = 2;	//钻石不足
+	ERROR_INNER = 1; //系统内部错误
+	ERROR_DIAMOND_NOT_ENOUGH = 2; //钻石不足
 	ERROR_BEANS_NOT_ENOUGH = 3;	//欢乐豆不足
-	ERROR_INVENTORY_FULL = 4;	//物品栏已满
+	ERROR_INVENTORY_FULL = 4; //物品栏已满
+	ERROR_REWARD_HAS_GOT = 5; //奖励已领取
+	ERROR_HUANLEDOU_LIMIT = 6; //每日福利:欢乐豆不满足领取数量限制
 
 	ERROR_ROOM_NOT_FOUNT = 20; //房间未找到
 	ERROR_ROOM_PASSWORD = 21; //房间密码错误
@@ -138,6 +186,9 @@ enum ERROR_CODE {
 	ERROR_ROOM_BEANS_MAX_LIMIT = 26; //加入房间，欢乐豆不满足上限
 	ERROR_ROOM_TYPE_NOT_FOUND = 27; //未找到该类型的房间
 	ERROR_ROOM_HAS_BEEN_IN = 28; //已经在房间内
+	
+	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
+	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
 }
 
 /////////////////////////////////////////////////////
@@ -159,6 +210,7 @@ enum META_TYPE {
 	META_TYPE_C2S_SELECT_SERVER = 303; //选择服务器
 	META_TYPE_C2S_ENTER_GAME = 304; //进入游戏(选择的角色)
 	META_TYPE_C2S_ENTER_ROOM = 305; //进入房间
+	META_TYPE_C2S_GET_REWARD = 306; //领取奖励
 	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -166,10 +218,12 @@ enum META_TYPE {
 	META_TYPE_S2C_SERVER_LIST = 503; //游戏服务器列表(AS->C)
 	META_TYPE_S2C_PLAYERS = 504; //同步账号下角色数据(AS->C)      
 	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
-	META_TYPE_S2C_ALTER_ERROR = 507; //错误码信息
+	META_TYPE_S2C_ALERT_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
 	META_TYPE_S2C_PAI_NOTIFY = 509; //通知客户端玩家手中的牌或抓到的牌
-	META_TYPE_S2C_PAI_OPERATION_ALTER = 510; //提示玩家可以进行的操作
+	META_TYPE_S2C_PAI_OPERATION_ALERT = 510; //提示玩家可以进行的操作
+	META_TYPE_S2C_COMMON_LIMIT = 511; //通用限制:主要用于Client界面控制
+	META_TYPE_S2C_COMMON_REWARD = 512; //通用奖励
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -186,17 +240,13 @@ message CreatePlayer {
 	optional int64 player_id = 2;
 }
 
-message Account {
-	optional bytes username = 1;
-	optional bytes password = 2;
-}
 //登录游戏
 message Login {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
 	optional Account account = 2;
 }
 
-//进入游戏
+//进入游戏：实际进入的是游戏大厅
 message EnterGame {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_ENTER_GAME ];
 	optional int64 player_id = 2; //角色ID
@@ -221,12 +271,30 @@ message EnterRoom {
 	optional Room room = 2; //房间ID：如果有值证明玩家进入的是好友房
 }
 
+//获取奖励
+message GetReward {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GET_REWARD ];
+	enum GET_REWARD_REASON {
+		GET_REWARD_REASON_DAILY_BONUS = 1; //每日登陆奖励
+		GET_REWARD_REASON_DAILY_ALLOWANCE = 2; //每日补助奖励
+	}
+	optional GET_REWARD_REASON reason = 2;
+	optional int64 reward_id = 3;
+}
+
 enum PAI_CHECK_RETURN {
 	PAI_CHECK_RETURN_NULL = 0; //无法操作
 	PAI_CHECK_RETURN_HU = 1; //胡牌
 	PAI_CHECK_RETURN_GANG = 2; //杠牌
 	PAI_CHECK_RETURN_PENG = 3; //碰牌
 	PAI_CHECK_RETURN_CHI = 4; //吃牌
+}
+
+//牌操作超时限制
+message PaiOperationLimit {
+	optional int64 player_id = 1; //操作玩家
+	optional int32 time_out = 2; //超时时间
+	optional PaiElement pai = 3; //待处理的牌
 }
 
 //牌操作
@@ -238,9 +306,11 @@ message PaiOperation {
 		PAI_OPER_TYPE_GANGPAI = 3; //杠牌
 		PAI_OPER_TYPE_PENGPAI = 4; //碰牌
 		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
+		PAI_OPER_TYPE_GIVEUP = 6; //放弃
 	}
 	optional PAI_OPER_TYPE oper_type = 2;
-	repeated Pai pais = 4; //牌数据
+	repeated PaiElement pais = 4; //牌数据：吃牌
+	optional PaiElement pai = 5; //牌数据：打牌
 }
 
 //游戏内操作
@@ -265,7 +335,7 @@ message GameOperation {
 //同步账号下角色数据
 message PlayerList {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PLAYERS ];
-	repeated Player players = 2;
+	repeated int64 player_list = 2; //角色ID
 }
 
 //同步玩家角色数据
@@ -275,8 +345,8 @@ message PlayerInformation {
 }
 
 //错误码提示
-message AlterMessage {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ALTER_ERROR ];
+message AlertMessage {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ALERT_ERROR ];
 	optional ERROR_TYPE error_type = 2;
 	optional ERROR_SHOW_TYPE error_show_type = 3;
 	optional ERROR_CODE error_code = 4;
@@ -292,16 +362,25 @@ message CommonOperationResponse {
 //麻将数据同步
 message PaiNotify {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_NOTIFY ];
+	//发送牌数据缘由
 	enum CARDS_DATA_TYPE {
 		CARDS_DATA_TYPE_START = 1; //开局
 		CARDS_DATA_TYPE_FAPAI = 2; //发牌
+		CARDS_DATA_TYPE_SYNC = 3; //同步
 	}
-	optional CARDS_DATA_TYPE data_type = 2;
-	message Pai { //牌数据
-		optional CARD_TYPE card_type = 1; //牌类型:饼条...
+	optional CARDS_DATA_TYPE data_type = 2; //缘由
+	//多张牌数据 
+	message MutiPai { 
+		optional CARD_TYPE card_type = 1; //牌类型：饼、条...
 		repeated int32 cards = 2; //牌值
 	}
-	repeated Pai pais = 3; //数据
+	repeated MutiPai pais = 3; //数据：开局，发13或14张牌
+	//单张牌数据 
+	message SinglePai { 
+		optional CARD_TYPE card_type = 1; //牌类型：饼、条...
+		optional int32 card_value = 2; //牌值
+	}
+	optional SinglePai pai = 4; //数据：发牌，发1张牌
 }
 
 //玩家基础属性同步
@@ -309,7 +388,8 @@ message CommonProperty {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_COMMON_PROPERTY ];
 	//同步数据的原由
 	enum SYNC_REASON_TYPE { 
-		SYNC_REASON_TYPE_ENTER_ROOM = 1; //加入房间
+		SYNC_REASON_TYPE_SELF = 1; //发送玩家自己数据,可能是因为改了角色名称//欢乐豆变化//钻石变化...
+		SYNC_REASON_TYPE_ENTER_ROOM = 2; //加入房间:发送其他玩家的数据
 	}
 	optional SYNC_REASON_TYPE reason_type = 2;
 	optional int64 player_id = 3; //XX玩家的数据
@@ -317,8 +397,20 @@ message CommonProperty {
 }
 
 //提示玩家可以进行的操作
-message PaiOperationAlter {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALTER ];
+message PaiOperationAlert {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALERT ];
 	optional PAI_CHECK_RETURN check_return = 2; //返回结果：有时候玩家是能吃能碰还能杠，这个需要客户端自己检查
-	optional Pai pai = 3; //牌数据
+	optional PaiElement pai = 3; //牌数据
+}
+
+//通用限制数据同步
+message SyncCommonLimit {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_COMMON_LIMIT ];
+	optional PlayerCommonLimit common_limit = 2; //玩家所有通用限制数据
+}
+
+//通用奖励
+message SyncCommonReward {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_COMMON_REWARD ];
+	optional int64 common_reward_id = 2; //通用奖励ID[CommonReward]数据
 }

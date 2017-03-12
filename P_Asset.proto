@@ -50,7 +50,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_MJ_CARD = 6; //麻将牌
 	ASSET_TYPE_COMMON_CONST = 7; //通用常量定义
 	ASSET_TYPE_LUCKY_PLATE = 8; //幸运转盘
-	ASSET_TYPE_DIALY_BONUS = 9; //每日补助-福利
+	ASSET_TYPE_DAILY_BONUS = 9; //每日登陆奖励,每日上线发一次
 	ASSET_TYPE_MALL = 10; //商城
 	ASSET_TYPE_ROOM_FAN = 11; //番数表
 	ASSET_TYPE_ROOM_MODEL = 12; //房间模式
@@ -59,6 +59,8 @@ enum ASSET_TYPE {
 	ASSET_TYPE_FACE = 15; //表情
 	ASSET_TYPE_AVATAR = 16; //头像
 	ASSET_TYPE_ACTIVITY = 17; //活动
+	ASSET_TYPE_DAILY_ALLOWANCE = 18; //每日补助,玩家欢乐豆少于多少即可领取数量欢乐豆
+	ASSET_TYPE_COMMON_CONSUME = 19; //通用消耗
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -181,6 +183,8 @@ message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
 	optional AssetCommonProp common_prop = 2;
 	optional int32 max_cards_count = 3 [ default = 136 ]; //牌总数
+	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据,每天1次
+	optional int64 daily_allowance_id = 5; //补助福利ID[DailyAllowance]数据,每天N次
 }
 
 //通用奖励
@@ -196,14 +200,32 @@ message CommonReward {
 		optional REWARD_TYPE reward_type = 1; //奖励类型 
 		optional bytes comments = 2; //描述
 		optional bytes icon_name = 3; //图标
-		optional int32 item_id = 4; //物品ID 
+		optional int64 item_id = 4; //物品ID 
 		optional int32 count = 5; //奖励数量 
-		optional int32 common_limit_id = 6; //通用限制ID 
+		optional int64 common_limit_id = 6; //通用限制ID[CommonLimit]数据
 	}
 	optional int32 rewards_count = 3 [ default = 10 ]; //奖励数量
 	repeated Reward rewards = 4; //奖励
 }
 
+//通用消耗
+message CommonConsume {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONSUME ];
+	optional AssetCommonProp common_prop = 2;
+	//消耗类型
+	enum CONSUME_TYPE {
+		CONSUME_TYPE_DIAMOND = 1; //钻石
+		CONSUME_TYPE_HUANLEDOU = 2; //欢乐豆
+		CONSUME_TYPE_ITEM = 3; //物品
+	}
+	message Element {
+		optional CONSUME_TYPE consume_type = 1; //消耗类型 
+		optional int32 item_id = 2; //消耗物品ID(如果是物品)
+		optional int32 consume_count = 3; //消耗数量(通用)
+	}
+	optional int32 elements_count = 3 [ default = 3 ]; //消耗种类数量
+	repeated Element elements = 4; //数据
+}
 //幸运转盘-抽奖玩法
 message LuckyPlate {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_LUCKY_PLATE ];
@@ -217,9 +239,9 @@ message LuckyPlate {
 	repeated Plate plates = 4; //转盘
 }
 
-//每日补助-福利
-message DialyBonus {
-	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DIALY_BONUS ];
+//每日登陆奖励,每日上线发一次
+message DailyBonus {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_BONUS ];
 	optional AssetCommonProp common_prop = 2;
 	optional int64 common_reward_id = 3; //奖励ID[CommonReward]数据
 	optional int64 common_limit_id = 4; //通用限制ID[CommonLimit]数据
@@ -229,11 +251,17 @@ message DialyBonus {
 message Mall {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_MALL ];
 	optional AssetCommonProp common_prop = 2;
-	optional int64 item_id = 3; //物品ID
-	optional int32 item_count = 4; //物品数量
-	optional int32 diamond = 5; //消耗钻石数量
-	optional int32 diamond_show = 6; //显示消耗钻石数量
-	optional int64 activity_id = 7; //关联活动ID[Activity]数据
+	enum GOODS_TYPE {
+		GOODS_TYPE_HUANLEDOU = 1; //欢乐豆
+		GOODS_TYPE_ITEM = 2; //普通商品
+	}
+	optional GOODS_TYPE goods_type = 3; //商品类型
+	optional int64 item_id = 4; //物品ID
+	optional int32 item_count = 5; //物品数量
+	optional int32 huanledou_count = 6; //欢乐豆数量
+	optional int32 diamond = 7; //消耗钻石数量:实际价格,即折后价格
+	optional int32 diamond_show = 8; //显示消耗钻石数量:折前价格
+	optional int64 activity_id = 9; //关联活动控制ID[Activity]数据
 }
 
 //番数
@@ -327,10 +355,19 @@ message Activity {
 		ACTIVITY_TYPE_DURATION = 2; //按照时长
 	}
 	optional ACTIVITY_TYPE activity_type = 3; //活动类型
-	optional int32 start_time = 4; //开始时间
-	optional int32 stop_time = 5; //结束时间
-	optional int32 duration = 6; //持续时间
+	optional bytes start_time = 4; //开始时间: 2017-01-20 20:00:00
+	optional bytes stop_time = 5; //结束时间: 2017-02-20 20:00:00
 }
+
+//补助福利
+message DailyAllowance {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_ALLOWANCE ];
+	optional AssetCommonProp common_prop = 2;
+	optional int32 huanledou_below = 3 [ default = 2000 ]; //欢乐豆低于数量
+	optional int64 common_reward_id = 4; //奖励ID[CommonReward]数据
+	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
+}
+
 /////////////////////////////////////////////////////
 // 物品(作为特殊资源)数据类别定义区
 //
