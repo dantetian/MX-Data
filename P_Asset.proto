@@ -61,6 +61,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_ACTIVITY = 17; //活动
 	ASSET_TYPE_DAILY_ALLOWANCE = 18; //每日补助,玩家欢乐豆少于多少即可领取数量欢乐豆
 	ASSET_TYPE_COMMON_CONSUME = 19; //通用消耗
+	ASSET_TYPE_RECHARGE = 20; //充值：各个渠道对游戏内钻石的购买，人民币
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -254,11 +255,11 @@ message Mall {
 	optional AssetCommonProp common_prop = 2;
 	enum GOODS_TYPE {
 		GOODS_TYPE_HUANLEDOU = 1; //欢乐豆
-		GOODS_TYPE_ITEM = 2; //普通商品
+		GOODS_TYPE_NORMAL_ITEM = 2; //普通商品
 	}
 	optional GOODS_TYPE goods_type = 3; //商品类型
 	optional int64 item_id = 4; //物品ID
-	optional int32 count = 5; //购买数量
+	optional int32 count = 5; //数量
 	optional int32 diamond = 6; //实际消耗钻石数量：实际价格，即折后价格
 	optional int32 diamond_show = 7; //显示消耗钻石数量：折前价格
 	optional int32 huanledou = 8; //实际消耗欢乐豆数量
@@ -369,6 +370,17 @@ message DailyAllowance {
 	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
 }
 
+//充值
+message Recharge {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_RECHARGE ];
+	optional AssetCommonProp common_prop = 2;
+	optional bytes plat_name = 3; //渠道名称
+	optional bytes product_id = 4; //商品名称：即IOS和Android人民币可购买的商品
+	optional bytes icon_name = 5; //商品图标
+	optional int32 price = 6; //商品价格
+	optional int32 price_show = 7; //商品显示价格
+	optional int32 gain_diamond = 8; //购买钻石数量
+}
 /////////////////////////////////////////////////////
 // 物品(作为特殊资源)数据类别定义区
 //
@@ -401,6 +413,12 @@ message Item_Item {
 	optional ASSET_TYPE type_t = 1 [ default = ITEM_TYPE_BEGIN ];
 	optional bytes stuff = 2; //包含的子类数据，非物品通用数据(例如，Item_Potion序列化后的数据)
 	optional bytes stuff_extra = 3; //物品额外存盘数据
+}
+
+//普通物品
+message Item_Normal {
+	optional ASSET_TYPE type_t = 1 [ default = ITEM_TYPE_ROOM_CARD ];
+	optional Item_CommonProp item_common_prop = 2; //物品公共属性
 }
 
 //药品
