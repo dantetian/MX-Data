@@ -204,16 +204,16 @@ enum META_TYPE {
 	META_TYPE_SHARE_PAI_OPERATION = 4; //玩家牌操作
 	META_TYPE_SHARE_GAME_OPERATION = 5; //玩家游戏操作
 	META_TYPE_SHARE_COMMON_PROPERTY = 6; //玩家基础属性同步
-	META_TYPE_SHARE_COUNT = 300; //共享协议最大数量
+	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
-	META_TYPE_C2S_BEGIN = 301; //客户端开始协议
-	META_TYPE_C2S_LOGIN = 302; //登录游戏
-	META_TYPE_C2S_SELECT_SERVER = 303; //选择服务器
-	META_TYPE_C2S_ENTER_GAME = 304; //进入游戏(选择的角色)
-	META_TYPE_C2S_ENTER_ROOM = 305; //进入房间
-	META_TYPE_C2S_GET_REWARD = 306; //领取奖励
-	META_TYPE_C2S_BUY_SOMETHING = 307; //购买商品：游戏内商品交易
-	META_TYPE_C2S_COUNT = 500; //客户端协议最大数量
+	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
+	META_TYPE_C2S_LOGIN = 52; //登录游戏
+	META_TYPE_C2S_SELECT_SERVER = 53; //选择服务器
+	META_TYPE_C2S_ENTER_GAME = 54; //进入游戏(选择的角色)
+	META_TYPE_C2S_ENTER_ROOM = 55; //进入房间
+	META_TYPE_C2S_GET_REWARD = 56; //领取奖励
+	META_TYPE_C2S_BUY_SOMETHING = 57; //购买商品：游戏内商品交易
+	META_TYPE_C2S_COUNT = 255; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
 	META_TYPE_S2C_TICKET = 502; //登录认证
