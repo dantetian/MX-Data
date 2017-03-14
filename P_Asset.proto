@@ -67,6 +67,7 @@ enum ASSET_TYPE {
 	ITEM_TYPE_BEGIN = 201; //物品开始
 	ITEM_TYPE_POTION = 202; //药品
 	ITEM_TYPE_ROOM_CARD = 203; //房卡
+	ITEM_TYPE_NORMAL = 204; //普通物品
 	ITEM_TYPE_GUN = 204; //枪
 }
 
@@ -187,6 +188,7 @@ message CommonConst {
 	optional int32 max_cards_count = 3 [ default = 136 ]; //牌总数
 	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据
 	optional int64 daily_allowance_id = 5; //每日补助福利ID[DailyAllowance]数据
+	optional int32 time_out = 6 [ default = 8 ]; //玩家操作等待时间(单位：秒)
 }
 
 //通用奖励
@@ -417,7 +419,7 @@ message Item_Item {
 
 //普通物品
 message Item_Normal {
-	optional ASSET_TYPE type_t = 1 [ default = ITEM_TYPE_ROOM_CARD ];
+	optional ASSET_TYPE type_t = 1 [ default = ITEM_TYPE_NORMAL ];
 	optional Item_CommonProp item_common_prop = 2; //物品公共属性
 }
 

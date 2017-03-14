@@ -225,7 +225,7 @@ enum META_TYPE {
 	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
 	META_TYPE_S2C_ALERT_ERROR = 507; //错误码信息
 	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
-	META_TYPE_S2C_PAI_NOTIFY = 509; //通知客户端玩家手中的牌或抓到的牌
+	META_TYPE_S2C_PAI_NOTIFY = 509; //通知Client玩家手中的牌或抓到的牌
 	META_TYPE_S2C_PAI_OPERATION_ALERT = 510; //提示玩家可以进行的操作
 	META_TYPE_S2C_COMMON_LIMIT = 511; //通用限制:主要用于Client界面控制
 	META_TYPE_S2C_COMMON_REWARD = 512; //通用奖励
