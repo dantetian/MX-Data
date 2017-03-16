@@ -57,6 +57,7 @@ message PlayerProp {
 	optional float sight_distance = 1;
 	optional GAME_OPER_TYPE game_oper_state = 2; //玩家状态
 	optional POSITION_TYPE position = 3; //玩家座次
+	optional bool online = 4; //是否在线
 }
 
 //玩家公共数据 
@@ -180,6 +181,7 @@ enum ERROR_CODE {
 	ERROR_MALL_NOT_FOUND = 7; //商品未找到
 	ERROR_ACTIVITY_NOT_OPEN = 8; //活动尚未开启
 	ERROR_CLIENT_DATA = 9; //Client数据错误
+	ERROR_HAS_NO_PLAYER = 10; //该账号下没有这个角色
 
 	ERROR_ROOM_NOT_FOUNT = 20; //房间未找到
 	ERROR_ROOM_PASSWORD = 21; //房间密码错误
@@ -208,13 +210,13 @@ enum META_TYPE {
 	META_TYPE_SHARE_GAME_OPERATION = 5; //玩家游戏操作
 	META_TYPE_SHARE_COMMON_PROPERTY = 6; //玩家基础属性同步
 	META_TYPE_SHARE_BUY_SOMETHING = 7; //购买商品：游戏内商品交易
+	META_TYPE_SHARE_ENTER_ROOM = 8; //进入房间
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
 	META_TYPE_C2S_LOGIN = 52; //登录游戏
 	META_TYPE_C2S_SELECT_SERVER = 53; //选择服务器
 	META_TYPE_C2S_ENTER_GAME = 54; //进入游戏(选择的角色)
-	META_TYPE_C2S_ENTER_ROOM = 55; //进入房间
 	META_TYPE_C2S_GET_REWARD = 56; //领取奖励
 	META_TYPE_C2S_COUNT = 255; //客户端协议最大数量
 	///////////服务器发送数据///////////
@@ -272,7 +274,7 @@ message CreateRoom {
 
 //进入房间
 message EnterRoom {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_ENTER_ROOM ];
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_ENTER_ROOM ];
 	optional Room room = 2; //房间ID：如果有值证明玩家进入的是好友房
 }
 
