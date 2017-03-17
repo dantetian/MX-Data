@@ -47,6 +47,7 @@ message User {
 
 //玩家座次
 enum POSITION_TYPE {
+	POSITION_TYPE_NULL = 0; 
 	POSITION_TYPE_EAST = 1; //东
 	POSITION_TYPE_SOUTH = 2; //南
 	POSITION_TYPE_WEST = 3; //西
@@ -231,6 +232,7 @@ enum META_TYPE {
 	META_TYPE_S2C_PAI_OPERATION_ALERT = 510; //提示玩家可以进行的操作
 	META_TYPE_S2C_COMMON_LIMIT = 511; //通用限制:主要用于Client界面控制
 	META_TYPE_S2C_COMMON_REWARD = 512; //通用奖励
+	META_TYPE_S2C_ROOM_INFO = 513; //同步房间数据
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -276,6 +278,7 @@ message CreateRoom {
 message EnterRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_ENTER_ROOM ];
 	optional Room room = 2; //房间ID：如果有值证明玩家进入的是好友房
+	optional POSITION_TYPE position = 3; //位置
 }
 
 //获取奖励
@@ -427,4 +430,14 @@ message SyncCommonLimit {
 message SyncCommonReward {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_COMMON_REWARD ];
 	optional int64 common_reward_id = 2; //通用奖励ID[CommonReward]数据
+}
+
+//房间数据
+message RoomInformation {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_INFO ];
+	message Player {
+		optional POSITION_TYPE position = 1; //位置
+		optional CommonProp common_prop = 2; //玩家基本数据
+	}
+	repeated Player player_list = 2;
 }
