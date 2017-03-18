@@ -226,8 +226,9 @@ enum META_TYPE {
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
 	META_TYPE_C2S_LOGIN = 52; //登录游戏
-	META_TYPE_C2S_SELECT_SERVER = 53; //选择服务器
-	META_TYPE_C2S_ENTER_GAME = 54; //进入游戏(选择的角色)
+	META_TYPE_C2S_LOGOUT = 53; //退出游戏
+	META_TYPE_C2S_SELECT_SERVER = 54; //选择服务器
+	META_TYPE_C2S_ENTER_GAME = 55; //进入游戏(选择的角色)
 	META_TYPE_C2S_GET_REWARD = 56; //领取奖励
 	META_TYPE_C2S_LOAD_SCENE = 57; //加载场景
 	META_TYPE_C2S_COUNT = 255; //客户端协议最大数量
@@ -264,6 +265,11 @@ message CreatePlayer {
 message Login {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
 	optional Account account = 2;
+}
+
+//退出游戏
+message Logout {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGOUT ];
 }
 
 //进入游戏：实际进入的是游戏大厅
