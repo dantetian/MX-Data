@@ -346,9 +346,10 @@ message PaiOperation {
 
 //游戏内操作
 enum GAME_OPER_TYPE {
-	GAME_OPER_TYPE_START = 1; //开始游戏
-	GAME_OPER_TYPE_LEAVE = 2; //离开游戏
-	GAME_OPER_TYPE_KICKOUT = 3; //踢人
+	GAME_OPER_TYPE_NULL = 1; //无状态
+	GAME_OPER_TYPE_START = 2; //开始游戏
+	GAME_OPER_TYPE_LEAVE = 3; //离开游戏
+	GAME_OPER_TYPE_KICKOUT = 4; //踢人
 }
 
 //游戏操作
