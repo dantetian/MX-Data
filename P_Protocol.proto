@@ -299,6 +299,7 @@ message EnterRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_ENTER_ROOM ];
 	optional Room room = 2; //房间ID：如果有值证明玩家进入的是好友房
 	optional ERROR_CODE error_code = 3; //返回结果
+	optional bool cancel = 4; //取消进入
 }
 
 //获取奖励

@@ -268,28 +268,28 @@ message Mall {
 	optional int64 activity_id = 10; //关联活动控制ID[Activity]数据
 }
 
+//番数类型
+enum FAN_TYPE {
+	FAN_TYPE_ZHUANG = 1; //庄家
+	FAN_TYPE_DIAN_PAO = 2; //点炮
+	FAN_TYPE_ZI_MO = 3; //自摸
+	FAN_TYPE_SHANG_TING = 4; //上听
+	FAN_TYPE_BIMEN = 5; //闭门
+	FAN_TYPE_HAI_DI_LAO = 6; //海底捞
+	FAN_TYPE_GANG_SHANG_KAI = 7; //杠上开(杠次)
+	FAN_TYPE_LIU_LEI = 8; //流泪
+	FAN_TYPE_LOU_BAO = 9; //搂宝
+	FAN_TYPE_PIAO_HU = 10; //飘胡
+	FAN_TYPE_SI_GUI_YI = 11; //四归一
+	FAN_TYPE_MING_PIAO = 12; //明飘
+	FAN_TYPE_SAN_JIA_BI_MEN = 13; //三家闭门
+	FAN_TYPE_QING_YI_SE = 14; //清一色
+	FAN_TYPE_MING_GANG = 15; //明杠
+	FAN_TYPE_AN_GANG = 16; //暗杠
+	FAN_TYPE_JIN_BAO = 17; //进宝
+}
 //番数
 message RoomFan {
-	//番数类型
-	enum FAN_TYPE {
-		FAN_TYPE_ZHUANG = 1; //庄家
-		FAN_TYPE_DIAN_PAO = 2; //点炮
-		FAN_TYPE_ZI_MO = 3; //自摸
-		FAN_TYPE_SHANG_TING = 4; //上听
-		FAN_TYPE_BIMEN = 5; //闭门
-		FAN_TYPE_HAI_DI_LAO = 6; //海底捞
-		FAN_TYPE_GANG_SHANG_KAI = 7; //杠上开(杠次)
-		FAN_TYPE_LIU_LEI = 8; //流泪
-		FAN_TYPE_LOU_BAO = 9; //搂宝
-		FAN_TYPE_PIAO_HU = 10; //飘胡
-		FAN_TYPE_SI_GUI_YI = 11; //四归一
-		FAN_TYPE_MING_PIAO = 12; //明飘
-		FAN_TYPE_SAN_JIA_BI_MEN = 13; //三家闭门
-		FAN_TYPE_QING_YI_SE = 14; //清一色
-		FAN_TYPE_MING_GANG = 15; //明杠
-		FAN_TYPE_AN_GANG = 16; //暗杠
-		FAN_TYPE_JIN_BAO = 17; //进宝
-	}
 	//番数表
 	message FanElement {
 		optional FAN_TYPE fan_type = 3; //番类型
