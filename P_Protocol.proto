@@ -127,6 +127,9 @@ message Player {
 	optional PlayerCommonLimit common_limit = 4; //通用限制
 	optional PlayerCoolDown cool_down = 5; //冷却
 
+	optional int32 login_time = 6;
+	optional int32 logout_time = 7;
+
 	repeated Mail mail_list = 10; //邮件列表
 
 //////////////非存盘数据结构
