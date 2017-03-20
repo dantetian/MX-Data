@@ -225,6 +225,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_BUY_SOMETHING = 7; //购买商品：游戏内商品交易
 	META_TYPE_SHARE_ENTER_ROOM = 8; //进入房间
 	META_TYPE_SHARE_SIGN = 9; //签到
+	META_TYPE_SHARE_LUCKY_PLATE = 10; //幸运转盘
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -346,6 +347,13 @@ message EnterRoom {
 message Sign {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_SIGN ];
 	optional bool success = 2; //签到成功
+}
+
+//幸运转盘
+message PlayerLuckyPlate {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_LUCKY_PLATE ];
+	optional int64 plate_id = 2; //幸运转盘ID[LuckyPlate]数据
+	optional int32 result = 3; //转到奖励索引
 }
 
 //获取奖励
