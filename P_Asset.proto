@@ -62,6 +62,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_DAILY_ALLOWANCE = 18; //每日补助,玩家欢乐豆少于多少即可领取数量欢乐豆
 	ASSET_TYPE_COMMON_CONSUME = 19; //通用消耗
 	ASSET_TYPE_RECHARGE = 20; //充值：各个渠道对游戏内钻石的购买，人民币
+	ASSET_TYPE_DAILY_SIGN = 21; //每日签到
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -188,6 +189,7 @@ message CommonConst {
 	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据
 	optional int64 daily_allowance_id = 5; //每日补助福利ID[DailyAllowance]数据
 	optional int32 time_out = 6 [ default = 8 ]; //玩家操作等待时间(单位：秒)
+	optional int64 daily_sign_id = 7; //每日签到奖励ID[DailySign]数据
 }
 
 //通用奖励
@@ -382,6 +384,24 @@ message Recharge {
 	optional int32 price_show = 7; //商品显示价格
 	optional int32 gain_diamond = 8; //购买钻石数量
 }
+
+//每日签到
+message DailySign {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_SIGN ];
+	optional AssetCommonProp common_prop = 2;
+	optional int64 common_reward_id = 3; //每日签到奖励
+	optional int64 common_limit_id = 4; //每日签到限制次数
+	//连续签到奖励
+	message ContinuousSign {
+		optional int32 count = 1; //连续签到次数
+		optional int64 common_reward_id = 2; //奖励
+		optional int64 common_limit_id = 3; //限制次数(是否已经领奖)
+	}
+
+	optional int32 signs_count = 5 [ default = 10 ]; //连续签到数量
+	repeated ContinuousSign signs = 6; //连续签到
+}
+
 /////////////////////////////////////////////////////
 // 物品(作为特殊资源)数据类别定义区
 //

@@ -123,12 +123,11 @@ message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
 	optional int64 server_id = 2; //服务器ID
 	optional Inventory inventory = 3; //玩家包裹
-
 	optional PlayerCommonLimit common_limit = 4; //通用限制
 	optional PlayerCoolDown cool_down = 5; //冷却
-
-	optional int32 login_time = 6;
-	optional int32 logout_time = 7;
+	optional int32 login_time = 6; //登陆时间
+	optional int32 logout_time = 7; //登出时间
+	repeated int32 sign_time = 8; //签到时间
 
 	repeated Mail mail_list = 10; //邮件列表
 
@@ -225,6 +224,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_COMMON_PROPERTY = 6; //玩家基础属性同步
 	META_TYPE_SHARE_BUY_SOMETHING = 7; //购买商品：游戏内商品交易
 	META_TYPE_SHARE_ENTER_ROOM = 8; //进入房间
+	META_TYPE_SHARE_SIGN = 9; //签到
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -340,6 +340,12 @@ message EnterRoom {
 		ENTER_TYPE_CANCEL = 2; //取消进入，适合在匹配过程取消
 	}
 	optional ENTER_TYPE enter_type = 4; //操作类型
+}
+
+//签到
+message Sign {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_SIGN ];
+	optional bool success = 2; //签到成功
 }
 
 //获取奖励
