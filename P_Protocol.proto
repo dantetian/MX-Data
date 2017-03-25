@@ -499,7 +499,7 @@ message CommonProperty {
 //提示玩家可以进行的操作
 message PaiOperationAlert {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALERT ];
-	repeated PAI_CHECK_RETURN check_return = 2; //返回结果：有时候玩家是能吃能碰还能杠，这个需要客户端自己检查
+	repeated PAI_CHECK_RETURN check_return = 2; //返回结果：玩家当前可操作的所有情况
 	optional PaiElement pai = 3; //牌数据
 }
 
