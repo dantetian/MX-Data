@@ -49,8 +49,8 @@ message User {
 enum POSITION_TYPE {
 	POSITION_TYPE_NULL = 0; 
 	POSITION_TYPE_EAST = 1; //东
-	POSITION_TYPE_WEST = 2; //西
-	POSITION_TYPE_SOUTH = 3; //南
+	POSITION_TYPE_SOUTH = 2; //南
+	POSITION_TYPE_WEST = 3; //西
 	POSITION_TYPE_NORTH = 4; //北
 }
 
@@ -393,7 +393,8 @@ message PaiOperation {
 		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 		PAI_OPER_TYPE_GIVEUP = 6; //放弃
 	}
-	optional PAI_OPER_TYPE oper_type = 2;
+	optional PAI_OPER_TYPE oper_type = 2; //牌操作
+	optional POSITION_TYPE position = 3; //位置
 	repeated PaiElement pais = 4; //牌数据：吃牌
 	optional PaiElement pai = 5; //牌数据：打牌
 }
