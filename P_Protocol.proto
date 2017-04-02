@@ -69,6 +69,8 @@ message PlayerProp {
 	optional int64 room_id = 3; //房间ID
 	optional LOAD_SCENE_TYPE load_type = 4; //场景加载
 	optional GAME_OPER_TYPE game_oper_state = 5; //玩家状态
+	optional bool check_xuanfeng = 6; //旋风杠检查
+	optional int32 pai_oper_count = 7; //玩家操作次数
 }
 
 //玩家公共数据 
@@ -322,7 +324,7 @@ enum ROOM_EXTEND_TYPE {
 //房间设置
 message RoomOptions {
 	optional ROOM_MODEL_TYPE model = 1; //模式选择
-	optional ROOM_EXTEND_TYPE fan_type = 2; //额外番型
+	repeated ROOM_EXTEND_TYPE extend_type = 2; //额外番型
 	optional int32 top_mutiple = 3; //封顶倍数
 	optional int32 open_rands = 4; //局数：4局 8局 16局
 }
@@ -375,6 +377,8 @@ enum PAI_CHECK_RETURN {
 	PAI_CHECK_RETURN_GANG = 2; //杠牌
 	PAI_CHECK_RETURN_PENG = 3; //碰牌
 	PAI_CHECK_RETURN_CHI = 4; //吃牌
+	PAI_CHECK_GANG_XUANFENG_FENG = 5; //旋风杠：风牌
+	PAI_CHECK_GANG_XUANFENG_JIAN = 6; //旋风杠：箭牌
 }
 
 //牌操作超时限制
@@ -394,6 +398,8 @@ message PaiOperation {
 		PAI_OPER_TYPE_PENGPAI = 4; //碰牌
 		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 		PAI_OPER_TYPE_GIVEUP = 6; //放弃
+		PAI_OPER_TYPE_XUANFENG_FENG = 7; //旋风杠：风牌
+		PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠：箭牌
 	}
 	optional PAI_OPER_TYPE oper_type = 2; //牌操作
 	optional POSITION_TYPE position = 3; //位置
