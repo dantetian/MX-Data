@@ -287,48 +287,50 @@ message Room {
 	optional int64 room_id = 1; //房间ID
 	optional ROOM_TYPE room_type = 2; //房间信息
 	optional bytes enter_password = 3; //房间密码：仅好友房存在
+	optional RoomOptions options = 4; //房间设置
 }
-
 
 /////////////////////////////////////////////////////
 //好友房开放设置：
 //
-//模式选择：经典模式  高番模式  两种模式区别是额外番型的选项不同  
+//模式选择：经典模式  高番模式  点炮包三家 三种模式区别是额外番型的选项不同  
 //
-//额外番型： 带夹胡 宝牌 旋风杠 站立胡（不开门） 暂时就这四个确定了会修改
+//额外番型：带夹胡 宝牌 旋风杠 站立胡（不开门） 暂时就这四个确定了会修改
 //
 //封顶倍数：16倍 32倍 64倍 不封顶
 //
-//开设局数：4局  8局 
+//开设局数：4局  8局 16局
 /////////////////////////////////////////////////////
 
 //模式选择
 enum ROOM_MODEL_TYPE {
 	ROOM_MODEL_TYPE_CLASSICAL = 1; //经典模式
 	ROOM_MODEL_TYPE_MULTIPLE = 2; //高番模式
+	ROOM_MODEL_TYPE_PAO_TRIPLE = 3; //点炮包三家
 }
 
-//额外番型
-enum ROOM_FAN_TYPE {
-	ROOM_FAN_TYPE_JIAHU = 1;
-	ROOM_FAN_TYPE_BAOPAI = 2;
-	ROOM_FAN_TYPE_XUANFENGGANG = 3;
-	ROOM_FAN_TYPE_ZHANLIHU = 4;
+//额外玩法
+enum ROOM_EXTEND_TYPE {
+	ROOM_EXTEND_TYPE_JIAHU = 1; //夹胡
+	ROOM_EXTEND_TYPE_BAOPAI = 2; //宝牌
+	ROOM_EXTEND_TYPE_XUANFENGGANG = 3; //旋风杠
+	ROOM_EXTEND_TYPE_ZHANLIHU = 4; //站立胡
+	ROOM_EXTEND_TYPE_DUANMEN = 5; //可断门
+	ROOM_EXTEND_TYPE_HUIPAI = 6; //会牌
 }
 
 //房间设置
 message RoomOptions {
 	optional ROOM_MODEL_TYPE model = 1; //模式选择
-	optional ROOM_FAN_TYPE fan_type = 2; //额外番型
+	optional ROOM_EXTEND_TYPE fan_type = 2; //额外番型
 	optional int32 top_mutiple = 3; //封顶倍数
-	optional int32 open_rands = 4; //局数
+	optional int32 open_rands = 4; //局数：4局 8局 16局
 }
 
 //创建房间
 message CreateRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CREATE_ROOM ];
 	optional Room room = 2; //房间信息
-	optional RoomOptions options = 3; //房间设置
 }
 
 //进入房间
@@ -395,8 +397,8 @@ message PaiOperation {
 	}
 	optional PAI_OPER_TYPE oper_type = 2; //牌操作
 	optional POSITION_TYPE position = 3; //位置
-	repeated PaiElement pais = 4; //牌数据：吃牌
-	optional PaiElement pai = 5; //牌数据：打牌
+	repeated PaiElement pais = 4; //牌数据
+	optional PaiElement pai = 5; //牌数据
 }
 
 //游戏内操作
