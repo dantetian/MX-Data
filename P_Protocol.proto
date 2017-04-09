@@ -69,8 +69,9 @@ message PlayerProp {
 	optional int64 room_id = 3; //房间ID
 	optional LOAD_SCENE_TYPE load_type = 4; //场景加载
 	optional GAME_OPER_TYPE game_oper_state = 5; //玩家状态
-	optional bool check_xuanfeng = 6; //旋风杠检查
-	optional int32 pai_oper_count = 7; //玩家操作次数
+	optional bool check_feng_gang = 6; //旋风杠检查
+	optional bool check_jian_gang = 7; //旋风杠检查
+	optional int32 pai_oper_count = 8; //玩家操作次数
 }
 
 //玩家公共数据 
@@ -386,6 +387,15 @@ message PaiOperationLimit {
 	optional int64 player_id = 1; //操作玩家
 	optional int32 time_out = 2; //超时时间
 	optional PaiElement pai = 3; //待处理的牌
+	optional PAI_CHECK_RETURN oper_limit = 4; //最高操作权限
+}
+
+message PaiOperationList {
+	optional int64 player_id = 1; //操作玩家
+	optional int64 from_player_id = 2; //牌来自玩家
+	optional int32 time_out = 3; //超时时间
+	optional PaiElement pai = 4; //待处理的牌
+	repeated PAI_CHECK_RETURN oper_list = 5; //可操作列表
 }
 
 //牌操作
