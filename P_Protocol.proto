@@ -520,6 +520,7 @@ message PaiOperationAlert {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALERT ];
 	repeated PAI_CHECK_RETURN check_return = 2; //返回结果：玩家当前可操作的所有情况
 	optional PaiElement pai = 3; //牌数据
+	repeated PaiElement pais = 4; //牌数据
 }
 
 //通用限制数据同步
