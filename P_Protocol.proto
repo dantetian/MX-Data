@@ -74,6 +74,18 @@ message PlayerProp {
 	optional int32 pai_oper_count = 8; //玩家操作次数
 }
 
+//房间历史记录
+message RoomHistoryElement {
+	optional int64 player_id = 1; //玩家ID
+	optional int32 score = 2; //积分变化
+}
+
+//房间记录数据
+message RoomHistory {
+	optional int64 room_id = 1; //房间ID
+	repeated RoomHistoryElement list = 2; //列表
+}
+
 //玩家公共数据 
 message CommonProp {
 	optional int64 player_id = 1; //玩家ID
@@ -86,6 +98,8 @@ message CommonProp {
 	optional int64 total_rounds = 8; //参加的总局数 
 	optional int64 total_win_rounds = 9; //赢牌局数
 	optional int64 streak_wins = 10; //最高连胜
+	optional int64 score = 11; //积分
+	repeated int64 room_history = 12; //历史房间数据
 }
 
 //通用限制：存盘数据
