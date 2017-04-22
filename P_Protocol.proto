@@ -310,30 +310,29 @@ message Room {
 /////////////////////////////////////////////////////
 //好友房开放设置：
 //
-//模式选择：经典模式  高番模式  点炮包三家 三种模式区别是额外番型的选项不同  
+//模式选择：经典模式  高番模式
 //
-//额外番型：带夹胡 宝牌 旋风杠 站立胡（不开门） 暂时就这四个确定了会修改
+//额外番型：站立胡 带夹胡 旋风杠 宝牌 可断门 清一色
 //
-//封顶倍数：16倍 32倍 64倍 不封顶
+//封顶倍数：16倍 32倍 不封顶(0)
 //
-//开设局数：4局  8局 16局
+//开设局数：4局  8局
 /////////////////////////////////////////////////////
 
 //模式选择
 enum ROOM_MODEL_TYPE {
 	ROOM_MODEL_TYPE_CLASSICAL = 1; //经典模式
 	ROOM_MODEL_TYPE_MULTIPLE = 2; //高番模式
-	ROOM_MODEL_TYPE_PAO_TRIPLE = 3; //点炮包三家
 }
 
-//额外玩法
+//额外番型
 enum ROOM_EXTEND_TYPE {
-	ROOM_EXTEND_TYPE_JIAHU = 1; //夹胡
-	ROOM_EXTEND_TYPE_BAOPAI = 2; //宝牌
+	ROOM_EXTEND_TYPE_ZHANLIHU = 1; //站立胡
+	ROOM_EXTEND_TYPE_JIAHU = 2; //夹胡
 	ROOM_EXTEND_TYPE_XUANFENGGANG = 3; //旋风杠
-	ROOM_EXTEND_TYPE_ZHANLIHU = 4; //站立胡
+	ROOM_EXTEND_TYPE_BAOPAI = 4; //宝牌
 	ROOM_EXTEND_TYPE_DUANMEN = 5; //可断门
-	ROOM_EXTEND_TYPE_HUIPAI = 6; //会牌
+	ROOM_EXTEND_TYPE_QIYISE = 6; //清一色
 }
 
 //房间设置
@@ -341,7 +340,7 @@ message RoomOptions {
 	optional ROOM_MODEL_TYPE model = 1; //模式选择
 	repeated ROOM_EXTEND_TYPE extend_type = 2; //额外番型
 	optional int32 top_mutiple = 3; //封顶倍数
-	optional int32 open_rands = 4; //局数：4局 8局 16局
+	optional int32 open_rands = 4 [ default = 4 ]; //局数：4局 8局
 }
 
 //创建房间
