@@ -1443,7 +1443,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </image>
   </displayList>
   <Button downEffect="scale" downEffectValue="1.10"/>
-</component>package.xml|17678|<packageDescription id="krtoytc1" name="MXUI">
+</component>package.xml|18057|<packageDescription id="krtoytc1" name="MXUI">
   <resources>
     <component id="ac8t8j" name="GetAllAccessoryButton" path="/UIPIC/邮件/" size="177,73"/>
     <component id="ac8t8k" name="DeleteAllButton" path="/UIPIC/邮件/" size="177,73"/>
@@ -1528,6 +1528,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="w3hs8z" name="ServiceTerm3" path="/UIPIC/个人信息/" size="200,50"/>
     <component id="w3hs91" name="BoundAccount" path="/UIPIC/个人信息/" size="262,91"/>
     <component id="w3hs93" name="KickOutRoom" path="/UIPIC/个人信息/" size="262,91"/>
+    <component id="w3hs95" name="PlayAgainButton" path="/UIPIC/房卡房结算/" size="262,91"/>
     <component id="w3hs97" name="PlayerClearInfo" path="/UIPIC/匹配房结算/" size="424,187"/>
     <component id="w3hs98" name="MyClearInfo" path="/UIPIC/匹配房结算/" size="784,187"/>
     <component id="w3hs9a" name="NextRoundButton" path="/UIPIC/匹配房结算/" size="262,91"/>
@@ -1556,6 +1557,8 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <image id="oyth3" name="ui_Youjianjiemian_05" path="/UIPIC/邮件/" size="177,73"/>
     <image id="oyth32" name="ui_Shezhi_03" path="/UIPIC/游戏设置/" size="157,56" scale="9grid" scale9grid="40,14,80,28"/>
     <image id="oyth34" name="ui_Shezhi_05" path="/UIPIC/游戏设置/" size="89,43"/>
+    <image id="oyth3f" name="ui_Fangkajiesuan_01" path="/UIPIC/房卡房结算/" size="636,81" scale="9grid" scale9grid="159,21,318,42"/>
+    <image id="oyth3k" name="房卡场结算参考" path="/UIPIC/房卡房结算/" size="1334,750"/>
     <image id="oyth3l" name="ui_Zhanji_01" path="/UIPIC/战绩记录/" size="836,471"/>
     <image id="oyth3n" name="ui_Zhanji_03" path="/UIPIC/战绩记录/" size="670,248"/>
     <image id="oyth3o" name="ui_Zhanji_04" path="/UIPIC/战绩记录/" size="121,156"/>
@@ -1645,6 +1648,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="npla62" name="MainMenu" path="/" size="1334,750" exported="true"/>
     <component id="oyth0" name="Login" path="/" size="1334,750" exported="true"/>
     <component id="w3hs92" name="OtherPlayerInfo" path="/" size="1334,750" exported="true"/>
+    <component id="w3hs94" name="ClearRound" path="/" size="929,665" exported="true"/>
     <component id="w3hs96" name="ClearRoundScene" path="/" size="1334,750" exported="true"/>
     <component id="w3hs99" name="ClearShowFan" path="/UIPIC/匹配房结算/" size="555,25" exported="true"/>
     <atlas id="atlas3" size="2048,2048" file="atlas3.png"/>
@@ -1740,6 +1744,25 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <relation target="" sidePair="width-width,height-height"/>
     </image>
     <text id="n2" name="title" xy="0,0" size="262,91" fontSize="34" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="0,1" singleLine="true" text="踢出房间">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button/>
+</component>w3hs94.xml|410|<component size="929,665">
+  <displayList>
+    <image id="n0_w3hs" name="n0" src="oyth5v" xy="-1,6"/>
+    <image id="n1_w3hs" name="n1" src="oyth3f" xy="146,-24"/>
+    <image id="n2_w3hs" name="n2" src="oyth3t" xy="58,241" size="819,272"/>
+    <image id="n3_w3hs" name="n3" src="oyth3k" xy="-203,-71" alpha="0.5"/>
+    <component id="n4_w3hs" name="n4" src="w3hs95" xy="337,572"/>
+  </displayList>
+</component>w3hs95.xml|598|<component size="262,91" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth2d" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2" name="title" xy="0,0" size="262,91" fontSize="32" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="0,1" singleLine="true" text="再来一局">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
   </displayList>
