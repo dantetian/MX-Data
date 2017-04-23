@@ -74,16 +74,19 @@ message PlayerProp {
 	optional int32 pai_oper_count = 8; //玩家操作次数
 }
 
-//房间历史记录
-message RoomHistoryElement {
-	optional int64 player_id = 1; //玩家ID
-	optional int32 score = 2; //积分变化
+//游戏记录
+message GameRecord {
+	message GameElement {
+		optional int64 player_id = 1; //玩家ID
+		optional int32 score = 2; //积分变化
+	}
+	repeated GameElement list = 1;
 }
 
 //房间记录数据
 message RoomHistory {
 	optional int64 room_id = 1; //房间ID
-	repeated RoomHistoryElement list = 2; //列表
+	repeated GameRecord list = 2; //列表
 }
 
 //玩家公共数据 
@@ -266,6 +269,7 @@ enum META_TYPE {
 	META_TYPE_S2C_COMMON_LIMIT = 511; //通用限制:主要用于Client界面控制
 	META_TYPE_S2C_COMMON_REWARD = 512; //通用奖励
 	META_TYPE_S2C_ROOM_INFO = 513; //同步房间数据
+	META_TYPE_S2C_GAME_CACULATE = 514; //游戏结束结算
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间收发送数据///////////
 	META_TYPE_S2S_BEGIN = 1001; //开始协议
@@ -559,4 +563,10 @@ message RoomInformation {
 		optional CommonProp common_prop = 2; //玩家基本数据
 	}
 	repeated Player player_list = 2;
+}
+
+//游戏结算
+message GameCaculate {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_CACULATE ];
+	optional GameRecord record = 2; //积分结算
 }
