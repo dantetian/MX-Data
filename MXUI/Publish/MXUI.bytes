@@ -1454,7 +1454,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </image>
   </displayList>
   <Button downEffect="scale" downEffectValue="1.10"/>
-</component>package.xml|18756|<packageDescription id="krtoytc1" name="MXUI">
+</component>package.xml|18772|<packageDescription id="krtoytc1" name="MXUI">
   <resources>
     <component id="ac8t8j" name="GetAllAccessoryButton" path="/UIPIC/邮件/" size="177,73"/>
     <component id="ac8t8k" name="DeleteAllButton" path="/UIPIC/邮件/" size="177,73"/>
@@ -1535,7 +1535,6 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="oyth5z" name="WechatLogin" path="/UIPIC/主界面/" size="314,102"/>
     <component id="q2o39m" name="YesButton" path="/UIPIC/踢人/" size="177,73"/>
     <component id="q2o39n" name="NoButton" path="/UIPIC/踢人/" size="177,73"/>
-    <component id="qb9a9p" name="ChooseAvatarButton" path="/UIPIC/选择头像/" size="103,103"/>
     <component id="w3hs8y" name="ServiceTerm2" path="/UIPIC/个人信息/" size="144,50"/>
     <component id="w3hs8z" name="ServiceTerm3" path="/UIPIC/个人信息/" size="200,50"/>
     <component id="w3hs91" name="BoundAccount" path="/UIPIC/个人信息/" size="262,91"/>
@@ -1664,6 +1663,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="npla62" name="MainMenu" path="/" size="1334,750" exported="true"/>
     <component id="oyth0" name="Login" path="/" size="1334,750" exported="true"/>
     <component id="qb9a9o" name="ChooseAvatar" path="/" size="1334,750" exported="true"/>
+    <component id="qb9a9p" name="ChooseAvatarButton" path="/UIPIC/选择头像/" size="103,103" exported="true"/>
     <component id="w3hs92" name="OtherPlayerInfo" path="/" size="1334,750" exported="true"/>
     <component id="w3hs94" name="ClearRound" path="/" size="929,665" exported="true"/>
     <component id="w3hs96" name="ClearRoundScene" path="/" size="1334,750" exported="true"/>
@@ -1823,7 +1823,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </text>
   </displayList>
   <Button/>
-</component>w3hs96.xml|2313|<component size="1334,750">
+</component>w3hs96.xml|2311|<component size="1334,750">
   <displayList>
     <image id="n23_qb9a" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
     <component id="n10_w3hs" name="OppositePlayerClearInfo" src="w3hs97" xy="467,43" pivot="0.5,0.5">
@@ -1838,13 +1838,13 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="n20_w3hs" name="MyClearInfo" src="w3hs98" xy="289,432" pivot="0.5,0.5">
       <relation target="" sidePair="center-center,bottom-bottom"/>
     </component>
-    <component id="n3_w3hs" name="GameBackButton" src="algd7s" xy="12,0" pivot="0.5,0.5" group="n22_fb5y">
+    <component id="n3_w3hs" name="GameBackButton" src="algd7s" xy="0,0" pivot="0.5,0.5" group="n22_fb5y">
       <relation target="" sidePair="right-left,top-top"/>
     </component>
     <component id="n21_w3hs" name="NextTRoundButton" src="w3hs9a" xy="543,633" pivot="0.5,0.5" group="n22_fb5y">
       <relation target="" sidePair="center-center,bottom-bottom"/>
     </component>
-    <group id="n22_fb5y" name="Btns" xy="12,0" size="793,724" advanced="true"/>
+    <group id="n22_fb5y" name="Btns" xy="0,0" size="805,724" advanced="true"/>
   </displayList>
   <transition name="Popup" autoPlay="true">
     <item time="0" type="Scale" target="n3_w3hs" tween="true" startValue="0,0" endValue="1,1" duration="6"/>
