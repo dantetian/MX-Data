@@ -46,11 +46,11 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
   <displayList>
     <text id="n0_ac8t" name="Text" xy="1,0" size="299,25" fontSize="18" vAlign="middle" autoSize="none" text="朝阳麻将 朝阳麻将"/>
   </displayList>
-</component>ac8t8o.xml|1798|<component size="400,210" overflow="scroll">
+</component>ac8t8o.xml|1804|<component size="400,210" overflow="scroll">
   <displayList>
-    <text id="n0_ac8t" name="n0" xy="16,15" size="367,1011" fontSize="18" autoSize="none" text="UIPane只保存了UI包的名称和组件的名称，它不对纹理或其他资源产生任何引用，也就是UI使用的资源不会包含在场景数据中。&#xA;在编辑状态下，无论UI组件引用了哪些UI包的资源，包括放置在Resources目录下的和不放置在Resources下的，都能够正确显示。但当运行后，UIPanel只能自动载入放置在Resources目录或其子目录下的UI包，也只会载入自身所在的UI包，其他情况的UI包（例如引用到的UI包或打包到AssetBundle的UI包）不能自动载入。你需要在UIPanel创建前使用UIPackage.AddPackage准备好这类UI包。UIPanel在Start事件或者第一次访问UIPanel.ui属性时创建UI界面，你仍然有机会在Awake里完成这些操作。&#xA;&#xA;下面是UIPanel的一些属性说明：&#xA;Render Mode:  有三种：&#xA;Screen Space Overlay （默认值），表示这个UI在屏幕空间显示，这时Transform的Scale将被锁定，而且不建议修改Transform中的其他内容（让他们保持为0）。如果要修改面板在屏幕上的位置，使用UI Transform（参考下面关于UI Transform的说明）。&#xA;Screen Space Camera 表示这个UI在屏幕空间显示，但不使用FairyGUI默认的正交相机，而是使用指定的正交相机。&#xA;World Space 表示这个UI在世界空间显示，由透视相机渲染。默认的使用场景的主相机，如果不是，那么设置Render Camera。当使用这种模式时，使用Transfrom修改UI在世界空间中的位置、缩放、旋转。但你仍然可以使用UI Transform。&#xA;注意：Render Mode只定义了FairyGUI对待这个UI的方式，通常是坐标相关的操作（如点击检测等），但和渲染无关。UI由哪个相机渲染是由GameObject的layer决定的。所以如果发现UI没有显示出来，可以检查一下GameObject的layer是否正确。例如如果是Screen Space，GameObject应该在UI层，如果是WorldSpace，则是在Default层或者其他自定义的层次。&#xA;&#xA;Render Camera：当Render Mode是Screen Space Camera或者World Space时可以设置。如果不设置，默认为场景的主相机。&#xA;&#xA;Sorting Order：调整UIPanel的显示顺序。越大的显示在越前面。&#xA;&#xA;Fairy Batching：是否启用Fairy Batching。关于Fairy Batching请参考下面的说明。切换这个值，可以在编辑模式下实时看到DrawCall的变化（切换后点击一下Game，Stat里显示的内容才会更新），这可以使你更加容易决定是否启用这项技术。&#xA;&#xA;Touch Disabled：勾选后，将关闭点击检测。当这个UI没有可交互的内容时可以勾选以提高点击检测时的性能。例如头顶血条这些类型的UI，就可以勾选。&#xA;&#xA;UI Transform：当Render Mode是Screen Space时可以使用这里的设置调整UI在屏幕上的位置。你仍然可以调整Transform改变UI的位置，但我不建议你这样做，因为Transform中的坐标位置是没有经过不同分辨率自适应的调整的。当Render Mode是World Space时，建议使用Transform设置UI的位置，你仍然可以调整UI Transform改变UI的位置，但调整的效果可能不那么直观。同时你可以使用Scene视图中下图所示的原点调整UI Transform的位置属性："/>
+    <text id="n0_ac8t" name="MailBody" xy="16,15" size="367,1011" fontSize="18" autoSize="none" text="UIPane只保存了UI包的名称和组件的名称，它不对纹理或其他资源产生任何引用，也就是UI使用的资源不会包含在场景数据中。&#xA;在编辑状态下，无论UI组件引用了哪些UI包的资源，包括放置在Resources目录下的和不放置在Resources下的，都能够正确显示。但当运行后，UIPanel只能自动载入放置在Resources目录或其子目录下的UI包，也只会载入自身所在的UI包，其他情况的UI包（例如引用到的UI包或打包到AssetBundle的UI包）不能自动载入。你需要在UIPanel创建前使用UIPackage.AddPackage准备好这类UI包。UIPanel在Start事件或者第一次访问UIPanel.ui属性时创建UI界面，你仍然有机会在Awake里完成这些操作。&#xA;&#xA;下面是UIPanel的一些属性说明：&#xA;Render Mode:  有三种：&#xA;Screen Space Overlay （默认值），表示这个UI在屏幕空间显示，这时Transform的Scale将被锁定，而且不建议修改Transform中的其他内容（让他们保持为0）。如果要修改面板在屏幕上的位置，使用UI Transform（参考下面关于UI Transform的说明）。&#xA;Screen Space Camera 表示这个UI在屏幕空间显示，但不使用FairyGUI默认的正交相机，而是使用指定的正交相机。&#xA;World Space 表示这个UI在世界空间显示，由透视相机渲染。默认的使用场景的主相机，如果不是，那么设置Render Camera。当使用这种模式时，使用Transfrom修改UI在世界空间中的位置、缩放、旋转。但你仍然可以使用UI Transform。&#xA;注意：Render Mode只定义了FairyGUI对待这个UI的方式，通常是坐标相关的操作（如点击检测等），但和渲染无关。UI由哪个相机渲染是由GameObject的layer决定的。所以如果发现UI没有显示出来，可以检查一下GameObject的layer是否正确。例如如果是Screen Space，GameObject应该在UI层，如果是WorldSpace，则是在Default层或者其他自定义的层次。&#xA;&#xA;Render Camera：当Render Mode是Screen Space Camera或者World Space时可以设置。如果不设置，默认为场景的主相机。&#xA;&#xA;Sorting Order：调整UIPanel的显示顺序。越大的显示在越前面。&#xA;&#xA;Fairy Batching：是否启用Fairy Batching。关于Fairy Batching请参考下面的说明。切换这个值，可以在编辑模式下实时看到DrawCall的变化（切换后点击一下Game，Stat里显示的内容才会更新），这可以使你更加容易决定是否启用这项技术。&#xA;&#xA;Touch Disabled：勾选后，将关闭点击检测。当这个UI没有可交互的内容时可以勾选以提高点击检测时的性能。例如头顶血条这些类型的UI，就可以勾选。&#xA;&#xA;UI Transform：当Render Mode是Screen Space时可以使用这里的设置调整UI在屏幕上的位置。你仍然可以调整Transform改变UI的位置，但我不建议你这样做，因为Transform中的坐标位置是没有经过不同分辨率自适应的调整的。当Render Mode是World Space时，建议使用Transform设置UI的位置，你仍然可以调整UI Transform改变UI的位置，但调整的效果可能不那么直观。同时你可以使用Scene视图中下图所示的原点调整UI Transform的位置属性："/>
   </displayList>
-</component>ac8t8p.xml|1314|<component size="616,99" extention="Button">
+</component>ac8t8p.xml|1322|<component size="616,99" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
     <image id="n1" name="MailGeneralBg" src="oyth2" xy="0,0" size="617,99">
@@ -64,7 +64,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </loader>
     <component id="n4_ac8t" name="MailGeneralTitle" src="ac8t8n" xy="134,18" size="465,25"/>
     <component id="n5_ac8t" name="MailGeneralAddresser" src="ac8t8n" xy="205,58" size="239,25"/>
-    <text id="n6_ac8t" name="n6" xy="119,60" size="81,28" fontSize="16" autoSize="none" text="发件人："/>
+    <text id="n6_ac8t" name="Taddresser" xy="119,60" size="81,28" fontSize="16" autoSize="none" text="发件人："/>
     <text id="n7_ac8t" name="MailGeneralRemainTime" xy="515,64" size="83,26" fontSize="12" align="center" vAlign="middle" autoSize="none" singleLine="true" text="14天23小时">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
@@ -119,29 +119,25 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <item time="0" type="Alpha" tween="true" startValue="1" endValue="0" duration="5"/>
     <item time="0" type="Scale" tween="true" startValue="1,1" endValue="0.3,0.3" duration="5"/>
   </transition>
-</component>ac8t8t.xml|4153|<component size="1334,750" pivot="0.5,0.5">
+</component>ac8t8t.xml|3676|<component size="1334,750" pivot="0.5,0.5">
   <displayList>
     <image id="n44_qb9a" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
     <image id="n0_ac8t" name="InfoBg" src="oyth3v" xy="201,57"/>
-    <image id="n2_ac8t" name="AvatarBg" src="oyth2g" xy="328,253" size="169,217"/>
-    <text id="n3_ac8t" name="PlayerName" xy="344,424" size="137,38" fontSize="18" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="对方根本"/>
-    <text id="n4_ac8t" name="PlayerID" xy="388,474" size="194,42" fontSize="27" color="#663300" vAlign="middle" autoSize="none" text="9999999"/>
-    <loader id="n5_ac8t" name="AvatarLoader" xy="338,264" size="150,148"/>
-    <text id="n6_ac8t" name="n6" xy="670,223" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="欢乐豆:"/>
+    <text id="n6_ac8t" name="Tdou" xy="670,223" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="欢乐豆:"/>
     <text id="n7_ac8t" name="DouNum" xy="857,223" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n20_ac8t" name="n20" xy="333,474" size="56,42" fontSize="27" color="#663300" vAlign="middle" autoSize="none" text="ID:"/>
-    <text id="n21_ac8t" name="n21" xy="670,271" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="钻石:"/>
+    <text id="n21_ac8t" name="Tgems" xy="670,271" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="钻石:"/>
     <text id="n22_ac8t" name="GemsNum" xy="857,271" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n23_ac8t" name="n23" xy="670,319" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="房卡数量:"/>
+    <text id="n23_ac8t" name="Troomcardnum" xy="670,319" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="房卡数量:"/>
     <text id="n24_ac8t" name="RoomCardNum" xy="857,319" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n25_ac8t" name="n25" xy="672,415" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="最高连胜:"/>
+    <text id="n25_ac8t" name="Twinstreak" xy="672,415" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="最高连胜:"/>
     <text id="n26_ac8t" name="TotalWin" xy="857,415" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n27_ac8t" name="n27" xy="670,459" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="总局数:"/>
+    <text id="n27_ac8t" name="Ttotalplay" xy="670,459" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="总局数:"/>
     <text id="n28_ac8t" name="TotalPlay" xy="855,459" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n29_ac8t" name="n29" xy="671,500" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="房卡局数:"/>
+    <text id="n29_ac8t" name="Troomcardplay" xy="671,500" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="房卡局数:"/>
     <text id="n30_ac8t" name="RoomCardPlay" xy="855,500" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n31_ac8t" name="n31" xy="670,543" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="胜率:"/>
+    <text id="n31_ac8t" name="Trate" xy="670,543" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="胜率:"/>
     <text id="n32_ac8t" name="WinRate" xy="853,543" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
+    <component id="n45_jujv" name="PlayerInformation" src="jujv9v" xy="352,248"/>
     <text id="n41_w3hs" name="Title" xy="308,84" size="230,70" fontSize="50" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="个人信息"/>
     <component id="n37_w3hs" name="ServiveTerm1" src="ac8t8x" xy="649,630" size="112,50" group="n43_fb5y"/>
     <component id="n38_w3hs" name="ServiveTerm2" src="w3hs8y" xy="761,630" size="137,50" group="n43_fb5y"/>
@@ -377,8 +373,8 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </image>
   </displayList>
   <Button downEffect="dark" downEffectValue="0.80"/>
-</component>algd86.xml|6585|<component size="1334,750" pivot="0.5,0.5">
-  <controller name="MallFunctionSelect" pages="0,,1,,2," selected="0"/>
+</component>algd86.xml|6586|<component size="1334,750" pivot="0.5,0.5">
+  <controller name="MallFunctionSelect" pages="0,,1,,2," selected="1"/>
   <displayList>
     <image id="n50_qb9a" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
     <image id="n1_algd" name="Bg" src="oyth5" xy="65,57"/>
@@ -407,36 +403,36 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <image id="n17_algd" name="n17" src="oyth4d" xy="981,443">
       <gearDisplay controller="MallFunctionSelect" pages="0"/>
     </image>
-    <image id="n24_algd" name="n24" src="oyth4e" xy="407,208">
+    <image id="n24_algd" name="n24" src="oyth4e" xy="480,272">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </image>
-    <image id="n25_algd" name="n25" src="oyth4f" xy="651,208">
+    <image id="n25_algd" name="n25" src="oyth4f" xy="724,272">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </image>
-    <image id="n26_algd" name="n26" src="oyth4g" xy="934,186">
+    <image id="n26_algd" name="n26" src="oyth4g" xy="1007,250">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </image>
-    <image id="n27_algd" name="n27" src="oyth4h" xy="388,406">
+    <image id="n27_algd" name="n27" src="oyth4h" xy="461,470">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </image>
-    <image id="n28_algd" name="n28" src="oyth4i" xy="639,398">
+    <image id="n28_algd" name="n28" src="oyth4i" xy="712,462">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </image>
-    <image id="n29_algd" name="n29" src="oyth4j" xy="926,387" size="141,140">
+    <image id="n29_algd" name="n29" src="oyth4j" xy="999,451" size="141,140">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </image>
-    <image id="n30_algd" name="n30" src="oyth4k" xy="414,189">
+    <image id="n30_algd" name="n30" src="oyth4k" xy="489,252">
       <gearDisplay controller="MallFunctionSelect" pages="2"/>
     </image>
-    <image id="n31_algd" name="n31" src="oyth4k" xy="692,190">
+    <image id="n31_algd" name="n31" src="oyth4k" xy="767,253">
       <gearDisplay controller="MallFunctionSelect" pages="2"/>
     </image>
     <text id="n48_algd" name="Title" xy="236,88" size="105,54" fontSize="50" color="#ffffff" align="center" vAlign="middle" text="商城"/>
     <component id="n2_algd" name="MallDouButton" src="algd87" xy="103,189" group="n49_fb5y">
-      <Button checked="true" controller="MallFunctionSelect" page="0"/>
+      <Button controller="MallFunctionSelect" page="0"/>
     </component>
     <component id="n3_algd" name="MallGemsButton" src="algd88" xy="103,297" group="n49_fb5y">
-      <Button controller="MallFunctionSelect" page="1"/>
+      <Button checked="true" controller="MallFunctionSelect" page="1"/>
     </component>
     <component id="n4_algd" name="MallItemButton" src="algd89" xy="102,405" group="n49_fb5y">
       <Button controller="MallFunctionSelect" page="2"/>
@@ -450,13 +446,13 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="n35_algd" name="PriceButtonDou3" src="algd8e" xy="984,359" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="0"/>
     </component>
-    <component id="n36_algd" name="PriceButtonDou4" src="algd8f" xy="434,584" group="n49_fb5y">
+    <component id="n36_algd" name="PriceButtonDou4" src="algd8f" xy="434,585" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="0"/>
     </component>
-    <component id="n37_algd" name="PriceButtonDou5" src="algd8g" xy="705,584" group="n49_fb5y">
+    <component id="n37_algd" name="PriceButtonDou5" src="algd8g" xy="705,585" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="0"/>
     </component>
-    <component id="n38_algd" name="PriceButtonDou6" src="algd8h" xy="984,584" group="n49_fb5y">
+    <component id="n38_algd" name="PriceButtonDou6" src="algd8h" xy="984,585" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="0"/>
     </component>
     <component id="n39_algd" name="PriceButtonGems1" src="algd8b" xy="434,359" group="n49_fb5y">
@@ -468,13 +464,13 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="n41_algd" name="PriceButtonGems3" src="algd8e" xy="984,359" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </component>
-    <component id="n42_algd" name="PriceButtonGems4" src="algd8f" xy="434,584" group="n49_fb5y">
+    <component id="n42_algd" name="PriceButtonGems4" src="algd8f" xy="434,585" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </component>
-    <component id="n43_algd" name="PriceButtonGems5" src="algd8g" xy="705,584" group="n49_fb5y">
+    <component id="n43_algd" name="PriceButtonGems5" src="algd8g" xy="705,585" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </component>
-    <component id="n44_algd" name="PriceButtonGems6" src="algd8h" xy="984,584" group="n49_fb5y">
+    <component id="n44_algd" name="PriceButtonGems6" src="algd8h" xy="984,585" group="n49_fb5y">
       <gearDisplay controller="MallFunctionSelect" pages="1"/>
     </component>
     <component id="n45_algd" name="PriceButtonItem1" src="algd8b" xy="434,359" group="n49_fb5y">
@@ -484,7 +480,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <gearDisplay controller="MallFunctionSelect" pages="2"/>
     </component>
     <component id="n47_algd" name="Close" src="k35j7d" xy="1211,123" group="n49_fb5y"/>
-    <group id="n49_fb5y" name="Btns" xy="102,123" size="1176,525" advanced="true"/>
+    <group id="n49_fb5y" name="Btns" xy="102,123" size="1176,526" advanced="true"/>
   </displayList>
   <transition name="Popup" autoPlay="true">
     <item time="0" type="Scale" tween="true" startValue="0,0" endValue="1.1,1.1" duration="5"/>
@@ -542,11 +538,11 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </text>
   </displayList>
   <Button mode="Radio"/>
-</component>algd8a.xml|352|<component size="256,212">
+</component>algd8a.xml|355|<component size="256,212">
   <displayList>
     <image id="n0_algd" name="n0" src="oyth47" xy="0,0"/>
     <image id="n1_algd" name="SaleHint" src="oyth44" xy="-7,-10"/>
-    <text id="n3_algd" name="n3" xy="10,42" size="51,27" rotation="-44" fontSize="23" color="#ffffff" shadowColor="#000000" shadowOffset="1,1" text="促销"/>
+    <text id="n3_algd" name="Tsale" xy="10,42" size="39,27" rotation="-44" fontSize="23" color="#ffffff" shadowColor="#000000" shadowOffset="1,1" text="促销"/>
   </displayList>
 </component>algd8b.xml|563|<component size="190,64" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
@@ -602,7 +598,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <text id="n2_algd" name="Text" xy="32,5" size="122,49" fontSize="36" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="￥ 6"/>
   </displayList>
   <Button mode="Radio" downEffect="dark" downEffectValue="0.80"/>
-</component>algd8i.xml|2749|<component size="1334,750" pivot="0.5,0.5">
+</component>algd8i.xml|2761|<component size="1334,750" pivot="0.5,0.5">
   <controller name="MallFunctionSelect" pages="0,,1,,2," selected="0"/>
   <displayList>
     <image id="n69_qb9a" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
@@ -617,8 +613,8 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="n61_ac8t" name="MailAccessory2" src="ac8t8m" xy="1043,507" touchable="false"/>
     <component id="n62_ac8t" name="MailTitle" src="ac8t8n" xy="885,226"/>
     <component id="n63_ac8t" name="MailAddresser" src="ac8t8n" xy="887,265"/>
-    <text id="n64_ac8t" name="n64" xy="832,224" size="52,26" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="标题："/>
-    <text id="n65_ac8t" name="n65" xy="817,265" size="68,26" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="发件人："/>
+    <text id="n64_ac8t" name="Tmailtitle" xy="818,224" size="65,26" fontSize="16" color="#ffffff" align="right" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="标题："/>
+    <text id="n65_ac8t" name="Taddresser" xy="807,265" size="77,26" fontSize="16" color="#ffffff" align="right" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="发件人："/>
     <component id="n66_ac8t" name="MailBody" src="ac8t8o" xy="807,305" size="400,187"/>
     <list id="n67_ac8t" name="MailList" xy="133,208" size="616,364" overflow="scroll" clipSoftness="0,15" lineGap="6" defaultItem="ui://krtoytc1ac8t8p">
       <item/>
@@ -655,6 +651,69 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
   <Button downEffect="dark" downEffectValue="0.80"/>
 </component>ioy79l.xml|57|<component size="1334,750">
   <displayList/>
+</component>jujv9v.xml|664|<component size="169,259">
+  <displayList>
+    <image id="n14_jujv" name="AvatarBg" src="oyth2g" xy="0,0" size="169,217"/>
+    <text id="n15_jujv" name="PlayerName" xy="16,171" size="137,38" fontSize="18" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="对方根本"/>
+    <loader id="n16_jujv" name="AvatarLoader" xy="10,11" size="150,148"/>
+    <text id="n17_jujv" name="PlayerID" xy="63,217" size="146,42" fontSize="27" color="#663300" vAlign="middle" autoSize="none" text="9999999"/>
+    <text id="n18_jujv" name="Tid" xy="8,217" size="56,42" fontSize="27" color="#663300" vAlign="middle" autoSize="none" text="ID:"/>
+  </displayList>
+</component>jujv9w.xml|639|<component size="262,91" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth2d" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2" name="title" xy="0,0" size="262,91" fontSize="32" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="0,1" singleLine="true" text="更换账号">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="1.10"/>
+</component>jujv9x.xml|593|<component size="89,43" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth34" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2" name="title" xy="0,0" size="89,43" fontSize="20" color="#ffffff" align="center" vAlign="middle" autoSize="none" singleLine="true" text="反馈">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button downEffect="dark" downEffectValue="0.80"/>
+</component>jujv9y.xml|552|<component size="89,43" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth34" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2" name="title" xy="0,0" size="89,43" fontSize="20" color="#ffffff" align="center" vAlign="middle" autoSize="none" singleLine="true" text="关于">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button/>
+</component>jujv9z.xml|552|<component size="89,43" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth34" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2" name="title" xy="0,0" size="89,43" fontSize="20" color="#ffffff" align="center" vAlign="middle" autoSize="none" singleLine="true" text="更新">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button/>
+</component>jujva1.xml|552|<component size="89,43" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth34" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2" name="title" xy="0,0" size="89,43" fontSize="20" color="#ffffff" align="center" vAlign="middle" autoSize="none" singleLine="true" text="客服">
+      <relation target="" sidePair="width-width,height-height"/>
+    </text>
+  </displayList>
+  <Button/>
 </component>k35j6b.xml|358|<component size="111,89" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
@@ -923,7 +982,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </image>
   </displayList>
   <Button downEffect="dark" downEffectValue="0.80"/>
-</component>k35j7e.xml|6446|<component size="1334,750" pivot="0.5,0.5">
+</component>k35j7e.xml|6604|<component size="1334,750" pivot="0.5,0.5">
   <controller name="ChooseMode" pages="0,,1," selected="0"/>
   <controller name="ChooseMultiple" pages="0,,1,,2," selected="0"/>
   <controller name="ChooseRound" pages="0,,1," selected="0"/>
@@ -939,26 +998,26 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <image id="n7_nw08" name="n7" src="oyth3t" xy="471,266" size="574,124"/>
     <image id="n8_nw08" name="n8" src="oyth3t" xy="471,410" size="574,62"/>
     <image id="n9_nw08" name="n9" src="oyth3t" xy="471,484" size="574,62"/>
-    <text id="n10_nw08" name="n10" xy="285,190" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="模式选择:"/>
-    <text id="n11_nw08" name="n11" xy="285,270" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="额外番型:"/>
-    <text id="n12_nw08" name="n12" xy="285,420" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="封顶倍数:"/>
-    <text id="n13_nw08" name="n13" xy="285,494" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="开设局数:"/>
-    <text id="n27_nw08" name="n27" xy="533,200" size="105,29" fontSize="25" color="#ffffff" text="经典模式"/>
-    <text id="n28_nw08" name="n28" xy="716,200" size="105,29" fontSize="25" color="#ffffff" text="高番模式"/>
-    <text id="n29_nw08" name="n29" xy="532,278" size="119,29" fontSize="25" color="#ffffff" text="站立胡 *1"/>
-    <text id="n30_nw08" name="n30" xy="716,278" size="80,29" fontSize="25" color="#ffffff" text="带夹胡"/>
-    <text id="n31_nw08" name="n31" xy="899,278" size="119,29" fontSize="25" color="#ffffff" text="旋风杠 *1"/>
-    <text id="n32_nw08" name="n32" xy="530,345" size="94,29" fontSize="25" color="#ffffff" text="宝牌 *1"/>
-    <text id="n33_nw08" name="n33" xy="717,345" size="119,29" fontSize="25" color="#ffffff" text="可断门 *1"/>
-    <text id="n34_nw08" name="n34" xy="531,425" size="43,29" fontSize="25" color="#ffffff" text="8倍"/>
-    <text id="n35_nw08" name="n35" xy="671,425" size="56,29" fontSize="25" color="#ffffff" text="32倍"/>
-    <text id="n36_nw08" name="n36" xy="814,425" size="80,29" fontSize="25" color="#ffffff" text="不封顶"/>
-    <text id="n37_nw08" name="n37" xy="534,505" size="43,29" fontSize="25" color="#ffffff" text="4局"/>
-    <text id="n38_nw08" name="n38" xy="814,504" size="43,29" fontSize="25" color="#ffffff" text="8局"/>
-    <text id="n39_nw08" name="n39" xy="899,345" size="119,29" fontSize="25" color="#ffffff" text="清一色 *1"/>
-    <text id="n40_nw08" name="n40" xy="578,519" size="65,14" fontSize="10" color="#999999" text="(消耗房卡*2)"/>
-    <text id="n41_nw08" name="n41" xy="856,518" size="65,14" fontSize="10" color="#999999" text="(消耗房卡*4)"/>
-    <text id="n42_nw08" name="n42" xy="824,602" size="104,28" fontSize="24" color="#ffffff" autoSize="height" text="已有房卡"/>
+    <text id="n10_nw08" name="Tmodechoose" xy="285,190" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="模式选择:"/>
+    <text id="n11_nw08" name="Tchoosefan" xy="285,270" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="额外番型:"/>
+    <text id="n12_nw08" name="Tmultiple" xy="285,420" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="封顶倍数:"/>
+    <text id="n13_nw08" name="Tround" xy="285,494" size="184,52" fontSize="37" color="#663300" align="right" vAlign="middle" autoSize="none" text="开设局数:"/>
+    <text id="n27_nw08" name="Tclassicmode" xy="533,200" size="105,29" fontSize="25" color="#ffffff" text="经典模式"/>
+    <text id="n28_nw08" name="Thighriskmode" xy="716,200" size="105,29" fontSize="25" color="#ffffff" text="高番模式"/>
+    <text id="n29_nw08" name="Tchoosefan01" xy="532,278" size="119,29" fontSize="25" color="#ffffff" text="站立胡 *1"/>
+    <text id="n30_nw08" name="Tchoosefan02" xy="716,278" size="80,29" fontSize="25" color="#ffffff" text="带夹胡"/>
+    <text id="n31_nw08" name="Tchoosefan03" xy="899,278" size="119,29" fontSize="25" color="#ffffff" text="旋风杠 *1"/>
+    <text id="n32_nw08" name="Tchoosefan04" xy="530,345" size="94,29" fontSize="25" color="#ffffff" text="宝牌 *1"/>
+    <text id="n33_nw08" name="Tchoosefan05" xy="717,345" size="119,29" fontSize="25" color="#ffffff" text="可断门 *1"/>
+    <text id="n34_nw08" name="Tmultiple8" xy="531,425" size="43,29" fontSize="25" color="#ffffff" text="8倍"/>
+    <text id="n35_nw08" name="Tmultiple32" xy="671,425" size="56,29" fontSize="25" color="#ffffff" text="32倍"/>
+    <text id="n36_nw08" name="Tmultiplenolimit" xy="814,425" size="80,29" fontSize="25" color="#ffffff" text="不封顶"/>
+    <text id="n37_nw08" name="Tround4" xy="534,505" size="43,29" fontSize="25" color="#ffffff" text="4局"/>
+    <text id="n38_nw08" name="Tround8" xy="814,504" size="43,29" fontSize="25" color="#ffffff" text="8局"/>
+    <text id="n39_nw08" name="Tchoosefan06" xy="899,345" size="119,29" fontSize="25" color="#ffffff" text="清一色 *1"/>
+    <text id="n40_nw08" name="Troundcost4" xy="578,519" size="65,14" fontSize="10" color="#999999" text="(消耗房卡*2)"/>
+    <text id="n41_nw08" name="Troundcost8" xy="856,518" size="65,14" fontSize="10" color="#999999" text="(消耗房卡*4)"/>
+    <text id="n42_nw08" name="Troomcardnum" xy="824,602" size="104,28" fontSize="24" color="#ffffff" autoSize="height" text="已有房卡"/>
     <text id="n43_nw08" name="RoomCardNum" xy="929,601" size="85,29" input="true" maxLength="999999" fontSize="25" color="#ffffff" autoSize="height" text="*999"/>
     <image id="n44_algd" name="n44" src="oyth3w" xy="479,327"/>
     <component id="n2_k35j" name="CreateButton" src="k35j7g" xy="528,570" group="n45_fb5y">
@@ -1019,7 +1078,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
   </displayList>
   <Button downEffect="scale" downEffectValue="1.10"/>
 </component>l3ub9b.xml|2221|<component size="1334,750" pivot="0.5,0.5">
-  <controller name="HistorySecenSelect" pages="0,,1,,2," selected="0"/>
+  <controller name="HistorySecenSelect" pages="0,,1,,2," selected="1"/>
   <displayList>
     <image id="n15_qb9a" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
     <image id="n0_l3ub" name="Bg" src="oyth5" xy="69,52"/>
@@ -1028,7 +1087,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <gearDisplay controller="HistorySecenSelect" pages="0"/>
       <item/>
     </list>
-    <component id="n9_l3ub" name="RankBill" src="l3ub9h" xy="324,140">
+    <component id="n9_l3ub" name="RankBill" src="l3ub9h" xy="393,188">
       <gearDisplay controller="HistorySecenSelect" pages="1"/>
     </component>
     <text id="n11_l3ub" name="Title" xy="189,79" size="224,76" fontSize="50" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="战绩记录"/>
@@ -1036,10 +1095,10 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <gearDisplay controller="HistorySecenSelect" pages="2"/>
     </component>
     <component id="n2_l3ub" name="HistoryBotton" src="l3ub9c" xy="110,180" group="n14_fb5y">
-      <Button checked="true" controller="HistorySecenSelect" page="0"/>
+      <Button controller="HistorySecenSelect" page="0"/>
     </component>
     <component id="n3_l3ub" name="RankBillButton" src="l3ub9d" xy="110,282" group="n14_fb5y">
-      <Button controller="HistorySecenSelect" page="1"/>
+      <Button checked="true" controller="HistorySecenSelect" page="1"/>
     </component>
     <component id="n4_l3ub" name="InstructionButton" src="l3ub9e" xy="110,384" group="n14_fb5y">
       <Button controller="HistorySecenSelect" page="2"/>
@@ -1120,13 +1179,13 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </loader>
     <text id="n5_l3ub" name="FanNum" xy="78,38" size="96,25" fontSize="12" color="#ffffff" vAlign="middle" autoSize="none" text="+2"/>
   </displayList>
-</component>l3ub9h.xml|742|<component size="820,460" overflow="scroll">
+</component>l3ub9h.xml|810|<component size="820,460" overflow="scroll">
   <displayList>
     <image id="n0_l3ub" name="n0" src="oyth3n" xy="-1,174"/>
-    <component id="n3_l3ub" name="n3" src="l3ub9i" xy="277,54"/>
-    <component id="n4_l3ub" name="n4" src="l3ub9i" xy="66,109"/>
-    <component id="n5_l3ub" name="n5" src="l3ub9i" xy="479,157"/>
-    <component id="n6_l3ub" name="n6" src="l3ub9i" xy="675,185"/>
+    <component id="n3_l3ub" name="PlayerAvatarInfo1st" src="l3ub9i" xy="277,54"/>
+    <component id="n4_l3ub" name="PlayerAvatarInfo2nd" src="l3ub9i" xy="66,109"/>
+    <component id="n5_l3ub" name="PlayerAvatarInfo3rd" src="l3ub9i" xy="479,157"/>
+    <component id="n6_l3ub" name="PlayerAvatarInfo4th" src="l3ub9i" xy="675,185"/>
     <image id="n7_l3ub" name="n7" src="oyth3p" xy="709,359"/>
     <list id="n17_l3ub" name="n17" xy="45,433" size="734,300" overflow="scroll" defaultItem="ui://krtoytc1l3ub9j">
       <item/>
@@ -1156,11 +1215,11 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <text id="n4_l3ub" name="n4" xy="20,-35" size="80,32" fontSize="18" color="#ffff66" align="center" vAlign="middle" autoSize="none" strokeColor="#663300" text="9999"/>
   </displayList>
   <Button/>
-</component>l3ub9j.xml|598|<component size="511,37">
+</component>l3ub9j.xml|621|<component size="511,37">
   <displayList>
-    <text id="n0_l3ub" name="n0" xy="0,1" size="91,32" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" strokeColor="#663300" text="第五名"/>
-    <text id="n1_l3ub" name="n1" xy="103,0" size="257,33" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="对方根本不想输入"/>
-    <text id="n2_l3ub" name="n2" xy="367,0" size="144,33" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="-10"/>
+    <text id="n0_l3ub" name="RandNumber" xy="0,1" size="91,32" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" strokeColor="#663300" text="第五名"/>
+    <text id="n1_l3ub" name="PlayerName" xy="103,0" size="257,33" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="对方根本不想输入"/>
+    <text id="n2_l3ub" name="FanNumber" xy="367,0" size="144,33" fontSize="16" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="-10"/>
     <image id="n3_l3ub" name="n3" src="oyth8" xy="60,35"/>
   </displayList>
 </component>l3ub9k.xml|172|<component size="820,460">
@@ -1454,7 +1513,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </image>
   </displayList>
   <Button downEffect="scale" downEffectValue="1.10"/>
-</component>package.xml|18772|<packageDescription id="krtoytc1" name="MXUI">
+</component>package.xml|19607|<packageDescription id="krtoytc1" name="MXUI">
   <resources>
     <component id="ac8t8j" name="GetAllAccessoryButton" path="/UIPIC/邮件/" size="177,73"/>
     <component id="ac8t8k" name="DeleteAllButton" path="/UIPIC/邮件/" size="177,73"/>
@@ -1486,6 +1545,12 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="algd8h" name="ItemPriceButton6" path="/UIPIC/商城/" size="190,64"/>
     <component id="g7a060" name="Account" path="/UIPIC/主界面/" size="260,60"/>
     <component id="g7a061" name="LoginButton" path="/UIPIC/主界面/" size="89,43"/>
+    <component id="jujv9v" name="PlayerInformation" path="/UIPIC/游戏页面/" size="169,259"/>
+    <component id="jujv9w" name="ChangeAccount" path="/UIPIC/游戏设置/" size="262,91"/>
+    <component id="jujv9x" name="FeedBackButton" path="/UIPIC/游戏设置/" size="89,43"/>
+    <component id="jujv9y" name="AboutUsButton" path="/UIPIC/游戏设置/" size="89,43"/>
+    <component id="jujv9z" name="UpdateButton" path="/UIPIC/游戏设置/" size="89,43"/>
+    <component id="jujva1" name="CustomServiceButton" path="/UIPIC/游戏设置/" size="89,43"/>
     <component id="k35j6b" name="Shop" path="/UIPIC/功能界面/" size="111,89"/>
     <component id="k35j6c" name="Setting" path="/UIPIC/功能界面/" size="55,81"/>
     <component id="k35j6d" name="Mail" path="/UIPIC/功能界面/" size="69,72"/>
@@ -1535,6 +1600,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="oyth5z" name="WechatLogin" path="/UIPIC/主界面/" size="314,102"/>
     <component id="q2o39m" name="YesButton" path="/UIPIC/踢人/" size="177,73"/>
     <component id="q2o39n" name="NoButton" path="/UIPIC/踢人/" size="177,73"/>
+    <component id="qb9a9u" name="SlideButton" path="/UIPIC/游戏设置/" size="157,56"/>
     <component id="w3hs8y" name="ServiceTerm2" path="/UIPIC/个人信息/" size="144,50"/>
     <component id="w3hs8z" name="ServiceTerm3" path="/UIPIC/个人信息/" size="200,50"/>
     <component id="w3hs91" name="BoundAccount" path="/UIPIC/个人信息/" size="262,91"/>
@@ -1566,7 +1632,9 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <image id="oyth2x" name="ui_Youxijiemian_21" path="/UIPIC/游戏页面/" size="150,151"/>
     <image id="oyth2y" name="ui_Youxijiemian_22" path="/UIPIC/游戏页面/" size="150,150"/>
     <image id="oyth3" name="ui_Youjianjiemian_05" path="/UIPIC/邮件/" size="177,73"/>
+    <image id="oyth31" name="ui_Shezhi_02" path="/UIPIC/游戏设置/" size="157,55"/>
     <image id="oyth32" name="ui_Shezhi_03" path="/UIPIC/游戏设置/" size="157,56" scale="9grid" scale9grid="40,14,80,28"/>
+    <image id="oyth33" name="ui_Shezhi_04" path="/UIPIC/游戏设置/" size="79,79"/>
     <image id="oyth34" name="ui_Shezhi_05" path="/UIPIC/游戏设置/" size="89,43"/>
     <image id="oyth3f" name="ui_Fangkajiesuan_01" path="/UIPIC/房卡房结算/" size="636,81" scale="9grid" scale9grid="159,21,318,42"/>
     <image id="oyth3k" name="房卡场结算参考" path="/UIPIC/房卡房结算/" size="1334,750"/>
@@ -1664,6 +1732,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="oyth0" name="Login" path="/" size="1334,750" exported="true"/>
     <component id="qb9a9o" name="ChooseAvatar" path="/" size="1334,750" exported="true"/>
     <component id="qb9a9p" name="ChooseAvatarButton" path="/UIPIC/选择头像/" size="103,103" exported="true"/>
+    <component id="qb9a9s" name="Setting" path="/" size="1334,750" exported="true"/>
     <component id="w3hs92" name="OtherPlayerInfo" path="/" size="1334,750" exported="true"/>
     <component id="w3hs94" name="ClearRound" path="/" size="929,665" exported="true"/>
     <component id="w3hs96" name="ClearRoundScene" path="/" size="1334,750" exported="true"/>
@@ -1732,6 +1801,60 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <relation target="" sidePair="width,height"/>
     </loader>
   </displayList>
+</component>qb9a9s.xml|2389|<component size="1334,750">
+  <displayList>
+    <image id="n26_jujv" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
+    <image id="n2_qb9a" name="Bg" src="oyth3v" xy="196,32"/>
+    <text id="n4_qb9a" name="Title" xy="325,71" size="205,54" fontSize="50" color="#ffffff" text="游戏设置"/>
+    <text id="n5_qb9a" name="Tmusic" xy="332,228" size="85,44" fontSize="40" color="#ffffff" text="音乐"/>
+    <text id="n6_qb9a" name="Teffect" xy="332,314" size="85,44" fontSize="40" color="#ffffff" text="音效"/>
+    <text id="n7_qb9a" name="Tgamevoice" xy="332,400" size="85,44" fontSize="40" color="#ffffff" text="语音"/>
+    <text id="n8_qb9a" name="Tclickout" xy="292,486" size="164,44" fontSize="40" color="#ffffff" autoSize="height" text="单击出牌"/>
+    <component id="n19_jujv" name="PlayerInformation" src="jujv9v" xy="836,234"/>
+    <component id="n3_qb9a" name="Close" src="k35j7d" xy="1084,99" group="n25_jujv"/>
+    <component id="n9_qb9a" name="MusicSlideButton" src="qb9a9u" xy="490,223" group="n25_jujv"/>
+    <component id="n10_qb9a" name="EffectSlideButton" src="qb9a9u" xy="490,309" group="n25_jujv"/>
+    <component id="n11_qb9a" name="GameVoiceSlideButton" src="qb9a9u" xy="490,395" group="n25_jujv"/>
+    <component id="n12_qb9a" name="ClickOutSlideButton" src="qb9a9u" xy="490,481" group="n25_jujv"/>
+    <component id="n20_jujv" name="ChangeAccount" src="jujv9w" xy="795,525" group="n25_jujv"/>
+    <component id="n21_jujv" name="FeedBackButton" src="jujv9x" xy="282,591" group="n25_jujv"/>
+    <component id="n22_jujv" name="AboutUsButton" src="jujv9y" xy="385,591" group="n25_jujv"/>
+    <component id="n23_jujv" name="UpdateButton" src="jujv9z" xy="488,591" group="n25_jujv"/>
+    <component id="n24_jujv" name="CustomServiceButton" src="jujva1" xy="591,592" group="n25_jujv"/>
+    <group id="n25_jujv" name="Btns" xy="282,99" size="869,536" advanced="true"/>
+  </displayList>
+  <transition name="Popup" autoPlay="true">
+    <item time="0" type="Scale" tween="true" startValue="0,0" endValue="1.1,1.1" duration="5"/>
+    <item time="5" type="Scale" tween="true" startValue="1.1,1.1" endValue="1,1" duration="2"/>
+  </transition>
+  <transition name="Popdown">
+    <item time="0" type="Alpha" tween="true" startValue="1" endValue="0" duration="5"/>
+    <item time="0" type="Scale" tween="true" startValue="1,1" endValue="0.3,0.3" duration="5"/>
+  </transition>
+</component>qb9a9u.xml|1302|<component size="157,56" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="oyth32" xy="0,0">
+      <gearDisplay controller="button" pages="0,2"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2" name="n2" src="oyth31" xy="0,0">
+      <gearDisplay controller="button" pages="1,3"/>
+      <gearLook controller="button" default="1,0,0" tween="true" ease="Quad.InOut" duration="4.3"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n3_qb9a" name="n3" src="oyth33" xy="-22,-11">
+      <gearXY controller="button" pages="0,1,2,3" values="-22,-11|100,-11|-22,-11|100,-11" tween="true"/>
+    </image>
+    <text id="n4_qb9a" name="Tkai" xy="25,12" size="32,30" fontSize="26" color="#ffffff" autoSize="none" text="开">
+      <gearDisplay controller="button" pages="1,3"/>
+      <gearLook controller="button" default="1,0,0" tween="true" ease="Linear" duration="1"/>
+    </text>
+    <text id="n5_qb9a" name="Tguan" xy="105,11" size="32,30" fontSize="26" color="#ffffff" autoSize="none" text="关">
+      <gearDisplay controller="button" pages="0,2"/>
+    </text>
+  </displayList>
+  <Button mode="Check"/>
 </component>w3hs8y.xml|427|<component size="144,50" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
@@ -1748,7 +1871,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     </text>
   </displayList>
   <Button/>
-</component>w3hs91.xml|597|<component size="262,91" extention="Button">
+</component>w3hs91.xml|639|<component size="262,91" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
     <image id="n1" name="n1" src="oyth2d" xy="0,0">
@@ -1758,25 +1881,20 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
   </displayList>
-  <Button/>
-</component>w3hs92.xml|3399|<component size="1334,750" pivot="0.5,0.5">
+  <Button downEffect="scale" downEffectValue="1.10"/>
+</component>w3hs92.xml|2910|<component size="1334,750" pivot="0.5,0.5">
   <displayList>
     <image id="n46_qb9a" name="Di" src="qb9a9r" xy="0,0" size="1334,750" alpha="0.75"/>
-    <image id="n43_w3hs" name="n43" src="oyth5v" xy="202,103"/>
-    <image id="n2_ac8t" name="AvatarBg" src="oyth2g" xy="329,210" size="169,217"/>
-    <text id="n3_ac8t" name="PlayerName" xy="345,381" size="137,38" fontSize="18" color="#ffffff" align="center" vAlign="middle" autoSize="none" text="对方根本"/>
-    <text id="n4_ac8t" name="PlayerID" xy="389,431" size="194,42" fontSize="27" color="#663300" vAlign="middle" autoSize="none" text="9999999"/>
-    <loader id="n5_ac8t" name="AvatarLoader" xy="339,221" size="150,148"/>
-    <text id="n6_ac8t" name="n6" xy="671,219" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="欢乐豆:"/>
+    <image id="n43_w3hs" name="Bg" src="oyth5v" xy="202,103"/>
+    <text id="n6_ac8t" name="Tdou" xy="671,219" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="欢乐豆:"/>
     <text id="n7_ac8t" name="DouNum" xy="858,219" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n20_ac8t" name="n20" xy="334,431" size="56,42" fontSize="27" color="#663300" vAlign="middle" autoSize="none" text="ID:"/>
-    <text id="n25_ac8t" name="n25" xy="673,372" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="最高连胜:"/>
+    <text id="n25_ac8t" name="Twinstreak" xy="673,372" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="最高连胜:"/>
     <text id="n26_ac8t" name="TotalWin" xy="858,372" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n27_ac8t" name="n27" xy="671,416" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="总局数:"/>
+    <text id="n27_ac8t" name="Ttotalplay" xy="671,416" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="总局数:"/>
     <text id="n28_ac8t" name="TotalPlay" xy="856,416" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n29_ac8t" name="n29" xy="672,457" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="房卡局数:"/>
+    <text id="n29_ac8t" name="Troomcardplay" xy="672,457" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="房卡局数:"/>
     <text id="n30_ac8t" name="RoomCardPlay" xy="856,457" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
-    <text id="n31_ac8t" name="n31" xy="671,500" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="胜率:"/>
+    <text id="n31_ac8t" name="Trate" xy="671,500" size="187,38" fontSize="34" color="#663300" align="right" vAlign="middle" autoSize="none" text="胜率:"/>
     <text id="n32_ac8t" name="WinRate" xy="854,500" size="222,38" fontSize="34" color="#663300" vAlign="middle" autoSize="none" text="999999999"/>
     <component id="n37_w3hs" name="ServiveTerm1" src="ac8t8x" xy="650,587" size="112,50" group="n45_fb5y"/>
     <component id="n38_w3hs" name="ServiveTerm2" src="w3hs8y" xy="762,587" size="137,50" group="n45_fb5y"/>
@@ -1784,6 +1902,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <component id="n42_w3hs" name="Close" src="k35j7d" xy="1076,84" group="n45_fb5y"/>
     <component id="n44_w3hs" name="KickOutRoomButton" src="w3hs93" xy="282,509" group="n45_fb5y"/>
     <group id="n45_fb5y" name="Btns" xy="282,84" size="861,553" advanced="true"/>
+    <component id="n47_jujv" name="PlayerInformation" src="jujv9v" xy="355,209"/>
   </displayList>
   <transition name="Popup" autoPlay="true">
     <item time="0" type="Scale" tween="true" startValue="0,0" endValue="1.1,1.1" duration="5"/>
@@ -1793,7 +1912,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
     <item time="0" type="Alpha" tween="true" startValue="1" endValue="0" duration="5"/>
     <item time="0" type="Scale" tween="true" startValue="1,1" endValue="0.3,0.3" duration="5"/>
   </transition>
-</component>w3hs93.xml|597|<component size="262,91" extention="Button">
+</component>w3hs93.xml|639|<component size="262,91" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
     <image id="n1" name="n1" src="oyth2d" xy="0,0">
@@ -1803,7 +1922,7 @@ ac8t8j.xml|596|<component size="177,73" extention="Button">
       <relation target="" sidePair="width-width,height-height"/>
     </text>
   </displayList>
-  <Button/>
+  <Button downEffect="scale" downEffectValue="1.10"/>
 </component>w3hs94.xml|410|<component size="929,665">
   <displayList>
     <image id="n0_w3hs" name="n0" src="oyth5v" xy="-1,6"/>
