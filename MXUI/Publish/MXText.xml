@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- MXUI - AboutUsButton -->
+  <string name="krtoytc1jujv9y-n2" mz="title">关于</string>
+  <!-- MXUI - BoundAccount -->
+  <string name="krtoytc1w3hs91-n2" mz="title">绑定账号</string>
+  <!-- MXUI - ButtonClear -->
+  <string name="krtoytc1k35j78-n2" mz="title">Clear</string>
+  <!-- MXUI - ChangeAccount -->
+  <string name="krtoytc1jujv9w-n2" mz="title">更换账号</string>
+  <!-- MXUI - ChooseAvatar -->
+  <string name="krtoytc1qb9a9o-n5_qb9a" mz="Title">选择头像</string>
+  <!-- MXUI - ClearShowFan -->
+  <string name="krtoytc1w3hs99-n0_w3hs" mz="FanName">海底捞月</string>
+  <string name="krtoytc1w3hs99-n1_w3hs" mz="FanNum">+1番</string>
+  <string name="krtoytc1w3hs99-n3_w3hs" mz="FanPlayer">对家</string>
+  <!-- MXUI - Create -->
+  <string name="krtoytc1k35j7g-n2" mz="title">开设房间</string>
+  <!-- MXUI - CreateRoom -->
+  <string name="krtoytc1k35j7e-n3_k35j" mz="Title">开设房间</string>
+  <string name="krtoytc1k35j7e-n10_nw08" mz="Tmodechoose">模式选择:</string>
+  <string name="krtoytc1k35j7e-n11_nw08" mz="Tchoosefan">额外番型:</string>
+  <string name="krtoytc1k35j7e-n12_nw08" mz="Tmultiple">封顶倍数:</string>
+  <string name="krtoytc1k35j7e-n13_nw08" mz="Tround">开设局数:</string>
+  <string name="krtoytc1k35j7e-n27_nw08" mz="Tclassicmode">经典模式</string>
+  <string name="krtoytc1k35j7e-n28_nw08" mz="Thighriskmode">高番模式</string>
+  <string name="krtoytc1k35j7e-n29_nw08" mz="Tchoosefan01">站立胡 *1</string>
+  <string name="krtoytc1k35j7e-n30_nw08" mz="Tchoosefan02">带夹胡</string>
+  <string name="krtoytc1k35j7e-n31_nw08" mz="Tchoosefan03">旋风杠 *1</string>
+  <string name="krtoytc1k35j7e-n32_nw08" mz="Tchoosefan04">宝牌 *1</string>
+  <string name="krtoytc1k35j7e-n33_nw08" mz="Tchoosefan05">可断门 *1</string>
+  <string name="krtoytc1k35j7e-n34_nw08" mz="Tmultiple8">8倍</string>
+  <string name="krtoytc1k35j7e-n35_nw08" mz="Tmultiple32">32倍</string>
+  <string name="krtoytc1k35j7e-n36_nw08" mz="Tmultiplenolimit">不封顶</string>
+  <string name="krtoytc1k35j7e-n37_nw08" mz="Tround4">4局</string>
+  <string name="krtoytc1k35j7e-n38_nw08" mz="Tround8">8局</string>
+  <string name="krtoytc1k35j7e-n39_nw08" mz="Tchoosefan06">清一色 *1</string>
+  <string name="krtoytc1k35j7e-n40_nw08" mz="Troundcost4">(消耗房卡*2)</string>
+  <string name="krtoytc1k35j7e-n41_nw08" mz="Troundcost8">(消耗房卡*4)</string>
+  <string name="krtoytc1k35j7e-n42_nw08" mz="Troomcardnum">已有房卡</string>
+  <!-- MXUI - CustomServiceButton -->
+  <string name="krtoytc1jujva1-n2" mz="title">客服</string>
+  <!-- MXUI - DeleteAllButton -->
+  <string name="krtoytc1ac8t8k-n2" mz="title">一键删除</string>
+  <!-- MXUI - DouNum -->
+  <string name="krtoytc1npla69-n8_k35j" mz="DouNum">88万888</string>
+  <!-- MXUI - FeedBackButton -->
+  <string name="krtoytc1jujv9x-n2" mz="title">反馈</string>
+  <!-- MXUI - GameHintBar -->
+  <string name="krtoytc1algd80-n2" mz="HintInfo">您是庄家，请先出牌</string>
+  <!-- MXUI - GamePlayerAvatarInfo -->
+  <string name="krtoytc1algd7r-n5_algd" mz="DouNum">99万999</string>
+  <!-- MXUI - GemsNum -->
+  <string name="krtoytc1npla6a-n8_k35j" mz="GemsNum">88万888</string>
+  <!-- MXUI - GetAccessoryButton -->
+  <string name="krtoytc1ac8t8l-n2" mz="title">提取附件</string>
+  <!-- MXUI - GetAllAccessoryButton -->
+  <string name="krtoytc1ac8t8j-n2" mz="title">一键提取</string>
+  <!-- MXUI - Getin -->
+  <string name="krtoytc1k35j7c-n2" mz="title">进入房间</string>
+  <!-- MXUI - GetintoRoom -->
+  <string name="krtoytc1k35j6n-n17_k35j-prompt" mz="InputText">请输入6位房间号</string>
+  <string name="krtoytc1k35j6n-n19_k35j" mz="Title">加入房间</string>
+  <!-- MXUI - History -->
+  <string name="krtoytc1l3ub9f-n4_l3ub" mz="RoundNum">第一局</string>
+  <!-- MXUI - HistoryButton -->
+  <string name="krtoytc1l3ub9c-n3" mz="title">战绩流水</string>
+  <!-- MXUI - HistoryScene -->
+  <string name="krtoytc1l3ub9b-n11_l3ub" mz="Title">战绩记录</string>
+  <!-- MXUI - InstructionButton -->
+  <string name="krtoytc1l3ub9e-n3" mz="title">玩法说明</string>
+  <!-- MXUI - ItemPriceButton1 -->
+  <string name="krtoytc1algd8b-n2_algd" mz="Text">￥ 648</string>
+  <!-- MXUI - ItemPriceButton2 -->
+  <string name="krtoytc1algd8d-n2_algd" mz="Text">￥ 6</string>
+  <!-- MXUI - ItemPriceButton3 -->
+  <string name="krtoytc1algd8e-n2_algd" mz="Text">￥ 6</string>
+  <!-- MXUI - ItemPriceButton4 -->
+  <string name="krtoytc1algd8f-n2_algd" mz="Text">￥ 6</string>
+  <!-- MXUI - ItemPriceButton5 -->
+  <string name="krtoytc1algd8g-n2_algd" mz="Text">￥ 6</string>
+  <!-- MXUI - ItemPriceButton6 -->
+  <string name="krtoytc1algd8h-n2_algd" mz="Text">￥ 6</string>
+  <!-- MXUI - KickOutRoom -->
+  <string name="krtoytc1w3hs93-n2" mz="title">踢出房间</string>
+  <!-- MXUI - Login -->
+  <string name="krtoytc1oyth0-n7_g7a0" mz="Title">账号：</string>
+  <!-- MXUI - LoginButton -->
+  <string name="krtoytc1g7a061-n2" mz="title">登陆</string>
+  <!-- MXUI - Mail -->
+  <string name="krtoytc1algd8i-n48_algd" mz="Title">邮件</string>
+  <string name="krtoytc1algd8i-n64_ac8t" mz="Tmailtitle">标题：</string>
+  <string name="krtoytc1algd8i-n65_ac8t" mz="Taddresser">发件人：</string>
+  <!-- MXUI - MailBody -->
+  <string name="krtoytc1ac8t8o-n0_ac8t" mz="MailBody">UIPane只保存了UI包的名称和组件的名称，它不对纹理或其他资源产生任何引用，也就是UI使用的资源不会包含在场景数据中。
+在编辑状态下，无论UI组件引用了哪些UI包的资源，包括放置在Resources目录下的和不放置在Resources下的，都能够正确显示。但当运行后，UIPanel只能自动载入放置在Resources目录或其子目录下的UI包，也只会载入自身所在的UI包，其他情况的UI包（例如引用到的UI包或打包到AssetBundle的UI包）不能自动载入。你需要在UIPanel创建前使用UIPackage.AddPackage准备好这类UI包。UIPanel在Start事件或者第一次访问UIPanel.ui属性时创建UI界面，你仍然有机会在Awake里完成这些操作。
+
+下面是UIPanel的一些属性说明：
+Render Mode:  有三种：
+Screen Space Overlay （默认值），表示这个UI在屏幕空间显示，这时Transform的Scale将被锁定，而且不建议修改Transform中的其他内容（让他们保持为0）。如果要修改面板在屏幕上的位置，使用UI Transform（参考下面关于UI Transform的说明）。
+Screen Space Camera 表示这个UI在屏幕空间显示，但不使用FairyGUI默认的正交相机，而是使用指定的正交相机。
+World Space 表示这个UI在世界空间显示，由透视相机渲染。默认的使用场景的主相机，如果不是，那么设置Render Camera。当使用这种模式时，使用Transfrom修改UI在世界空间中的位置、缩放、旋转。但你仍然可以使用UI Transform。
+注意：Render Mode只定义了FairyGUI对待这个UI的方式，通常是坐标相关的操作（如点击检测等），但和渲染无关。UI由哪个相机渲染是由GameObject的layer决定的。所以如果发现UI没有显示出来，可以检查一下GameObject的layer是否正确。例如如果是Screen Space，GameObject应该在UI层，如果是WorldSpace，则是在Default层或者其他自定义的层次。
+
+Render Camera：当Render Mode是Screen Space Camera或者World Space时可以设置。如果不设置，默认为场景的主相机。
+
+Sorting Order：调整UIPanel的显示顺序。越大的显示在越前面。
+
+Fairy Batching：是否启用Fairy Batching。关于Fairy Batching请参考下面的说明。切换这个值，可以在编辑模式下实时看到DrawCall的变化（切换后点击一下Game，Stat里显示的内容才会更新），这可以使你更加容易决定是否启用这项技术。
+
+Touch Disabled：勾选后，将关闭点击检测。当这个UI没有可交互的内容时可以勾选以提高点击检测时的性能。例如头顶血条这些类型的UI，就可以勾选。
+
+UI Transform：当Render Mode是Screen Space时可以使用这里的设置调整UI在屏幕上的位置。你仍然可以调整Transform改变UI的位置，但我不建议你这样做，因为Transform中的坐标位置是没有经过不同分辨率自适应的调整的。当Render Mode是World Space时，建议使用Transform设置UI的位置，你仍然可以调整UI Transform改变UI的位置，但调整的效果可能不那么直观。同时你可以使用Scene视图中下图所示的原点调整UI Transform的位置属性：</string>
+  <!-- MXUI - MailGeneralButton -->
+  <string name="krtoytc1ac8t8p-n2" mz="title">有效期:</string>
+  <string name="krtoytc1ac8t8p-n6_ac8t" mz="Taddresser">发件人：</string>
+  <string name="krtoytc1ac8t8p-n7_ac8t" mz="MailGeneralRemainTime">14天23小时</string>
+  <!-- MXUI - MailInfo -->
+  <string name="krtoytc1ac8t8n-n0_ac8t" mz="Text">朝阳麻将 朝阳麻将</string>
+  <!-- MXUI - Mall -->
+  <string name="krtoytc1algd86-n48_algd" mz="Title">商城</string>
+  <!-- MXUI - MallDouButton -->
+  <string name="krtoytc1algd87-n3" mz="title">欢乐豆</string>
+  <!-- MXUI - MallGemsButton -->
+  <string name="krtoytc1algd88-n3" mz="title">钻石</string>
+  <!-- MXUI - MallItemBg -->
+  <string name="krtoytc1algd8a-n3_algd" mz="Tsale">促销</string>
+  <!-- MXUI - MallItemButton -->
+  <string name="krtoytc1algd89-n3" mz="title">道具</string>
+  <!-- MXUI - MyClearInfo -->
+  <string name="krtoytc1w3hs98-n2_w3hs" mz="PlayerName">对方根本不想输入</string>
+  <!-- MXUI - Name -->
+  <string name="krtoytc1npla65-n0_npla" mz="PlayerName">对方正在输入..</string>
+  <!-- MXUI - NextRoundButton -->
+  <string name="krtoytc1w3hs9a-n2" mz="title">下一局</string>
+  <!-- MXUI - NoButton -->
+  <string name="krtoytc1q2o39n-n2" mz="title">取消</string>
+  <!-- MXUI - OtherPlayerInfo -->
+  <string name="krtoytc1w3hs92-n6_ac8t" mz="Tdou">欢乐豆:</string>
+  <string name="krtoytc1w3hs92-n25_ac8t" mz="Twinstreak">最高连胜:</string>
+  <string name="krtoytc1w3hs92-n27_ac8t" mz="Ttotalplay">总局数:</string>
+  <string name="krtoytc1w3hs92-n29_ac8t" mz="Troomcardplay">房卡局数:</string>
+  <string name="krtoytc1w3hs92-n31_ac8t" mz="Trate">胜率:</string>
+  <!-- MXUI - PlayAgainButton -->
+  <string name="krtoytc1w3hs95-n2" mz="title">再来一局</string>
+  <!-- MXUI - PlayButton -->
+  <string name="krtoytc1algd7p-n2" mz="title">开始游戏</string>
+  <!-- MXUI - PlaySence -->
+  <string name="krtoytc1algd7n-n29_glwt" mz="n29">房间号:</string>
+  <!-- MXUI - PlayerBillAvatar -->
+  <string name="krtoytc1l3ub9g-n3_l3ub" mz="PlayerName">对方根本不</string>
+  <!-- MXUI - PlayerClearInfo -->
+  <string name="krtoytc1w3hs97-n2_w3hs" mz="PlayerName">对方根本不想输入</string>
+  <!-- MXUI - PlayerInfo -->
+  <string name="krtoytc1ac8t8t-n6_ac8t" mz="Tdou">欢乐豆:</string>
+  <string name="krtoytc1ac8t8t-n21_ac8t" mz="Tgems">钻石:</string>
+  <string name="krtoytc1ac8t8t-n23_ac8t" mz="Troomcardnum">房卡数量:</string>
+  <string name="krtoytc1ac8t8t-n25_ac8t" mz="Twinstreak">最高连胜:</string>
+  <string name="krtoytc1ac8t8t-n27_ac8t" mz="Ttotalplay">总局数:</string>
+  <string name="krtoytc1ac8t8t-n29_ac8t" mz="Troomcardround">房卡局数:</string>
+  <string name="krtoytc1ac8t8t-n31_ac8t" mz="Trate">胜率:</string>
+  <string name="krtoytc1ac8t8t-n41_w3hs" mz="Title">个人信息</string>
+  <!-- MXUI - PlayerInformation -->
+  <string name="krtoytc1jujv9v-n15_jujv" mz="PlayerName">对方根本</string>
+  <string name="krtoytc1jujv9v-n18_jujv" mz="Tid">ID:</string>
+  <!-- MXUI - PopWindowsBig -->
+  <string name="krtoytc1ac8t8q-n2_q2o3" mz="Title">游戏公告</string>
+  <!-- MXUI - RankBillButton -->
+  <string name="krtoytc1l3ub9d-n3" mz="title">总分排行</string>
+  <!-- MXUI - RankBillOut -->
+  <string name="krtoytc1l3ub9j-n0_l3ub" mz="RandNumber">第五名</string>
+  <string name="krtoytc1l3ub9j-n1_l3ub" mz="PlayerName">对方根本不想输入</string>
+  <!-- MXUI - RoomCardNum -->
+  <string name="krtoytc1npla66-n7_k35j" mz="RoomCardNum">88万888</string>
+  <!-- MXUI - ServiceTerm1 -->
+  <string name="krtoytc1ac8t8x-n4" mz="title">隐私政策</string>
+  <!-- MXUI - ServiceTerm2 -->
+  <string name="krtoytc1w3hs8y-n4" mz="title">服务条款</string>
+  <!-- MXUI - ServiceTerm3 -->
+  <string name="krtoytc1w3hs8z-n4" mz="title">游戏许可服务协议</string>
+  <!-- MXUI - Setting -->
+  <string name="krtoytc1qb9a9s-n4_qb9a" mz="Title">游戏设置</string>
+  <string name="krtoytc1qb9a9s-n5_qb9a" mz="Tmusic">音乐</string>
+  <string name="krtoytc1qb9a9s-n6_qb9a" mz="Teffect">音效</string>
+  <string name="krtoytc1qb9a9s-n7_qb9a" mz="Tgamevoice">语音</string>
+  <string name="krtoytc1qb9a9s-n8_qb9a" mz="Tclickout">单击出牌</string>
+  <!-- MXUI - SlideButton -->
+  <string name="krtoytc1qb9a9u-n4_qb9a" mz="Tkai">开</string>
+  <string name="krtoytc1qb9a9u-n5_qb9a" mz="Tguan">关</string>
+  <!-- MXUI - UpdateButton -->
+  <string name="krtoytc1jujv9z-n2" mz="title">更新</string>
+  <!-- MXUI - YesButton -->
+  <string name="krtoytc1q2o39m-n2" mz="title">确定</string>
+</resources>
