@@ -527,7 +527,7 @@ message CommonProperty {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_COMMON_PROPERTY ];
 	//同步数据的原由
 	enum SYNC_REASON_TYPE { 
-		SYNC_REASON_TYPE_SELF = 1; //发送玩家自己数据,可能是因为改了角色名称//欢乐豆变化//钻石变化...
+		SYNC_REASON_TYPE_SELF = 1; //发送玩家自己数据,可能是因为改了角色名称//欢乐豆变化//钻石变化.
 		SYNC_REASON_TYPE_ENTER_ROOM = 2; //加入房间:发送其他玩家的数据
 	}
 	optional SYNC_REASON_TYPE reason_type = 2;
@@ -538,9 +538,11 @@ message CommonProperty {
 //提示玩家可以进行的操作
 message PaiOperationAlert {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALERT ];
-	repeated PAI_CHECK_RETURN check_return = 2; //返回结果：玩家当前可操作的所有情况
-	optional PaiElement pai = 3; //牌数据
-	repeated PaiElement pais = 4; //牌数据
+	message AlertElement {
+		optional PaiElement pai = 1; //牌数据
+		repeated PAI_CHECK_RETURN check_return = 2; //玩家对应牌可操作的所有情况：比如吃、碰、胡都可以.
+	}
+	repeated AlertElement pais = 2; //所有牌数据
 }
 
 //通用限制数据同步
