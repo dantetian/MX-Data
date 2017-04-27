@@ -78,7 +78,13 @@ message PlayerProp {
 message GameRecord {
 	message GameElement {
 		optional int64 player_id = 1; //玩家ID
-		optional int32 score = 2; //积分变化
+		optional int32 score = 2; //积分变化总和
+		//详细信息
+		message DetailElement {
+			optional int32 score = 1; //积分
+			optional FAN_TYPE fan_type = 2; //番数
+		}
+		repeated DetailElement details = 3;
 	}
 	repeated GameElement list = 1;
 }
