@@ -289,6 +289,12 @@ enum FAN_TYPE {
 	FAN_TYPE_MING_GANG = 15; //明杠
 	FAN_TYPE_AN_GANG = 16; //暗杠
 	FAN_TYPE_JIN_BAO = 17; //进宝
+	FAN_TYPE_ZHAN_LI = 18; //站立
+	FAN_TYPE_DUAN_MEN = 19; //断门
+	FAN_TYPE_XUAN_FENG_GANG = 20; //旋风杠
+	FAN_TYPE_JIA_HU_NORMAL = 21; //普通夹胡
+	FAN_TYPE_JIA_HU_MIDDLE = 22; //中等夹胡
+	FAN_TYPE_JIA_HU_HIGHER = 23; //高番夹胡
 }
 //番数
 message RoomFan {
