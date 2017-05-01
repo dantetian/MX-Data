@@ -252,6 +252,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_ENTER_ROOM = 8; //进入房间
 	META_TYPE_SHARE_SIGN = 9; //签到
 	META_TYPE_SHARE_LUCKY_PLATE = 10; //幸运转盘
+	META_TYPE_SHARE_RANDOM_SAIZI = 11; //打股子
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -382,6 +383,16 @@ message PlayerLuckyPlate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_LUCKY_PLATE ];
 	optional int64 plate_id = 2; //幸运转盘ID[LuckyPlate]数据
 	optional int32 result = 3; //转到奖励索引
+}
+
+//打股子(1-6)
+message RandomSaizi {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_RANDOM_SAIZI ];
+	enum REASON_TYPE {
+		REASON_TYPE_START = 1; //开局
+	}
+	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
+	optional int32 result = 3; //随机值
 }
 
 //获取奖励
