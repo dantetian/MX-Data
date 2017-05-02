@@ -72,6 +72,7 @@ message PlayerProp {
 	optional bool check_feng_gang = 6; //旋风杠检查
 	optional bool check_jian_gang = 7; //旋风杠检查
 	optional int32 pai_oper_count = 8; //玩家操作次数
+	optional bool tingpai = 9; //是否听牌
 }
 
 //游戏记录
@@ -390,9 +391,11 @@ message RandomSaizi {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_RANDOM_SAIZI ];
 	enum REASON_TYPE {
 		REASON_TYPE_START = 1; //开局
+		REASON_TYPE_TINGPAI = 2; //听牌
 	}
 	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
 	optional int32 result = 3; //随机值
+	optional PaiElement pai = 4; //牌值
 }
 
 //获取奖励
@@ -415,6 +418,7 @@ enum PAI_CHECK_RETURN {
 	PAI_CHECK_GANG_XUANFENG_FENG = 5; //旋风杠：风牌
 	PAI_CHECK_GANG_XUANFENG_JIAN = 6; //旋风杠：箭牌
 	PAI_CHECK_RETURN_ANGANG = 7; //暗杠
+	PAI_CHECK_RETURN_TINGPAI = 8; //听牌
 }
 
 //牌操作超时限制
@@ -447,6 +451,7 @@ message PaiOperation {
 		PAI_OPER_TYPE_XUANFENG_FENG = 7; //旋风杠：风牌
 		PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠：箭牌
 		PAI_OPER_TYPE_ANGANGPAI = 9; //暗杠牌
+		PAI_OPER_TYPE_TINGPAI = 10; //听牌
 	}
 	optional PAI_OPER_TYPE oper_type = 2; //牌操作
 	optional POSITION_TYPE position = 3; //位置
