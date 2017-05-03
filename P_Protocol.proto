@@ -410,6 +410,7 @@ message GetReward {
 	optional int64 reward_id = 3;
 }
 
+/*
 enum PAI_CHECK_RETURN {
 	PAI_CHECK_RETURN_NULL = 0; //无法操作
 	PAI_CHECK_RETURN_HU = 1; //胡牌
@@ -421,6 +422,22 @@ enum PAI_CHECK_RETURN {
 	PAI_CHECK_RETURN_ANGANG = 7; //暗杠
 	PAI_CHECK_RETURN_TINGPAI = 8; //听牌
 }
+*/
+
+//玩家进行或者可以进行的牌操作
+enum PAI_OPER_TYPE {
+	PAI_OPER_TYPE_BEGIN = 0; //无操作
+	PAI_OPER_TYPE_DAPAI = 1; //打牌
+	PAI_OPER_TYPE_HUPAI = 2; //胡牌
+	PAI_OPER_TYPE_GANGPAI = 3; //杠牌
+	PAI_OPER_TYPE_PENGPAI = 4; //碰牌
+	PAI_OPER_TYPE_CHIPAI = 5; //吃牌
+	PAI_OPER_TYPE_GIVEUP = 6; //放弃操作
+	PAI_OPER_TYPE_XUANFENG_FENG = 7; //旋风杠-风牌
+	PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠-箭牌
+	PAI_OPER_TYPE_ANGANGPAI = 9; //暗杠牌
+	PAI_OPER_TYPE_TINGPAI = 10; //听牌
+}
 
 //牌操作超时限制
 message PaiOperationLimit {
@@ -428,7 +445,7 @@ message PaiOperationLimit {
 	optional int64 from_player_id = 2; //牌来自玩家
 	optional int32 time_out = 3; //超时时间
 	optional PaiElement pai = 4; //待处理的牌
-	optional PAI_CHECK_RETURN oper_limit = 5; //最高操作权限
+	optional PAI_OPER_TYPE oper_limit = 5; //最高操作权限
 }
 
 message PaiOperationList {
@@ -436,24 +453,12 @@ message PaiOperationList {
 	optional int64 from_player_id = 2; //牌来自玩家
 	optional int32 time_out = 3; //超时时间
 	optional PaiElement pai = 4; //待处理的牌
-	repeated PAI_CHECK_RETURN oper_list = 5; //可操作列表
+	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
 }
 
 //牌操作
 message PaiOperation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_PAI_OPERATION ];
-	enum PAI_OPER_TYPE {
-		PAI_OPER_TYPE_DAPAI = 1; //打牌
-		PAI_OPER_TYPE_HUPAI = 2; //胡牌
-		PAI_OPER_TYPE_GANGPAI = 3; //杠牌
-		PAI_OPER_TYPE_PENGPAI = 4; //碰牌
-		PAI_OPER_TYPE_CHIPAI = 5; //吃牌
-		PAI_OPER_TYPE_GIVEUP = 6; //放弃
-		PAI_OPER_TYPE_XUANFENG_FENG = 7; //旋风杠：风牌
-		PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠：箭牌
-		PAI_OPER_TYPE_ANGANGPAI = 9; //暗杠牌
-		PAI_OPER_TYPE_TINGPAI = 10; //听牌
-	}
 	optional PAI_OPER_TYPE oper_type = 2; //牌操作
 	optional POSITION_TYPE position = 3; //位置
 	repeated PaiElement pais = 4; //牌数据
@@ -563,7 +568,7 @@ message PaiOperationAlert {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_OPERATION_ALERT ];
 	message AlertElement {
 		optional PaiElement pai = 1; //牌数据
-		repeated PAI_CHECK_RETURN check_return = 2; //玩家对应牌可操作的所有情况：比如吃、碰、胡都可以.
+		repeated PAI_OPER_TYPE oper_list = 2; //玩家对应牌可操作的所有情况：比如吃、碰、胡都可以.
 	}
 	repeated AlertElement pais = 2; //所有牌数据
 }
