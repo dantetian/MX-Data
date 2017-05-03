@@ -73,6 +73,7 @@ message PlayerProp {
 	optional bool check_jian_gang = 7; //旋风杠检查
 	optional int32 pai_oper_count = 8; //玩家操作次数
 	optional bool tingpai = 9; //是否听牌
+	optional int32 oper_count_tingpai = 10; //听牌后玩家操作
 }
 
 //游戏记录
@@ -101,15 +102,16 @@ message CommonProp {
 	optional int64 player_id = 1; //玩家ID
 	optional int32 local_server_id = 2; //注册服务器
 	optional bytes name = 3; //名字
-	optional int32 level = 4 [ default = 1 ]; //级别
-	optional GENDER_TYPE gender = 5 [ default = GENDER_TYPE_MAN]; //性别
-	optional int64 diamond = 6; //钻石总数 
-	optional int64 huanledou = 7; //欢乐豆数 
-	optional int64 total_rounds = 8; //参加的总局数 
-	optional int64 total_win_rounds = 9; //赢牌局数
-	optional int64 streak_wins = 10; //最高连胜
-	optional int64 score = 11; //积分
-	repeated int64 room_history = 12; //历史房间数据
+	optional int32 iphoto = 4; //头像ID
+	optional int32 level = 5 [ default = 1 ]; //级别
+	optional GENDER_TYPE gender = 6 [ default = GENDER_TYPE_MAN]; //性别
+	optional int64 diamond = 7; //钻石总数 
+	optional int64 huanledou = 8; //欢乐豆数 
+	optional int64 total_rounds = 9; //参加的总局数 
+	optional int64 total_win_rounds = 10; //赢牌局数
+	optional int64 streak_wins = 11; //最高连胜
+	optional int64 score = 12; //积分
+	repeated int64 room_history = 13; //历史房间数据
 }
 
 //通用限制：存盘数据
