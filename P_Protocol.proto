@@ -72,7 +72,7 @@ message PlayerProp {
 	optional bool check_feng_gang = 6; //旋风杠检查
 	optional bool check_jian_gang = 7; //旋风杠检查
 	optional int32 pai_oper_count = 8; //玩家操作次数
-	optional bool tingpai = 9; //是否听牌
+	optional bool has_tinged = 9; //是否听牌
 	optional int32 oper_count_tingpai = 10; //听牌后玩家操作
 }
 
@@ -397,8 +397,9 @@ message RandomSaizi {
 		REASON_TYPE_TINGPAI = 2; //听牌
 	}
 	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
-	optional int32 result = 3; //随机值
-	optional PaiElement pai = 4; //牌值
+	optional int64 plate_id = 3; //操作来自玩家
+	optional int32 random_result = 4; //随机值(1-6)
+	optional PaiElement pai = 5; //牌值
 }
 
 //获取奖励
@@ -439,6 +440,8 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠-箭牌
 	PAI_OPER_TYPE_ANGANGPAI = 9; //暗杠牌
 	PAI_OPER_TYPE_TINGPAI = 10; //听牌
+	PAI_OPER_TYPE_BAOPAI = 11; //宝牌
+	PAI_OPER_TYPE_FEN = 12; //分：即没人胡牌
 }
 
 //牌操作超时限制
