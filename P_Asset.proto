@@ -185,11 +185,14 @@ message MJCard {
 message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
 	optional AssetCommonProp common_prop = 2;
-	optional int32 max_cards_count = 3 [ default = 136 ]; //牌总数
-	optional int64 daily_bonus_id = 4; //每日登陆奖励ID[DailyBonus]数据
-	optional int64 daily_allowance_id = 5; //每日补助福利ID[DailyAllowance]数据
-	optional int32 time_out = 6 [ default = 8 ]; //玩家操作等待时间(单位：秒)
-	optional int64 daily_sign_id = 7; //每日签到奖励ID[DailySign]数据
+	optional int32 model_release = 3; //数据模式：默认调试模式
+	optional int32 max_cards_count = 4 [ default = 136 ]; //牌总数
+	optional int32 player_count = 5 [ default = 4 ]; //玩家总数
+	optional int64 daily_bonus_id = 6; //每日登陆奖励ID[DailyBonus]数据
+	optional int64 daily_allowance_id = 7; //每日补助福利ID[DailyAllowance]数据
+	optional int32 time_out = 8 [ default = 8 ]; //玩家操作等待时间(单位：秒)
+	optional int64 daily_sign_id = 9; //每日签到奖励ID[DailySign]数据
+	optional int64 fan_id = 10; //番数定义ID[RoomFan]数据
 }
 
 //通用奖励
