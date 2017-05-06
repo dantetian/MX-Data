@@ -293,20 +293,20 @@ enum FAN_TYPE {
 	FAN_TYPE_DUAN_MEN = 19; //断门
 	FAN_TYPE_XUAN_FENG_GANG = 20; //旋风杠
 	FAN_TYPE_JIA_HU_NORMAL = 21; //普通夹胡
-	FAN_TYPE_JIA_HU_MIDDLE = 22; //中等夹胡
-	FAN_TYPE_JIA_HU_HIGHER = 23; //高番夹胡
+	FAN_TYPE_JIA_HU_MIDDLE = 22; //中等夹胡(3/7)
+	FAN_TYPE_JIA_HU_HIGHER = 23; //高番夹胡(5)
 }
 //番数
 message RoomFan {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM_FAN ];
+	optional AssetCommonProp common_prop = 2;
 	//番数表
 	message FanElement {
 		optional FAN_TYPE fan_type = 3; //番类型
 		optional bytes name = 4; //名称
 		optional int32 multiple = 5; //番数
 	}
-	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM_FAN ];
-	optional AssetCommonProp common_prop = 2;
-	optional int32 fans_count = 3 [ default = 20 ]; //番数量
+	optional int32 fans_count = 3 [ default = 25 ]; //番数量
 	repeated FanElement fans = 4; //番数据
 
 }
