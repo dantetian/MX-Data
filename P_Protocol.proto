@@ -413,20 +413,6 @@ message GetReward {
 	optional int64 reward_id = 3;
 }
 
-/*
-enum PAI_CHECK_RETURN {
-	PAI_CHECK_RETURN_NULL = 0; //无法操作
-	PAI_CHECK_RETURN_HU = 1; //胡牌
-	PAI_CHECK_RETURN_GANG = 2; //杠牌
-	PAI_CHECK_RETURN_PENG = 3; //碰牌
-	PAI_CHECK_RETURN_CHI = 4; //吃牌
-	PAI_CHECK_GANG_XUANFENG_FENG = 5; //旋风杠：风牌
-	PAI_CHECK_GANG_XUANFENG_JIAN = 6; //旋风杠：箭牌
-	PAI_CHECK_RETURN_ANGANG = 7; //暗杠
-	PAI_CHECK_RETURN_TINGPAI = 8; //听牌
-}
-*/
-
 //玩家进行或者可以进行的牌操作
 enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_BEGIN = 0; //无操作
