@@ -1684,7 +1684,7 @@ package.xml|21182|<packageDescription id="krtoytc1" name="MXUI">
     <item time="0" type="Alpha" tween="true" startValue="1" endValue="0" duration="5"/>
     <item time="0" type="Scale" tween="true" startValue="1,1" endValue="0.3,0.3" duration="5"/>
   </transition>
-</component>w61cjc.xml|4184|<component size="1334,750" adaptationTest="FitSize">
+</component>w61cjc.xml|4183|<component size="1334,750" adaptationTest="FitSize">
   <displayList>
     <image id="n30_glwt" name="n30" src="w61cb4" xy="0,93" size="194,43">
       <relation target="" sidePair="left-left,top-top"/>
@@ -1695,7 +1695,7 @@ package.xml|21182|<packageDescription id="krtoytc1" name="MXUI">
     <image id="n8_algd" name="FrontPlayerTing" src="w61cfm" xy="80,271">
       <relation target="n4_algd" sidePair="right-left"/>
     </image>
-    <image id="n9_algd" name="BehiindPlayerTing" src="w61cfm" xy="1234,321">
+    <image id="n9_algd" name="BehindPlayerTing" src="w61cfm" xy="1234,321">
       <relation target="n6_algd" sidePair="bottom-top"/>
     </image>
     <image id="n10_algd" name="PlayerTing" src="w61cfm" xy="87,584">
