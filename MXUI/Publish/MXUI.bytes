@@ -2037,7 +2037,7 @@ package.xml|21182|<packageDescription id="krtoytc1" name="MXUI">
     <item time="0" type="Alpha" tween="true" startValue="1" endValue="0" duration="5"/>
     <item time="0" type="Scale" tween="true" startValue="1,1" endValue="0.3,0.3" duration="5"/>
   </transition>
-</component>w61cjl.xml|2412|<component size="1334,750" adaptationTest="FitSize">
+</component>w61cjl.xml|2411|<component size="1334,750" adaptationTest="FitSize">
   <displayList>
     <image id="n23_qb9a" name="Di" src="w61cd4" xy="0,0" size="1334,750" alpha="0.75">
       <relation target="" sidePair="width-width,height-height"/>
@@ -2057,17 +2057,17 @@ package.xml|21182|<packageDescription id="krtoytc1" name="MXUI">
     <component id="n3_w3hs" name="GameBackButton" src="w61cg8" xy="0,0" pivot="0.5,0.5" group="n22_fb5y">
       <relation target="" sidePair="left-left,top-top"/>
     </component>
-    <component id="n21_w3hs" name="NextTRoundButton" src="w61cd3" xy="543,633" pivot="0.5,0.5" group="n22_fb5y">
+    <component id="n21_w3hs" name="NextRoundButton" src="w61cd3" xy="543,633" pivot="0.5,0.5" group="n22_fb5y">
       <relation target="" sidePair="center-center,bottom-bottom"/>
     </component>
     <group id="n22_fb5y" name="Btns" xy="0,0" size="805,724" advanced="true"/>
   </displayList>
   <transition name="Popup" autoPlay="true">
-    <item time="0" type="Scale" target="n3_w3hs" tween="true" startValue="0,0" endValue="1,1" duration="6"/>
+    <item time="0" type="Scale" target="n21_w3hs" value="0,0"/>
     <item time="0" type="Scale" target="n10_w3hs" value="0,0"/>
     <item time="0" type="Scale" target="n12_w3hs" value="0,0"/>
     <item time="0" type="Scale" target="n11_w3hs" tween="true" startValue="0,0" endValue="1,1" duration="6"/>
-    <item time="0" type="Scale" target="n21_w3hs" value="0,0"/>
+    <item time="0" type="Scale" target="n3_w3hs" tween="true" startValue="0,0" endValue="1,1" duration="6"/>
     <item time="0" type="Scale" target="n20_w3hs" value="0,0"/>
     <item time="1" type="Scale" target="n10_w3hs" tween="true" startValue="0,0" endValue="1,1" duration="6"/>
     <item time="2" type="Scale" target="n12_w3hs" tween="true" startValue="0,0" endValue="1,1" duration="6"/>
