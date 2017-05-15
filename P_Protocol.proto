@@ -147,6 +147,12 @@ message Mail {
 	optional MailAttachment attachment = 6; //邮件附件
 }
 
+message ClientInfomation {
+	optional bytes client_ip = 1; //IP地址
+	optional bytes system = 2; //系统
+	optional bytes phone_type = 3; //手机型号
+}
+
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
@@ -157,7 +163,7 @@ message Player {
 	optional int32 login_time = 6; //登陆时间
 	optional int32 logout_time = 7; //登出时间
 	repeated int32 sign_time = 8; //签到时间
-
+	optional ClientInfomation client_info = 9; //Client数据
 	repeated Mail mail_list = 10; //邮件列表
 
 //////////////非存盘数据结构
@@ -413,20 +419,6 @@ message GetReward {
 	optional int64 reward_id = 3;
 }
 
-/*
-enum PAI_CHECK_RETURN {
-	PAI_CHECK_RETURN_NULL = 0; //无法操作
-	PAI_CHECK_RETURN_HU = 1; //胡牌
-	PAI_CHECK_RETURN_GANG = 2; //杠牌
-	PAI_CHECK_RETURN_PENG = 3; //碰牌
-	PAI_CHECK_RETURN_CHI = 4; //吃牌
-	PAI_CHECK_GANG_XUANFENG_FENG = 5; //旋风杠：风牌
-	PAI_CHECK_GANG_XUANFENG_JIAN = 6; //旋风杠：箭牌
-	PAI_CHECK_RETURN_ANGANG = 7; //暗杠
-	PAI_CHECK_RETURN_TINGPAI = 8; //听牌
-}
-*/
-
 //玩家进行或者可以进行的牌操作
 enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_BEGIN = 0; //无操作
@@ -441,7 +433,7 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_ANGANGPAI = 9; //暗杠牌
 	PAI_OPER_TYPE_TINGPAI = 10; //听牌
 	PAI_OPER_TYPE_BAOPAI = 11; //宝牌
-	PAI_OPER_TYPE_FEN = 12; //分：即没人胡牌
+	PAI_OPER_TYPE_LIUJU = 12; //流局：即没人胡牌
 }
 
 //牌操作超时限制
