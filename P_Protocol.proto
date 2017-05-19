@@ -262,6 +262,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_SIGN = 9; //签到
 	META_TYPE_SHARE_LUCKY_PLATE = 10; //幸运转盘
 	META_TYPE_SHARE_RANDOM_SAIZI = 11; //打股子
+	META_TYPE_SHARE_SAY_HI = 12; //心跳
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -408,6 +409,12 @@ message RandomSaizi {
 	optional PaiElement pai = 5; //牌值
 }
 
+//S<->C 维持
+message SayHi {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_SAY_HI ];
+	optional int32 heart_count = 2;
+}
+
 //获取奖励
 message GetReward {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GET_REWARD ];
@@ -434,6 +441,7 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_TINGPAI = 10; //听牌
 	PAI_OPER_TYPE_BAOPAI = 11; //宝牌
 	PAI_OPER_TYPE_LIUJU = 12; //流局：即没人胡牌
+	PAI_OPER_TYPE_COUNT = 13; //操作总数
 }
 
 //牌操作超时限制
@@ -442,7 +450,7 @@ message PaiOperationLimit {
 	optional int64 from_player_id = 2; //牌来自玩家
 	optional int32 time_out = 3; //超时时间
 	optional PaiElement pai = 4; //待处理的牌
-	optional PAI_OPER_TYPE oper_limit = 5; //最高操作权限
+	optional PAI_OPER_TYPE oper_type = 5; //最高操作权限
 }
 
 message PaiOperationList {
