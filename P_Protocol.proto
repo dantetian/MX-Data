@@ -406,7 +406,7 @@ message RandomSaizi {
 	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
 	optional int64 player_id = 3; //操作来自玩家
 	optional int32 random_result = 4; //随机值(1-6)
-	optional PaiElement pai = 5; //牌值
+	optional PaiElement pai = 5; //牌值//宝牌
 }
 
 //S<->C 维持
