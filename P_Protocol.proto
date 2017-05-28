@@ -84,7 +84,7 @@ message GameRecord {
 		//详细信息
 		message DetailElement {
 			optional int32 score = 1; //积分
-			optional FAN_TYPE fan_type = 2; //番数
+			optional FAN_TYPE fan_type = 2; //番类型
 		}
 		repeated DetailElement details = 3;
 	}
