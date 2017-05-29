@@ -289,10 +289,6 @@ enum META_TYPE {
 	META_TYPE_S2C_GAME_CALCULATE = 514; //游戏结束结算
 	META_TYPE_S2C_GAME_INFO = 515; //同步游戏数据，比如庄家
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
-	///////////服务器之间收发送数据///////////
-	META_TYPE_S2S_BEGIN = 1001; //开始协议
-	META_TYPE_S2S_REGISTER = 1002; //注册服务器
-	META_TYPE_S2S_COUNT = 1500; //协议最大数量
 }
 /////////////////////////////////////////////////////
 //客户端发送协议定义区

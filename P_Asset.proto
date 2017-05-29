@@ -300,6 +300,7 @@ enum FAN_TYPE {
 	FAN_TYPE_JIA_HU_NORMAL = 21; //普通夹胡
 	FAN_TYPE_JIA_HU_MIDDLE = 22; //中等夹胡(3/7)
 	FAN_TYPE_JIA_HU_HIGHER = 23; //高番夹胡(5)
+	FAN_TYPE_PIAO_WEIHU = 24; //明飘未胡
 }
 //番数
 message RoomFan {
