@@ -444,7 +444,7 @@ message Item_CommonProp {
 //物品基类(所有物品都包在此)
 message Item_Item {	
 	optional ASSET_TYPE type_t = 1 [ default = ITEM_TYPE_BEGIN ];
-	optional bytes stuff = 2; //包含的子类数据，非物品通用数据(例如，Item_Potion序列化后的数据)
+	optional bytes stuff = 2; //包含的子类数据，非物品通用数据(例如，Asset::Item_Potion序列化后的数据)
 	optional bytes stuff_extra = 3; //物品额外存盘数据
 }
 
@@ -473,7 +473,6 @@ message Item_RoomCard {
 	optional Item_CommonProp item_common_prop = 2; //物品公共属性
 	optional int32 rounds = 3 [ default = 1 ]; //该张房卡可以玩多少局麻将
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
