@@ -195,6 +195,7 @@ message CommonConst {
 	optional int32 time_out = 8 [ default = 8 ]; //玩家操作等待时间(单位：秒)
 	optional int64 daily_sign_id = 9; //每日签到奖励ID[DailySign]数据
 	optional int64 fan_id = 10; //番数定义ID[RoomFan]数据
+	optional int64 room_card_id = 11; //房卡ID[Item_RoomCard]数据
 }
 
 //通用奖励

@@ -168,9 +168,10 @@ message Player {
 	optional PlayerCoolDown cool_down = 5; //冷却
 	optional int32 login_time = 6; //登陆时间
 	optional int32 logout_time = 7; //登出时间
-	repeated int32 sign_time = 8; //签到时间
-	optional ClientInfomation client_info = 9; //Client数据
-	repeated Mail mail_list = 10; //邮件列表
+	optional int32 room_card_count = 8; //房卡数量
+	repeated int32 sign_time = 9; //签到时间
+	optional ClientInfomation client_info = 10; //Client数据
+	repeated Mail mail_list = 11; //邮件列表
 
 //////////////非存盘数据结构
 	optional PlayerProp player_prop = 20; //玩家临时状态数据
@@ -357,6 +358,7 @@ enum ROOM_EXTEND_TYPE {
 	ROOM_EXTEND_TYPE_BAOPAI = 4; //宝牌
 	ROOM_EXTEND_TYPE_DUANMEN = 5; //可断门
 	ROOM_EXTEND_TYPE_QIYISE = 6; //清一色
+	ROOM_EXTEND_TYPE_BAOSANJIA = 7; //点炮包三家
 }
 
 //房间设置
