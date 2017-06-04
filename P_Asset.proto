@@ -196,6 +196,7 @@ message CommonConst {
 	optional int64 daily_sign_id = 9; //每日签到奖励ID[DailySign]数据
 	optional int64 fan_id = 10; //番数定义ID[RoomFan]数据
 	optional int64 room_card_id = 11; //房卡ID[Item_RoomCard]数据
+	optional int32 liuju_count = 12; //流局牌数
 }
 
 //通用奖励

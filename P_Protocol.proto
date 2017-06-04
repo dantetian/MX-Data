@@ -299,7 +299,7 @@ enum META_TYPE {
 	META_TYPE_S2C_PLAYERS = 504; //同步账号下角色数据(AS->C)      
 	META_TYPE_S2C_PLAYER_INFO = 505; //同步玩家角色数据(登录之后同步)
 	META_TYPE_S2C_ALERT_ERROR = 507; //错误码信息
-	META_TYPE_S2C_COMMON_OPERATION_RESPONSE = 508; //通用操作返回协议
+	META_TYPE_S2C_LIUJU = 508; //流局
 	META_TYPE_S2C_PAI_NOTIFY = 509; //通知Client玩家手中的牌或抓到的牌
 	META_TYPE_S2C_PAI_OPERATION_ALERT = 510; //提示玩家可以进行的操作
 	META_TYPE_S2C_COMMON_LIMIT = 511; //通用限制:主要用于Client界面控制
@@ -457,8 +457,6 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_TINGPAI = 10; //听牌
 	PAI_OPER_TYPE_BAOPAI = 11; //宝牌
 	PAI_OPER_TYPE_COUNT = 12; //操作总数
-
-	PAI_OPER_TYPE_LIUJU = 13; //流局，即没人胡牌
 }
 
 //牌操作超时限制
@@ -541,11 +539,14 @@ message AlertMessage {
 	optional ERROR_CODE error_code = 4;
 }
 
-//通用操作返回协议，模拟RPC处理流程
-message CommonOperationResponse {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_COMMON_OPERATION_RESPONSE ];
-	optional META_TYPE client_type_t = 2;
-	optional bytes client_message = 3;
+//流局
+message LiuJu {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_LIUJU ];
+	message LJElement {
+		optional int64 player_id = 2;
+		optional PaiElement pai = 3;
+	}
+	repeated LJElement elements = 2; //数据 
 }
 
 //麻将数据同步
