@@ -41,6 +41,18 @@ enum ERR_USE_ITEM_TYPE {
 	ERR_USE_ITEM_TYPE_LEVEL_UP = 2; //级别太高
 }
 
+//物品变化
+enum ITEM_CHANGED_TYPE {
+	ITEM_CHANGED_TYPE_GMT = 1; //游戏内发放
+	ITEM_CHANGED_TYPE_MALL = 2; //商城购买
+}
+
+//钻石变化
+enum DIAMOND_CHANGED_TYPE {
+	DIAMOND_CHANGED_TYPE_GMT = 1; //游戏内发放
+	DIAMOND_CHANGED_TYPE_MALL = 2; //商城购买
+}
+
 /////////////////////////////////////////////////////
 // 游戏基本属性定义区
 /////////////////////////////////////////////////////
@@ -113,11 +125,12 @@ message CommonProp {
 	optional GENDER_TYPE gender = 6 [ default = GENDER_TYPE_MAN]; //性别
 	optional int64 diamond = 7; //钻石总数 
 	optional int64 huanledou = 8; //欢乐豆数 
-	optional int64 total_rounds = 9; //参加的总局数 
-	optional int64 total_win_rounds = 10; //赢牌局数
-	optional int64 streak_wins = 11; //最高连胜
-	optional int64 score = 12; //积分
-	repeated int64 room_history = 13; //历史房间数据
+	optional int64 room_card_count = 9; //房卡数 
+	optional int64 total_rounds = 10; //参加的总局数 
+	optional int64 total_win_rounds = 11; //赢牌局数
+	optional int64 streak_wins = 12; //最高连胜
+	optional int64 score = 13; //积分
+	repeated int64 room_history = 14; //历史房间数据
 }
 
 //通用限制：存盘数据
@@ -168,10 +181,9 @@ message Player {
 	optional PlayerCoolDown cool_down = 5; //冷却
 	optional int32 login_time = 6; //登陆时间
 	optional int32 logout_time = 7; //登出时间
-	optional int32 room_card_count = 8; //房卡数量
-	repeated int32 sign_time = 9; //签到时间
-	optional ClientInfomation client_info = 10; //Client数据
-	repeated Mail mail_list = 11; //邮件列表
+	repeated int32 sign_time = 8; //签到时间
+	optional ClientInfomation client_info = 9; //Client数据
+	repeated Mail mail_list = 10; //邮件列表
 
 //////////////非存盘数据结构
 	optional PlayerProp player_prop = 20; //玩家临时状态数据
