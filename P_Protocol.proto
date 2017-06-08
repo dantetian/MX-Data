@@ -307,6 +307,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ROOM_INFO = 513; //同步房间数据
 	META_TYPE_S2C_GAME_CALCULATE = 514; //游戏结束结算
 	META_TYPE_S2C_GAME_INFO = 515; //同步游戏数据，比如庄家
+	META_TYPE_S2C_KILL_OUT = 516; //踢掉玩家
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 }
 /////////////////////////////////////////////////////
@@ -629,4 +630,17 @@ message GameCalculate {
 message GameInformation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_INFO ];
 	optional int64 banker_player_id = 2; //庄家
+}
+
+//踢掉缘由
+enum KILL_OUT_REASON {
+	KILL_OUT_REASON_BEGIN = 0;
+	KILL_OUT_REASON_OTHER_LOGIN = 1; //玩家登陆
+
+}
+//踢出玩家
+message KillOut {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_KILL_OUT ];
+	optional int64 player_id = 2;
+	optional KILL_OUT_REASON out_reason = 3; //踢掉玩家缘由
 }
