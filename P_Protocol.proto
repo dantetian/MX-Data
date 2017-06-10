@@ -285,6 +285,7 @@ enum META_TYPE {
 	META_TYPE_C2S_ENTER_GAME = 55; //进入游戏(选择的角色)
 	META_TYPE_C2S_GET_REWARD = 56; //领取奖励
 	META_TYPE_C2S_LOAD_SCENE = 57; //加载场景
+	META_TYPE_C2S_RECONNECT = 58; //断线重连
 	META_TYPE_C2S_COUNT = 255; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -483,6 +484,12 @@ message LoadScene {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOAD_SCENE ];
 	optional LOAD_SCENE_TYPE load_type = 2; //加载进度
 	optional int64 scene_id = 3; //加载的场景ID///房间ID
+}
+
+//断线重连
+message ReConnect {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_RECONNECT ];
+	optional int64 player_id = 2; //角色ID
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
