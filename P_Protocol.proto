@@ -249,6 +249,7 @@ enum ERROR_CODE {
 	ERROR_ACTIVITY_NOT_OPEN = 8; //活动尚未开启
 	ERROR_CLIENT_DATA = 9; //Client数据错误
 	ERROR_HAS_NO_PLAYER = 10; //该账号下没有这个角色
+	ERROR_DATABASE = 11; //数据库错误
 
 	ERROR_ROOM_NOT_FOUNT = 20; //房间未找到
 	ERROR_ROOM_PASSWORD = 21; //房间密码错误
@@ -357,31 +358,6 @@ message Room {
 //开设局数：4局  8局
 /////////////////////////////////////////////////////
 
-//模式选择
-enum ROOM_MODEL_TYPE {
-	ROOM_MODEL_TYPE_CLASSICAL = 1; //经典模式
-	ROOM_MODEL_TYPE_MULTIPLE = 2; //高番模式
-}
-
-//额外番型
-enum ROOM_EXTEND_TYPE {
-	ROOM_EXTEND_TYPE_ZHANLIHU = 1; //站立胡
-	ROOM_EXTEND_TYPE_JIAHU = 2; //夹胡
-	ROOM_EXTEND_TYPE_XUANFENGGANG = 3; //旋风杠
-	ROOM_EXTEND_TYPE_BAOPAI = 4; //宝牌
-	ROOM_EXTEND_TYPE_DUANMEN = 5; //可断门
-	ROOM_EXTEND_TYPE_QIYISE = 6; //清一色
-	ROOM_EXTEND_TYPE_BAOSANJIA = 7; //点炮包三家
-}
-
-//房间设置
-message RoomOptions {
-	optional ROOM_MODEL_TYPE model = 1; //模式选择
-	repeated ROOM_EXTEND_TYPE extend_type = 2; //额外番型
-	optional int32 top_mutiple = 3; //封顶倍数
-	optional int32 open_rands = 4 [ default = 4 ]; //局数：4局 8局
-}
-
 //创建房间
 message CreateRoom {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CREATE_ROOM ];
@@ -422,7 +398,7 @@ message RandomSaizi {
 	}
 	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
 	optional int64 player_id = 3; //操作来自玩家
-	optional int32 random_result = 4; //随机值(1-6)
+	repeated int32 random_result = 4; //随机值(1-6)
 	optional PaiElement pai = 5; //牌值//宝牌
 }
 
