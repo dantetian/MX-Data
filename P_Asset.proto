@@ -307,6 +307,7 @@ message Mall {
 
 //番数类型
 enum FAN_TYPE {
+	FAN_TYPE_PINGHU = 0; //平胡
 	FAN_TYPE_ZHUANG = 1; //庄家
 	FAN_TYPE_DIAN_PAO = 2; //点炮
 	FAN_TYPE_ZI_MO = 3; //自摸
