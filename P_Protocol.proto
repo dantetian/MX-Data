@@ -82,16 +82,12 @@ enum LOAD_SCENE_TYPE {
 
 //玩家临时属性，不存盘
 message PlayerProp {
-	optional bool online = 1; //是否在线
-	optional POSITION_TYPE position = 2; //玩家座次
-	optional int64 room_id = 3; //房间ID
-	optional LOAD_SCENE_TYPE load_type = 4; //场景加载
-	optional GAME_OPER_TYPE game_oper_state = 5; //玩家状态
-	optional bool check_feng_gang = 6; //旋风杠检查
-	optional bool check_jian_gang = 7; //旋风杠检查
-	optional int32 pai_oper_count = 8; //玩家操作次数
-	optional bool has_tinged = 9; //是否听牌
-	optional int32 oper_count_tingpai = 10; //听牌后玩家操作
+	optional POSITION_TYPE position = 1; //玩家当前座次
+	optional int64 room_id = 2; //当前所在房间ID
+	optional LOAD_SCENE_TYPE load_type = 3; //场景加载(开始加载//已经进入场景)
+	optional GAME_OPER_TYPE game_oper_state = 4; //玩家状态(准备//开局)
+	optional int32 pai_oper_count = 5; //玩家操作次数
+	optional bool has_tinged = 6; //是否听牌
 }
 
 //游戏记录
@@ -184,9 +180,6 @@ message Player {
 	repeated int32 sign_time = 8; //签到时间
 	optional ClientInfomation client_info = 9; //Client数据
 	repeated Mail mail_list = 10; //邮件列表
-
-//////////////非存盘数据结构
-	optional PlayerProp player_prop = 20; //玩家临时状态数据
 }
 
 //包裹结构
