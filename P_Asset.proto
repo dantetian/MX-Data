@@ -332,6 +332,7 @@ enum FAN_TYPE {
 	FAN_TYPE_JIA_HU_MIDDLE = 22; //中等夹胡(3/7)
 	FAN_TYPE_JIA_HU_HIGHER = 23; //高番夹胡(5)
 	FAN_TYPE_PIAO_WEIHU = 24; //明飘未胡
+	FAN_TYPE_BAOSANJIA = 25; //包三家
 }
 //番数
 message RoomFan {
@@ -343,7 +344,7 @@ message RoomFan {
 		optional bytes name = 4; //名称
 		optional int32 multiple = 5; //番数
 	}
-	optional int32 fans_count = 3 [ default = 25 ]; //番数量
+	optional int32 fans_count = 3 [ default = 30 ]; //番数量
 	repeated FanElement fans = 4; //番数据
 
 }
