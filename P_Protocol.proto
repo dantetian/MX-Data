@@ -549,6 +549,7 @@ message PaiNotify {
 		optional int32 card_value = 2; //牌值
 	}
 	optional SinglePai pai = 5; //数据：发牌，发1张牌
+	optional int32 cards_remain = 6; //剩余牌数量
 }
 
 //玩家基础属性同步
