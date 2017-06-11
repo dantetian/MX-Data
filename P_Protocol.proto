@@ -276,6 +276,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_LUCKY_PLATE = 10; //幸运转盘
 	META_TYPE_SHARE_RANDOM_SAIZI = 11; //打股子
 	META_TYPE_SHARE_SAY_HI = 12; //心跳
+	META_TYPE_SHARE_GUEST_LOGIN = 13; //游客登录
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -400,6 +401,12 @@ message RandomSaizi {
 message SayHi {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_SAY_HI ];
 	optional int32 heart_count = 2;
+}
+
+//游客登录
+message GuestLogin {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GUEST_LOGIN ];
+	optional Account account = 2; //服务器返回
 }
 
 //获取奖励
