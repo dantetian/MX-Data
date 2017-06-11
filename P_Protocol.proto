@@ -406,7 +406,7 @@ message SayHi {
 //游客登录
 message GuestLogin {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GUEST_LOGIN ];
-	optional Account account = 2; //服务器返回
+	optional bytes account = 2; //服务器生成账号数据
 }
 
 //获取奖励
