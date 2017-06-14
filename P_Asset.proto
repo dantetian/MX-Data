@@ -220,11 +220,12 @@ message CommonConst {
 	optional int32 player_count = 5 [ default = 4 ]; //玩家总数
 	optional int64 daily_bonus_id = 6; //每日登陆奖励ID[DailyBonus]数据
 	optional int64 daily_allowance_id = 7; //每日补助福利ID[DailyAllowance]数据
-	optional int32 time_out = 8 [ default = 8 ]; //玩家操作等待时间(单位：秒)
+	optional int32 operation_time_out = 8 [ default = 8 ]; //玩家操作等待时间(单位：秒)
 	optional int64 daily_sign_id = 9; //每日签到奖励ID[DailySign]数据
 	optional int64 fan_id = 10; //番数定义ID[RoomFan]数据
 	optional int64 room_card_id = 11; //房卡ID[Item_RoomCard]数据
 	optional int32 liuju_count = 12; //流局牌数
+	optional int32 room_last_time = 13; //房间持续时间(单位：秒)
 }
 
 //通用奖励
@@ -346,7 +347,6 @@ message RoomFan {
 	}
 	optional int32 fans_count = 3 [ default = 30 ]; //番数量
 	repeated FanElement fans = 4; //番数据
-
 }
 
 //房间模式
