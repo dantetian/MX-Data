@@ -51,6 +51,20 @@ enum ITEM_CHANGED_TYPE {
 enum DIAMOND_CHANGED_TYPE {
 	DIAMOND_CHANGED_TYPE_GMT = 1; //游戏内发放
 	DIAMOND_CHANGED_TYPE_MALL = 2; //商城购买
+	DIAMOND_CHANGED_TYPE_GENERAL_REWARD = 3; //通用奖励
+}
+
+//欢乐豆变化
+enum HUANLEDOU_CHANGED_TYPE {
+	HUANLEDOU_CHANGED_TYPE_GMT = 1; //游戏内发放
+	HUANLEDOU_CHANGED_TYPE_MALL = 2; //商城购买
+	HUANLEDOU_CHANGED_TYPE_GENERAL_REWARD = 3; //通用奖励
+}
+
+//房卡变化
+enum ROOM_CARD_CHANGED_TYPE {
+	ROOM_CARD_CHANGED_TYPE_GMT = 1; //游戏内发放
+	ROOM_CARD_CHANGED_TYPE_MALL = 2; //商城购买
 }
 
 /////////////////////////////////////////////////////
@@ -147,25 +161,27 @@ message PlayerCoolDown {
 	repeated Element elements = 1;
 }
 
-//邮件附件
-message MailAttachment {
-	optional int64 common_reward_id = 1; //通用奖励[CommonReward]数据
+
+//Client数据
+message ClientInfomation {
+	optional bytes client_ip = 1; //IP地址
+	optional bytes system = 2; //系统
+	optional bytes phone_type = 3; //手机型号
 }
 
-//邮件
+//
+//策划或者运营通过指令发送的邮件信息
+//
+//或者玩家之间邮件
+//
 message Mail {
 	optional bytes title = 1; //标题
 	optional bytes send_player = 2 [ default = "系统邮件" ]; //发件人
 	optional bytes content = 3; //内容
 	optional int32 send_time = 4; //发送时间
 	optional bool readed = 5; //是否已读
-	optional MailAttachment attachment = 6; //邮件附件
-}
-
-message ClientInfomation {
-	optional bytes client_ip = 1; //IP地址
-	optional bytes system = 2; //系统
-	optional bytes phone_type = 3; //手机型号
+	optional int64 common_reward_id = 6; //通用奖励[CommonReward]数据
+	repeated MailAttachment attachments = 7; //附件
 }
 
 //玩家信息
@@ -179,7 +195,8 @@ message Player {
 	optional int32 logout_time = 7; //登出时间
 	repeated int32 sign_time = 8; //签到时间
 	optional ClientInfomation client_info = 9; //Client数据
-	repeated Mail mail_list = 10; //邮件列表
+	repeated Mail mail_list_customized = 10; //定制化邮件列表
+	repeated int64 mail_list_system = 11; //系统邮件列表
 }
 
 //包裹结构
@@ -234,7 +251,7 @@ enum ERROR_CODE {
 	ERROR_SUCCESS = 0; //成功
 	ERROR_INNER = 1; //系统内部错误
 	ERROR_DIAMOND_NOT_ENOUGH = 2; //钻石不足
-	ERROR_BEANS_NOT_ENOUGH = 3;	//欢乐豆不足
+	ERROR_HUANLEDOU_NOT_ENOUGH = 3;	//欢乐豆不足
 	ERROR_INVENTORY_FULL = 4; //物品栏已满
 	ERROR_REWARD_HAS_GOT = 5; //奖励已领取
 	ERROR_HUANLEDOU_LIMIT = 6; //每日福利:欢乐豆不满足领取数量限制
@@ -243,6 +260,7 @@ enum ERROR_CODE {
 	ERROR_CLIENT_DATA = 9; //Client数据错误
 	ERROR_HAS_NO_PLAYER = 10; //该账号下没有这个角色
 	ERROR_DATABASE = 11; //数据库错误
+	ERROR_ROOM_CARD_NOT_ENOUGH = 12; //房卡不足
 
 	ERROR_ROOM_NOT_FOUNT = 20; //房间未找到
 	ERROR_ROOM_PASSWORD = 21; //房间密码错误

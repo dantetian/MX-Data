@@ -65,6 +65,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_COMMON_CONSUME = 19; //通用消耗
 	ASSET_TYPE_RECHARGE = 20; //充值：各个渠道对游戏内钻石的购买，人民币
 	ASSET_TYPE_DAILY_SIGN = 21; //每日签到
+	ASSET_TYPE_MAIL = 22; //邮件
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -247,6 +248,7 @@ message CommonReward {
 	}
 	optional int32 rewards_count = 3 [ default = 10 ]; //奖励数量
 	repeated Reward rewards = 4; //奖励
+	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
 }
 
 //通用消耗
@@ -444,6 +446,36 @@ message DailySign {
 
 	optional int32 signs_count = 5 [ default = 10 ]; //连续签到数量
 	repeated ContinuousSign signs = 6; //连续签到
+}
+
+//邮件类型
+enum MAIL_TYPE {
+	MAIL_TYPE_HELP = 1; //帮助文档
+	MAIL_TYPE_ANNOUCEMENT = 2; //公告
+}
+
+//附件
+enum ATTACHMENT_TYPE {
+	ATTACHMENT_TYPE_DIAMOND = 1; //钻石
+	ATTACHMENT_TYPE_HUANLEDOU = 2; //欢乐豆
+	ATTACHMENT_TYPE_ROOM_CARD = 3; //房卡
+}
+
+message MailAttachment {
+	optional ATTACHMENT_TYPE attachment_type = 1; //附件类型
+	optional int32 count = 2; //数量
+}
+
+//邮件
+message SystemMail {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_MAIL ];
+	optional AssetCommonProp common_prop = 2;
+	optional MAIL_TYPE mail_type = 3; //邮件类型
+	optional bytes title = 4 [ default = "系统邮件"]; //标题
+	optional bytes from = 5 [ default = "系统"]; //来自(例如：系统)
+	optional int64 content_id = 6; //内容(StringTable数据)
+	optional int32 attachments_count = 7 [ default = 3 ]; //附件数量
+	repeated MailAttachment attachments = 8; //附件
 }
 
 /////////////////////////////////////////////////////
