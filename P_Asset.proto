@@ -398,22 +398,20 @@ message Avatar {
 	repeated bytes avatars = 4; //头像路径
 }
 
-//活动周期
-enum ACTIVITY_CYCLE_TYPE {
-	ACTIVITY_CYCLE_TYPE_DIALY = 1; //每日
-}
 //活动类型
 enum ACTIVITY_TYPE {
-	ACTIVITY_TYPE_STOP_TIME = 1; //按照结束时间
+	ACTIVITY_CYCLE_TYPE_DIALY = 1; //每日
+	ACTIVITY_CYCLE_TYPE_DURATION = 2; //时间断
 }
 //活动
 message Activity {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ACTIVITY ];
 	optional AssetCommonProp common_prop = 2;
-	optional ACTIVITY_CYCLE_TYPE activity_cycle_type = 3; //活动周期
-	optional ACTIVITY_TYPE activity_type = 4; //活动类型
-	optional bytes start_time = 5; //开始时间(示例：2017-01-20 20:00:00)
-	optional bytes stop_time = 6; //结束时间(示例：2017-02-20 20:00:00)
+	optional ACTIVITY_TYPE activity_type = 3; //活动类型
+	optional bytes start_date = 4; //开始日期(示例：2017-01-20)
+	optional bytes start_time = 5; //开始时间(示例：20:00:00)
+	optional bytes stop_date = 6; //结束日期(示例：2017-02-20)
+	optional bytes stop_time = 7; //结束时间(示例：21:00:00)
 }
 
 //补助福利
