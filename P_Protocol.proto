@@ -180,14 +180,13 @@ message Mail {
 	optional bytes content = 3; //内容
 	optional int32 send_time = 4; //发送时间
 	optional bool readed = 5; //是否已读
-	optional int64 common_reward_id = 6; //通用奖励[CommonReward]数据
-	repeated MailAttachment attachments = 7; //附件
+	repeated MailAttachment attachments = 6; //附件
 }
 
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
-	optional int64 server_id = 2; //服务器ID
+	optional int64 server_id = 2; //服务器ID，表示当前玩家所在服务器ID，玩家注册服务器ID在玩家ID中.
 	optional Inventory inventory = 3; //玩家包裹
 	optional PlayerCommonLimit common_limit = 4; //通用限制
 	optional PlayerCoolDown cool_down = 5; //冷却
@@ -195,8 +194,8 @@ message Player {
 	optional int32 logout_time = 7; //登出时间
 	repeated int32 sign_time = 8; //签到时间
 	optional ClientInfomation client_info = 9; //Client数据
-	repeated Mail mail_list_customized = 10; //定制化邮件列表
-	repeated int64 mail_list_system = 11; //系统邮件列表
+	repeated int64 mail_list_system = 10; //系统邮件列表
+	repeated Mail mail_list_customized = 11; //定制化邮件列表
 }
 
 //包裹结构
@@ -274,6 +273,9 @@ enum ERROR_CODE {
 	
 	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
 	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
+	
+	ERROR_COMMON_REWARD_DATA = 50; //数据错误
+	ERROR_COMMON_REWARD_HAS_GOT = 51; //奖励已领取
 }
 
 /////////////////////////////////////////////////////

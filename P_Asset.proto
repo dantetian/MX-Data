@@ -66,6 +66,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_RECHARGE = 20; //充值：各个渠道对游戏内钻石的购买，人民币
 	ASSET_TYPE_DAILY_SIGN = 21; //每日签到
 	ASSET_TYPE_MAIL = 22; //邮件
+	ASSET_TYPE_SYSTEM_SPEAK = 23; //系统喊话，游戏中的广播
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -227,6 +228,7 @@ message CommonConst {
 	optional int64 room_card_id = 11; //房卡ID[Item_RoomCard]数据
 	optional int32 liuju_count = 12; //流局牌数
 	optional int32 room_last_time = 13; //房间持续时间(单位：秒)
+	optional int64 room_card_limit_free_activity_id = 14; //房卡限免活动ID[Activity]数据
 }
 
 //通用奖励
@@ -244,7 +246,6 @@ message CommonReward {
 		optional bytes icon_name = 3; //图标
 		optional int64 item_id = 4; //物品ID 
 		optional int32 count = 5; //奖励数量 
-		optional int64 common_limit_id = 6; //通用限制ID[CommonLimit]数据
 	}
 	optional int32 rewards_count = 3 [ default = 10 ]; //奖励数量
 	repeated Reward rewards = 4; //奖励
@@ -287,7 +288,6 @@ message DailyBonus {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_DAILY_BONUS ];
 	optional AssetCommonProp common_prop = 2;
 	optional int64 common_reward_id = 3; //奖励ID[CommonReward]数据
-	optional int64 common_limit_id = 4; //通用限制ID[CommonLimit]数据
 }
 
 //商城数据
@@ -416,7 +416,6 @@ message DailyAllowance {
 	optional AssetCommonProp common_prop = 2;
 	optional int32 huanledou_below = 3 [ default = 2000 ]; //欢乐豆低于数量
 	optional int64 common_reward_id = 4; //奖励ID[CommonReward]数据
-	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
 }
 
 //充值
@@ -476,6 +475,19 @@ message SystemMail {
 	optional int64 content_id = 6; //内容(StringTable数据)
 	optional int32 attachments_count = 7 [ default = 3 ]; //附件数量
 	repeated MailAttachment attachments = 8; //附件
+}
+
+//喊话附加内容
+enum SYSTEM_SPEAK_TYPE {
+	SYSTEM_SPEAK_TYPE_PLAYER_ID = 1; //玩家ID
+	SYSTEM_SPEAK_TYPE_PLAYER_NAME = 2; //玩家名字
+}
+//系统喊话
+message SystemSpeak {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_SYSTEM_SPEAK ];
+	optional AssetCommonProp common_prop = 2;
+	optional int32 infomation_list_count = 3 [ default = 2]; //数据列表大小
+	repeated SYSTEM_SPEAK_TYPE infomation_list = 4; //数据列表
 }
 
 /////////////////////////////////////////////////////
