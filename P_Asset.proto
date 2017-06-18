@@ -398,16 +398,22 @@ message Avatar {
 	repeated bytes avatars = 4; //头像路径
 }
 
+//活动周期
+enum ACTIVITY_CYCLE_TYPE {
+	ACTIVITY_CYCLE_TYPE_DIALY = 1; //每日
+}
+//活动类型
+enum ACTIVITY_TYPE {
+	ACTIVITY_TYPE_STOP_TIME = 1; //按照结束时间
+}
 //活动
 message Activity {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ACTIVITY ];
 	optional AssetCommonProp common_prop = 2;
-	enum ACTIVITY_TYPE {
-		ACTIVITY_TYPE_STOP_TIME = 1; //按照结束时间
-	}
-	optional ACTIVITY_TYPE activity_type = 3; //活动类型
-	optional bytes start_time = 4; //开始时间: 2017-01-20 20:00:00
-	optional bytes stop_time = 5; //结束时间: 2017-02-20 20:00:00
+	optional ACTIVITY_CYCLE_TYPE activity_cycle_type = 3; //活动周期
+	optional ACTIVITY_TYPE activity_type = 4; //活动类型
+	optional bytes start_time = 5; //开始时间(示例：2017-01-20 20:00:00)
+	optional bytes stop_time = 6; //结束时间(示例：2017-02-20 20:00:00)
 }
 
 //补助福利
@@ -486,8 +492,9 @@ enum SYSTEM_SPEAK_TYPE {
 message SystemSpeak {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_SYSTEM_SPEAK ];
 	optional AssetCommonProp common_prop = 2;
-	optional int32 infomation_list_count = 3 [ default = 2]; //数据列表大小
-	repeated SYSTEM_SPEAK_TYPE infomation_list = 4; //数据列表
+	optional int32 text_index = 3; //StringTable中文本索引
+	optional int32 infomation_list_count = 4 [ default = 2]; //数据列表大小
+	repeated SYSTEM_SPEAK_TYPE infomation_list = 5; //数据列表
 }
 
 /////////////////////////////////////////////////////

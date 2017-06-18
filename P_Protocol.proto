@@ -324,6 +324,8 @@ enum META_TYPE {
 	META_TYPE_S2C_GAME_CALCULATE = 514; //游戏结束结算
 	META_TYPE_S2C_GAME_INFO = 515; //同步游戏数据，比如庄家
 	META_TYPE_S2C_KILL_OUT = 516; //踢掉玩家
+	META_TYPE_S2C_ACTIVITY = 517; //活动数据
+	META_TYPE_S2C_SYSTEM_BROADCAST = 518; //系统广播
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 }
 /////////////////////////////////////////////////////
@@ -647,4 +649,25 @@ message KillOut {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_KILL_OUT ];
 	optional int64 player_id = 2;
 	optional KILL_OUT_REASON out_reason = 3; //踢掉玩家缘由
+}
+
+//活动
+message SyncActivity {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ACTIVITY ];
+	message ActivityElement {
+		optional int64 activity_id = 2; //活动ID
+		optional bool open = 3; //开启
+	}
+	repeated ActivityElement activity_list = 2; //活动列表
+}
+
+//系统广播
+message SystemBroadcasting {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_SYSTEM_BROADCAST ];
+	enum SYSTEM_BROADCAST_TYPE { //广播类型
+		SYSTEM_BROADCAST_TYPE_SCROLL = 1; //滚动屏幕
+		SYSTEM_BROADCAST_TYPE_CHAT = 2; //聊天窗
+	} 
+	optional SYSTEM_BROADCAST_TYPE broad_cast_type = 2; //广播类型 
+	optional bytes content = 3; //内容
 }
