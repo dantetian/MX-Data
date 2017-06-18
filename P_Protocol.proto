@@ -51,6 +51,20 @@ enum ITEM_CHANGED_TYPE {
 enum DIAMOND_CHANGED_TYPE {
 	DIAMOND_CHANGED_TYPE_GMT = 1; //游戏内发放
 	DIAMOND_CHANGED_TYPE_MALL = 2; //商城购买
+	DIAMOND_CHANGED_TYPE_GENERAL_REWARD = 3; //通用奖励
+}
+
+//欢乐豆变化
+enum HUANLEDOU_CHANGED_TYPE {
+	HUANLEDOU_CHANGED_TYPE_GMT = 1; //游戏内发放
+	HUANLEDOU_CHANGED_TYPE_MALL = 2; //商城购买
+	HUANLEDOU_CHANGED_TYPE_GENERAL_REWARD = 3; //通用奖励
+}
+
+//房卡变化
+enum ROOM_CARD_CHANGED_TYPE {
+	ROOM_CARD_CHANGED_TYPE_GMT = 1; //游戏内发放
+	ROOM_CARD_CHANGED_TYPE_MALL = 2; //商城购买
 }
 
 /////////////////////////////////////////////////////
@@ -147,31 +161,32 @@ message PlayerCoolDown {
 	repeated Element elements = 1;
 }
 
-//邮件附件
-message MailAttachment {
-	optional int64 common_reward_id = 1; //通用奖励[CommonReward]数据
-}
 
-//邮件
-message Mail {
-	optional bytes title = 1; //标题
-	optional bytes send_player = 2 [ default = "系统邮件" ]; //发件人
-	optional bytes content = 3; //内容
-	optional int32 send_time = 4; //发送时间
-	optional bool readed = 5; //是否已读
-	optional MailAttachment attachment = 6; //邮件附件
-}
-
+//Client数据
 message ClientInfomation {
 	optional bytes client_ip = 1; //IP地址
 	optional bytes system = 2; //系统
 	optional bytes phone_type = 3; //手机型号
 }
 
+//
+//策划或者运营通过指令发送的邮件信息
+//
+//或者玩家之间邮件
+//
+message Mail {
+	optional bytes title = 1; //标题
+	optional bytes send_player = 2 [ default = "系统邮件" ]; //发件人
+	optional bytes content = 3; //内容
+	optional int32 send_time = 4; //发送时间
+	optional bool readed = 5; //是否已读
+	repeated MailAttachment attachments = 6; //附件
+}
+
 //玩家信息
 message Player {
 	optional CommonProp common_prop = 1; //公共属性(存储[CommonProp]字段)
-	optional int64 server_id = 2; //服务器ID
+	optional int64 server_id = 2; //服务器ID，表示当前玩家所在服务器ID，玩家注册服务器ID在玩家ID中.
 	optional Inventory inventory = 3; //玩家包裹
 	optional PlayerCommonLimit common_limit = 4; //通用限制
 	optional PlayerCoolDown cool_down = 5; //冷却
@@ -179,7 +194,8 @@ message Player {
 	optional int32 logout_time = 7; //登出时间
 	repeated int32 sign_time = 8; //签到时间
 	optional ClientInfomation client_info = 9; //Client数据
-	repeated Mail mail_list = 10; //邮件列表
+	repeated int64 mail_list_system = 10; //系统邮件列表
+	repeated Mail mail_list_customized = 11; //定制化邮件列表
 }
 
 //包裹结构
@@ -234,7 +250,7 @@ enum ERROR_CODE {
 	ERROR_SUCCESS = 0; //成功
 	ERROR_INNER = 1; //系统内部错误
 	ERROR_DIAMOND_NOT_ENOUGH = 2; //钻石不足
-	ERROR_BEANS_NOT_ENOUGH = 3;	//欢乐豆不足
+	ERROR_HUANLEDOU_NOT_ENOUGH = 3;	//欢乐豆不足
 	ERROR_INVENTORY_FULL = 4; //物品栏已满
 	ERROR_REWARD_HAS_GOT = 5; //奖励已领取
 	ERROR_HUANLEDOU_LIMIT = 6; //每日福利:欢乐豆不满足领取数量限制
@@ -243,6 +259,7 @@ enum ERROR_CODE {
 	ERROR_CLIENT_DATA = 9; //Client数据错误
 	ERROR_HAS_NO_PLAYER = 10; //该账号下没有这个角色
 	ERROR_DATABASE = 11; //数据库错误
+	ERROR_ROOM_CARD_NOT_ENOUGH = 12; //房卡不足
 
 	ERROR_ROOM_NOT_FOUNT = 20; //房间未找到
 	ERROR_ROOM_PASSWORD = 21; //房间密码错误
@@ -256,6 +273,9 @@ enum ERROR_CODE {
 	
 	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
 	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
+	
+	ERROR_COMMON_REWARD_DATA = 50; //数据错误
+	ERROR_COMMON_REWARD_HAS_GOT = 51; //奖励已领取
 }
 
 /////////////////////////////////////////////////////
@@ -304,6 +324,8 @@ enum META_TYPE {
 	META_TYPE_S2C_GAME_CALCULATE = 514; //游戏结束结算
 	META_TYPE_S2C_GAME_INFO = 515; //同步游戏数据，比如庄家
 	META_TYPE_S2C_KILL_OUT = 516; //踢掉玩家
+	META_TYPE_S2C_ACTIVITY = 517; //活动数据
+	META_TYPE_S2C_SYSTEM_BROADCAST = 518; //系统广播
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 }
 /////////////////////////////////////////////////////
@@ -627,4 +649,25 @@ message KillOut {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_KILL_OUT ];
 	optional int64 player_id = 2;
 	optional KILL_OUT_REASON out_reason = 3; //踢掉玩家缘由
+}
+
+//活动
+message SyncActivity {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ACTIVITY ];
+	message ActivityElement {
+		optional int64 activity_id = 2; //活动ID
+		optional bool open = 3; //开启
+	}
+	repeated ActivityElement activity_list = 2; //活动列表
+}
+
+//系统广播
+message SystemBroadcasting {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_SYSTEM_BROADCAST ];
+	enum SYSTEM_BROADCAST_TYPE { //广播类型
+		SYSTEM_BROADCAST_TYPE_SCROLL = 1; //滚动屏幕
+		SYSTEM_BROADCAST_TYPE_CHAT = 2; //聊天窗
+	} 
+	optional SYSTEM_BROADCAST_TYPE broad_cast_type = 2; //广播类型 
+	optional bytes content = 3; //内容
 }
