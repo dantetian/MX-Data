@@ -326,6 +326,7 @@ enum META_TYPE {
 	META_TYPE_S2C_KILL_OUT = 516; //踢掉玩家
 	META_TYPE_S2C_ACTIVITY = 517; //活动数据
 	META_TYPE_S2C_SYSTEM_BROADCAST = 518; //系统广播
+	META_TYPE_S2C_PAI_PUSH_DOWN = 519; //推到牌
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 }
 /////////////////////////////////////////////////////
@@ -417,6 +418,7 @@ message RandomSaizi {
 	optional int64 player_id = 3; //操作来自玩家
 	repeated int32 random_result = 4; //随机值(1-6)
 	optional PaiElement pai = 5; //牌值//宝牌
+	optional bool has_rand_saizi = 6; //是否打了色子
 }
 
 //S<->C 维持
@@ -670,4 +672,19 @@ message SystemBroadcasting {
 	} 
 	optional SYSTEM_BROADCAST_TYPE broad_cast_type = 2; //广播类型 
 	optional bytes content = 3; //内容
+}
+
+message MultiplePai { 
+	optional CARD_TYPE card_type = 1; //牌类型
+	repeated int32 cards = 2; //牌值
+}
+//推倒牌
+message PaiPushDown {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_PUSH_DOWN ];
+	message PlayerElement {
+		optional int64 player_id = 1; //玩家ID
+		optional POSITION_TYPE position = 2; //玩家当前座次
+		repeated MultiplePai pai_list = 3; //牌数据
+	}
+	repeated PlayerElement player_list = 2; //各个玩家牌
 }
