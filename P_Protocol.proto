@@ -418,6 +418,7 @@ message RandomSaizi {
 	optional int64 player_id = 3; //操作来自玩家
 	repeated int32 random_result = 4; //随机值(1-6)
 	optional PaiElement pai = 5; //牌值//宝牌
+	optional bool has_rand_saizi = 6; //是否打了色子
 }
 
 //S<->C 维持
