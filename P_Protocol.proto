@@ -196,6 +196,7 @@ message Player {
 	optional ClientInfomation client_info = 9; //Client数据
 	repeated int64 mail_list_system = 10; //系统邮件列表
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
+	optional PlayerSetting game_setting = 12; //游戏设置
 }
 
 //包裹结构
@@ -297,6 +298,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_RANDOM_SAIZI = 11; //打股子
 	META_TYPE_SHARE_SAY_HI = 12; //心跳
 	META_TYPE_SHARE_GUEST_LOGIN = 13; //游客登录
+	META_TYPE_SHARE_GAME_SETTING = 520; //游戏设置
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -418,7 +420,7 @@ message RandomSaizi {
 	optional int64 player_id = 3; //操作来自玩家
 	repeated int32 random_result = 4; //随机值(1-6)
 	optional PaiElement pai = 5; //牌值//宝牌
-	optional bool has_rand_saizi = 6; //是否打了色子
+	optional bool has_rand_saizi = 6; //是否打色子
 }
 
 //S<->C 维持
@@ -431,6 +433,19 @@ message SayHi {
 message GuestLogin {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GUEST_LOGIN ];
 	optional bytes account = 2; //服务器生成账号数据
+}
+
+message PlayerSetting {
+	optional bool music = 1; //是否开启音乐
+	optional bool voice = 2; //是否开启语音
+	optional bool audio = 3; //是否开启音效
+	optional bool click_push = 4; //是否单击出牌
+}
+
+//游戏设置
+message GameSetting {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_SETTING ];
+	optional PlayerSetting game_setting = 2;
 }
 
 //获取奖励
