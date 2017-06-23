@@ -192,6 +192,7 @@ message CoolDown {
 
 //麻将牌类型
 enum CARD_TYPE {
+	CARD_TYPE_NULL = 0; //没有牌
 	CARD_TYPE_WANZI = 1; //万子牌
 	CARD_TYPE_BINGZI = 2; //饼子牌
 	CARD_TYPE_TIAOZI = 3; //条子牌
