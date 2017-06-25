@@ -1,15 +1,14 @@
---[[
+﻿--[[
 	游戏中所有中文文本显示。
 	
 	请不要在界面或者编辑器中使用中文文本内容。
 ]]--
-local text = setmetatable({}, {__index=string_list, __newindex=function (t, k, v)
-	if string_list[k] then error("replicated string id: " .. tostring(k)) end
-	string_list[k] = v
-end})
-
 StringTable = {}
 local this = StringTable
+local text = setmetatable({}, {__index=StringTable, __newindex=function (t, k, v)
+	if StringTable[k] then error("replicated string id: " .. tostring(k)) end
+	StringTable[k] = v
+end})
 
 --[[
 	Client 提示数据配置， 策划只要更新界面显示即可。配置注意：
@@ -68,7 +67,8 @@ do
 -----------------------------------------------------------------------------------------------------------------------	
 
 	text[2001] = "策划配置开始文本"
-	
+	text[2002] = "您确定要退出游戏吗？"
+	text[2003] = "您确定要退出房间吗？"
 end
 
 --
