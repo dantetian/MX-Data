@@ -11,7 +11,9 @@ package Adoter.Asset;
 /////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////
+//
 // 通用数据定义区
+//
 /////////////////////////////////////////////////////
 
 //账号
@@ -68,7 +70,9 @@ enum ROOM_CARD_CHANGED_TYPE {
 }
 
 /////////////////////////////////////////////////////
+//
 // 游戏基本属性定义区
+//
 /////////////////////////////////////////////////////
 
 //账号数据：存盘数据
@@ -226,11 +230,14 @@ message ItemEquipment {
 //
 // 2.每个协议必须包含META_TYPE，否则双方无法处理;
 //
+// 3.玩家ID用于解决中心服务器<->游戏逻辑服务器之间的内部协议处理;
+//
 /////////////////////////////////////////////////////
 
 message Meta {
-	optional META_TYPE type_t = 1;
+	optional META_TYPE type_t = 1; 
 	optional bytes stuff = 2;
+	optional int64 player_id = 3;
 }
 
 /////////////////////////////////////////////////////
@@ -330,9 +337,14 @@ enum META_TYPE {
 	META_TYPE_S2C_SYSTEM_BROADCAST = 518; //系统广播
 	META_TYPE_S2C_PAI_PUSH_DOWN = 519; //推到牌
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
+	///////////服务器之间协议数据///////////
+	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
 }
+
 /////////////////////////////////////////////////////
+//
 //客户端发送协议定义区
+//
 /////////////////////////////////////////////////////
 
 //创建角色
@@ -701,4 +713,21 @@ message PaiPushDown {
 		repeated MultiplePai pai_list = 3; //牌数据
 	}
 	repeated PlayerElement player_list = 2; //各个玩家牌
+}
+
+/////////////////////////////////////////////////////
+//
+//服务器内部协议定义
+//
+/////////////////////////////////////////////////////
+
+enum ROLE_TYPE {
+	ROLE_TYPE_PLAYER = 1; //玩家
+	ROLE_TYPE_GAME_SERVER = 2; //游戏逻辑服务器
+}
+//注册服务器
+message RegisterServer {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_REGISTER ];
+	optional ROLE_TYPE role_type = 2; 
+	optional int64 global_id = 3; 
 }
