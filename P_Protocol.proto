@@ -126,7 +126,7 @@ message GameRecord {
 //房间记录数据
 message RoomHistory {
 	optional int64 room_id = 1; //房间ID
-	repeated GameRecord list = 2; //列表
+	repeated GameRecord list = 2; //游戏数据列表
 }
 
 //玩家公共数据 
@@ -144,7 +144,7 @@ message CommonProp {
 	optional int64 total_win_rounds = 11; //赢牌局数
 	optional int64 streak_wins = 12; //最高连胜
 	optional int64 score = 13; //积分
-	repeated int64 room_history = 14; //历史房间数据
+	repeated RoomHistory room_history = 14; //牌局历史数据，各个玩家冗余存储
 }
 
 //通用限制：存盘数据
@@ -201,6 +201,7 @@ message Player {
 	repeated int64 mail_list_system = 10; //系统邮件列表
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
 	optional PlayerSetting game_setting = 12; //游戏设置
+	repeated int64 room_list = 13; //房间历史数据
 }
 
 //包裹结构
@@ -658,6 +659,7 @@ message RoomInformation {
 message GameCalculate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_CALCULATE ];
 	optional GameRecord record = 2; //积分结算
+	optional FAN_TYPE max_fan_type = 3; //最大番数
 }
 
 //房间数据
@@ -704,6 +706,7 @@ message MultiplePai {
 	optional CARD_TYPE card_type = 1; //牌类型
 	repeated int32 cards = 2; //牌值
 }
+
 //推倒牌
 message PaiPushDown {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_PUSH_DOWN ];
