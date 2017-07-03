@@ -144,7 +144,6 @@ message CommonProp {
 	optional int64 total_win_rounds = 11; //赢牌局数
 	optional int64 streak_wins = 12; //最高连胜
 	optional int64 score = 13; //积分
-	repeated RoomHistory room_history = 14; //牌局历史数据，各个玩家冗余存储
 }
 
 //通用限制：存盘数据
@@ -201,7 +200,7 @@ message Player {
 	repeated int64 mail_list_system = 10; //系统邮件列表
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
 	optional PlayerSetting game_setting = 12; //游戏设置
-	repeated int64 room_list = 13; //房间历史数据
+	repeated RoomHistory room_history = 13; //牌局历史数据，各个玩家冗余存储
 }
 
 //包裹结构
