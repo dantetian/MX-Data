@@ -11,7 +11,9 @@ package Adoter.Asset;
 /////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////
+//
 // 通用数据定义区
+//
 /////////////////////////////////////////////////////
 
 //账号
@@ -68,7 +70,9 @@ enum ROOM_CARD_CHANGED_TYPE {
 }
 
 /////////////////////////////////////////////////////
+//
 // 游戏基本属性定义区
+//
 /////////////////////////////////////////////////////
 
 //账号数据：存盘数据
@@ -122,7 +126,7 @@ message GameRecord {
 //房间记录数据
 message RoomHistory {
 	optional int64 room_id = 1; //房间ID
-	repeated GameRecord list = 2; //列表
+	repeated GameRecord list = 2; //游戏数据列表
 }
 
 //玩家公共数据 
@@ -140,7 +144,6 @@ message CommonProp {
 	optional int64 total_win_rounds = 11; //赢牌局数
 	optional int64 streak_wins = 12; //最高连胜
 	optional int64 score = 13; //积分
-	repeated int64 room_history = 14; //历史房间数据
 }
 
 //通用限制：存盘数据
@@ -196,6 +199,8 @@ message Player {
 	optional ClientInfomation client_info = 9; //Client数据
 	repeated int64 mail_list_system = 10; //系统邮件列表
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
+	optional PlayerSetting game_setting = 12; //游戏设置
+	repeated RoomHistory room_history = 13; //牌局历史数据，各个玩家冗余存储
 }
 
 //包裹结构
@@ -225,11 +230,14 @@ message ItemEquipment {
 //
 // 2.每个协议必须包含META_TYPE，否则双方无法处理;
 //
+// 3.玩家ID用于解决中心服务器<->游戏逻辑服务器之间的内部协议处理; Client绝不可填;
+//
 /////////////////////////////////////////////////////
 
 message Meta {
-	optional META_TYPE type_t = 1;
+	optional META_TYPE type_t = 1; 
 	optional bytes stuff = 2;
+	optional int64 player_id = 3;
 }
 
 /////////////////////////////////////////////////////
@@ -297,6 +305,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_RANDOM_SAIZI = 11; //打股子
 	META_TYPE_SHARE_SAY_HI = 12; //心跳
 	META_TYPE_SHARE_GUEST_LOGIN = 13; //游客登录
+	META_TYPE_SHARE_GAME_SETTING = 520; //游戏设置
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -328,9 +337,14 @@ enum META_TYPE {
 	META_TYPE_S2C_SYSTEM_BROADCAST = 518; //系统广播
 	META_TYPE_S2C_PAI_PUSH_DOWN = 519; //推到牌
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
+	///////////服务器之间协议数据///////////
+	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
 }
+
 /////////////////////////////////////////////////////
+//
 //客户端发送协议定义区
+//
 /////////////////////////////////////////////////////
 
 //创建角色
@@ -415,10 +429,9 @@ message RandomSaizi {
 		REASON_TYPE_TINGPAI = 2; //听牌
 	}
 	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
-	optional int64 player_id = 3; //操作来自玩家
-	repeated int32 random_result = 4; //随机值(1-6)
-	optional PaiElement pai = 5; //牌值//宝牌
-	optional bool has_rand_saizi = 6; //是否打了色子
+	repeated int32 random_result = 3; //随机值(1-6)
+	optional PaiElement pai = 4; //牌值//宝牌
+	optional bool has_rand_saizi = 5; //是否打色子
 }
 
 //S<->C 维持
@@ -431,6 +444,19 @@ message SayHi {
 message GuestLogin {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GUEST_LOGIN ];
 	optional bytes account = 2; //服务器生成账号数据
+}
+
+message PlayerSetting {
+	optional bool music = 1; //是否开启音乐
+	optional bool voice = 2; //是否开启语音
+	optional bool audio = 3; //是否开启音效
+	optional bool click_push = 4; //是否单击出牌
+}
+
+//游戏设置
+message GameSetting {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_SETTING ];
+	optional PlayerSetting game_setting = 2;
 }
 
 //获取奖励
@@ -632,6 +658,7 @@ message RoomInformation {
 message GameCalculate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_CALCULATE ];
 	optional GameRecord record = 2; //积分结算
+	optional FAN_TYPE max_fan_type = 3; //最大番数
 }
 
 //房间数据
@@ -678,6 +705,7 @@ message MultiplePai {
 	optional CARD_TYPE card_type = 1; //牌类型
 	repeated int32 cards = 2; //牌值
 }
+
 //推倒牌
 message PaiPushDown {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_PAI_PUSH_DOWN ];
@@ -687,4 +715,21 @@ message PaiPushDown {
 		repeated MultiplePai pai_list = 3; //牌数据
 	}
 	repeated PlayerElement player_list = 2; //各个玩家牌
+}
+
+/////////////////////////////////////////////////////
+//
+//服务器内部协议定义
+//
+/////////////////////////////////////////////////////
+
+enum ROLE_TYPE {
+	ROLE_TYPE_PLAYER = 1; //玩家
+	ROLE_TYPE_GAME_SERVER = 2; //游戏逻辑服务器
+}
+//注册服务器
+message RegisterServer {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_REGISTER ];
+	optional ROLE_TYPE role_type = 2; 
+	optional int64 global_id = 3; 
 }
