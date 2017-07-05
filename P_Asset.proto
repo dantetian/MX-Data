@@ -229,6 +229,7 @@ message CommonConst {
 	optional int32 liuju_count = 12; //流局牌数
 	optional int32 room_last_time = 13; //房间持续时间(单位：秒)
 	optional int64 room_card_limit_free_activity_id = 14; //房卡限免活动ID[Activity]数据
+	optional int32 guest_forbid_friend_room = 15; //游客是否禁止好友房(0-允许 1-禁止)
 }
 
 //通用奖励
