@@ -67,6 +67,7 @@ enum HUANLEDOU_CHANGED_TYPE {
 enum ROOM_CARD_CHANGED_TYPE {
 	ROOM_CARD_CHANGED_TYPE_GMT = 1; //游戏内发放
 	ROOM_CARD_CHANGED_TYPE_MALL = 2; //商城购买
+	ROOM_CARD_CHANGED_TYPE_OPEN_ROOM = 3; //开房
 }
 
 /////////////////////////////////////////////////////
