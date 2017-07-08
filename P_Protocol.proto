@@ -342,6 +342,7 @@ enum META_TYPE {
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
+	META_TYPE_S2S_KICKOUT_PLAYER = 1002; //踢掉玩家
 }
 
 /////////////////////////////////////////////////////
@@ -671,16 +672,16 @@ message GameInformation {
 }
 
 //踢掉缘由
-enum KILL_OUT_REASON {
-	KILL_OUT_REASON_BEGIN = 0;
-	KILL_OUT_REASON_OTHER_LOGIN = 1; //玩家登陆
+enum KICK_OUT_REASON {
+	KICK_OUT_REASON_BEGIN = 0;
+	KICK_OUT_REASON_OTHER_LOGIN = 1; //玩家登陆
 
 }
 //踢出玩家
-message KillOut {
+message KickOut {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_KILL_OUT ];
 	optional int64 player_id = 2;
-	optional KILL_OUT_REASON out_reason = 3; //踢掉玩家缘由
+	optional KICK_OUT_REASON kick_reason = 3; //踢掉玩家缘由
 }
 
 //活动
@@ -735,4 +736,11 @@ message RegisterServer {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_REGISTER ];
 	optional ROLE_TYPE role_type = 2; 
 	optional int64 global_id = 3; 
+}
+
+//踢掉玩家
+message KickOutPlayer {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_KICKOUT_PLAYER ];
+	optional KICK_OUT_REASON kick_reason = 2;
+	optional int64 player_id = 3; 
 }
