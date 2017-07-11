@@ -18,8 +18,9 @@ package Adoter.Asset;
 
 //账号
 message Account {
-	optional bytes username = 1;
-	optional bytes password = 2;
+	optional bytes username = 1; //用户名
+	optional bytes password = 2; //密码
+	optional WechatUnion wechat = 3; //微信信息
 }
 
 //牌数据
@@ -411,6 +412,19 @@ message WechatLogin {
 	optional bytes access_code = 3; 
 }
 
+//微信数据
+message WechatUnion {
+	optional bytes openid = 1; //普通用户的标识，对当前开发者帐号唯一
+	optional bytes nickname = 2; //普通用户昵称
+	optional int32 sex = 3; //普通用户性别，1为男性，2为女性
+	optional bytes province = 4; //普通用户个人资料填写的省份
+	optional bytes city = 5; //普通用户个人资料填写的城市
+	optional bytes country = 6; //国家，如中国为CN
+	optional bytes headimgurl = 7; //用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空
+	repeated bytes privilege = 8; //用户特权信息，json数组，如微信沃卡用户为（chinaunicom）
+	optional bytes unionid = 9; //用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。
+}
+
 //退出游戏
 message Logout {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGOUT ];
@@ -778,7 +792,7 @@ message GamesFull {
 //微信数据
 message WeChatInfo {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_WECHAT_INFOMATION ];
-	optional int32 rounds = 2; //局数
+	optional WechatUnion wechat = 2; //微信数据
 }
 /////////////////////////////////////////////////////
 //
