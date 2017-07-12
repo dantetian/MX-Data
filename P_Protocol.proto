@@ -666,7 +666,7 @@ message PaiNotify {
 }
 
 //玩家基础属性同步
-message CommonProperty {
+message SyncCommonProperty {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_COMMON_PROPERTY ];
 	//同步数据的原由
 	enum SYNC_REASON_TYPE { 
@@ -706,6 +706,7 @@ message RoomInformation {
 	message Player {
 		optional POSITION_TYPE position = 1; //位置
 		optional CommonProp common_prop = 2; //玩家基本数据
+		optional WechatUnion wechat = 3; //微信个人信息
 	}
 	repeated Player player_list = 2;
 }
