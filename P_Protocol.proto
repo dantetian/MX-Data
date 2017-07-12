@@ -20,7 +20,6 @@ package Adoter.Asset;
 message Account {
 	optional bytes username = 1; //用户名
 	optional bytes password = 2; //密码
-	optional WechatUnion wechat = 3; //微信信息
 }
 
 //牌数据
@@ -81,6 +80,8 @@ enum ROOM_CARD_CHANGED_TYPE {
 message User {
 	optional Account account = 1; //账号
 	repeated int64 player_list = 2; //玩家角色
+	optional WechatAccessToken wechat_token = 3; //微信登录认证数据
+	optional WechatUnion wechat = 4; //微信个人信息
 }
 
 //玩家座次
@@ -369,18 +370,10 @@ enum ACCOUNT_TYPE {
 	ACCOUNT_TYPE_QQ = 3; //手机QQ
 }
 
-//微信数据
-message WechatInformation {
-	optional bytes access_code = 1; 
-	optional bytes access_token = 2; 
-	optional bytes openid = 3; //账号
-	optional bytes nickname = 4; //名字
-	optional bytes sex = 5; //性别
-	optional bytes headimage_url = 6; //头像
-}
-
 //通过CODE获取ACCESS_TOCKEN
-message WeChatAccessToken {
+//
+//刷新ACCESS_TOCKEN有效期
+message WechatAccessToken {
 	optional bytes access_token = 1; //接口调用凭证
 	optional int32 expires_in = 2; //access_token接口调用凭证超时时间，单位（秒）
 	optional bytes refresh_token = 3; //用户刷新access_token
@@ -389,15 +382,10 @@ message WeChatAccessToken {
 	optional bytes unionid = 6; // 当且仅当该移动应用已获得该用户的userinfo授权时，才会出现该字段
 }
 
-//刷新ACCESS_TOCKEN有效期
-message WeChatRefresh {
-	optional bytes access_token = 1; //接口调用凭证
-	optional int32 expires_in = 2; //access_token接口调用凭证超时时间，单位（秒）
-	optional bytes refresh_token = 3; //用户刷新access_token
-	optional bytes openid = 4; //授权用户唯一标识
-	optional bytes scope = 5; //用户授权的作用域，使用逗号（,）分隔
+message WechatError {
+	optional int32 errcode = 1;
+	optional bytes errmsg = 2;
 }
-
 //登录游戏
 message Login {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
@@ -792,7 +780,8 @@ message GamesFull {
 //微信数据
 message WeChatInfo {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_WECHAT_INFOMATION ];
-	optional WechatUnion wechat = 2; //微信数据
+	optional WechatUnion wechat = 2; //微信成功数据
+	optional WechatError wechat_error = 3; //微信失败数据
 }
 /////////////////////////////////////////////////////
 //
