@@ -370,6 +370,13 @@ enum ACCOUNT_TYPE {
 	ACCOUNT_TYPE_QQ = 3; //手机QQ
 }
 
+//登录游戏
+message Login {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
+	optional Account account = 2;
+	optional ACCOUNT_TYPE account_type = 3; //账号平台
+}
+
 //通过CODE获取ACCESS_TOCKEN
 //
 //刷新ACCESS_TOCKEN有效期
@@ -382,15 +389,10 @@ message WechatAccessToken {
 	optional bytes unionid = 6; // 当且仅当该移动应用已获得该用户的userinfo授权时，才会出现该字段
 }
 
+//微信失败信息
 message WechatError {
 	optional int32 errcode = 1;
 	optional bytes errmsg = 2;
-}
-//登录游戏
-message Login {
-	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
-	optional Account account = 2;
-	optional ACCOUNT_TYPE account_type = 3; //账号平台
 }
 
 //微信登陆
