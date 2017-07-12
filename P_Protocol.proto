@@ -20,6 +20,7 @@ package Adoter.Asset;
 message Account {
 	optional bytes username = 1; //用户名
 	optional bytes password = 2; //密码
+	optional ACCOUNT_TYPE account_type = 3;
 }
 
 //牌数据
@@ -205,6 +206,7 @@ message Player {
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
 	optional PlayerSetting game_setting = 12; //游戏设置
 	repeated RoomHistory room_history = 13; //牌局历史数据，各个玩家冗余存储
+	optional WechatUnion wechat = 14; //微信个人信息：主要用于数据共享，进程间通信
 }
 
 //包裹结构
@@ -366,15 +368,15 @@ message CreatePlayer {
 //账号平台
 enum ACCOUNT_TYPE {
 	ACCOUNT_TYPE_8HERE = 1; //官方平台
-	ACCOUNT_TYPE_WECHAT = 2; //微信
-	ACCOUNT_TYPE_QQ = 3; //手机QQ
+	ACCOUNT_TYPE_GUEST = 2; //官方平台
+	ACCOUNT_TYPE_WECHAT = 3; //微信
+	ACCOUNT_TYPE_QQ = 4; //手机QQ
 }
 
 //登录游戏
 message Login {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_LOGIN ];
 	optional Account account = 2;
-	optional ACCOUNT_TYPE account_type = 3; //账号平台
 }
 
 //通过CODE获取ACCESS_TOCKEN
@@ -398,8 +400,7 @@ message WechatError {
 //微信登陆
 message WechatLogin {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_WECHAT_LOGIN ];
-	optional ACCOUNT_TYPE account_type = 2 [ default = ACCOUNT_TYPE_WECHAT ]; //账号平台
-	optional bytes access_code = 3; 
+	optional bytes access_code = 2; 
 }
 
 //微信数据
