@@ -353,6 +353,7 @@ enum META_TYPE {
 	META_TYPE_S2C_PAI_PUSH_DOWN = 519; //推到牌
 	META_TYPE_S2C_GAMES_FULL = 520; //可玩局数已满
 	META_TYPE_S2C_WECHAT_INFOMATION = 521; //微信信息
+	META_TYPE_S2C_GAME_START = 522; //开局数据
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -725,7 +726,11 @@ message RoomInformation {
 		optional GAME_OPER_TYPE oper_type = 2; //操作状态//准备//
 		optional CommonProp common_prop = 3; //玩家基本数据
 		optional WechatUnion wechat = 4; //微信个人信息
-		optional double distance = 5; //距离
+		message DistanceElement {
+			optional POSITION_TYPE position = 1; //玩家位置
+			optional double distance = 2; //相对距离
+		}
+		repeated DistanceElement dis_list = 5;
 	}
 	repeated Player player_list = 2;
 }
@@ -805,6 +810,13 @@ message WeChatInfo {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_WECHAT_INFOMATION ];
 	optional WechatUnion wechat = 2; //微信成功数据
 	optional WechatError wechat_error = 3; //微信失败数据
+}
+
+//开局数据
+message GameStart {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_START ];
+	optional int32 total_rounds = 2; //总局数
+	optional int32 current_rounds = 3; //当前局数
 }
 /////////////////////////////////////////////////////
 //
