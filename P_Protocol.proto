@@ -726,7 +726,11 @@ message RoomInformation {
 		optional GAME_OPER_TYPE oper_type = 2; //操作状态//准备//
 		optional CommonProp common_prop = 3; //玩家基本数据
 		optional WechatUnion wechat = 4; //微信个人信息
-		optional double distance = 5; //距离
+		message DistanceElement {
+			optional POSITION_TYPE position = 1; //玩家位置
+			optional double distance = 2; //相对距离
+		}
+		repeated DistanceElement dis_list = 5;
 	}
 	repeated Player player_list = 2;
 }
