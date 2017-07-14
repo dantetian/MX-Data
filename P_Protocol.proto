@@ -179,6 +179,7 @@ message ClientInfomation {
 	optional bytes client_ip = 1; //IP地址
 	optional bytes system = 2; //系统
 	optional bytes phone_type = 3; //手机型号
+	optional Position position = 4; //位置
 }
 
 //
