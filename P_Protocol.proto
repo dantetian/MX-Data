@@ -169,7 +169,7 @@ message PlayerCoolDown {
 	repeated Element elements = 1;
 }
 
-message Position {
+message Location {
 	optional double longitude = 1; //经度
 	optional double latitude = 2; //纬度
 }
@@ -179,7 +179,7 @@ message ClientInfomation {
 	optional bytes client_ip = 1; //IP地址
 	optional bytes system = 2; //系统
 	optional bytes phone_type = 3; //手机型号
-	optional Position position = 4; //位置
+	optional Location location = 4; //位置
 }
 
 //
