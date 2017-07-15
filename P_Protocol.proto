@@ -134,7 +134,8 @@ message GameRecord {
 message RoomHistory {
 	optional int64 room_id = 1; //房间ID
 	optional int32 create_time = 2; //房间创建时间
-	repeated GameRecord list = 3; //游戏数据列表
+	optional RoomOptions options = 3; //房间设置
+	repeated GameRecord list = 4; //游戏数据列表
 }
 
 //玩家公共数据 
