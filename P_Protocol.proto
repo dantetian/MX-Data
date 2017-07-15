@@ -781,7 +781,7 @@ enum KICK_OUT_REASON {
 	KICK_OUT_REASON_BEGIN = 0;
 	KICK_OUT_REASON_DISCONNECT = 1; //网络断开
 	KICK_OUT_REASON_OTHER_LOGIN = 2; //玩家登陆
-
+	KICK_OUT_REASON_CHANGE_SERVER = 3; //切换服务器
 }
 //踢出玩家
 message KickOut {
