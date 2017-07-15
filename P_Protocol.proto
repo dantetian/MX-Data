@@ -117,13 +117,15 @@ message PlayerProp {
 message GameRecord {
 	message GameElement {
 		optional int64 player_id = 1; //玩家ID
-		optional int32 score = 2; //积分变化总和
+		optional bytes nickname = 2; //玩家名称
+		optional bytes headimgurl = 3; //头像
+		optional int32 score = 4; //积分变化总和
 		//详细信息
 		message DetailElement {
 			optional int32 score = 1; //积分
 			optional FAN_TYPE fan_type = 2; //番类型
 		}
-		repeated DetailElement details = 3;
+		repeated DetailElement details = 5;
 	}
 	repeated GameElement list = 1;
 }
@@ -354,6 +356,7 @@ enum META_TYPE {
 	META_TYPE_S2C_GAMES_FULL = 520; //可玩局数已满
 	META_TYPE_S2C_WECHAT_INFOMATION = 521; //微信信息
 	META_TYPE_S2C_GAME_START = 522; //开局数据
+	META_TYPE_S2C_ROOM_CALCULATE = 523; //房间结束结算
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -735,11 +738,35 @@ message RoomInformation {
 	repeated Player player_list = 2;
 }
 
-//游戏结算
+//结算类型
+enum CALCULATE_TYPE {
+	CALCULATE_TYPE_HUPAI = 1; //胡牌
+	CALCULATE_TYPE_LIUJU = 2; //流局
+}
+
+//单场游戏结算
 message GameCalculate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_CALCULATE ];
-	optional GameRecord record = 2; //积分结算
-	optional FAN_TYPE max_fan_type = 3; //最大番数
+	optional CALCULATE_TYPE calculte_type = 2;
+	optional GameRecord record = 3; //积分结算
+	optional FAN_TYPE max_fan_type = 4; //最大番数
+}
+
+//好友房游戏结算
+message RoomRecord {
+	optional int64 player_id = 1; //玩家ID
+	optional bytes nickname = 2; //玩家名称
+	optional bytes headimgurl = 3; //头像
+	optional int32 score = 4; //积分总和
+	optional int32 pk_count = 5; //对局数
+	optional int32 banker_count = 6; //庄家数
+	optional int32 win_count = 7; //胜局数
+	optional int32 dianpao_count = 8; //点炮数
+}
+
+message RoomCalculate {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_CALCULATE ];
+	repeated RoomRecord record = 2; //好友房战绩
 }
 
 //房间数据
