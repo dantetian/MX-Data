@@ -527,9 +527,9 @@ message GuestLogin {
 }
 
 message PlayerSetting {
-	optional bool music = 1; //是否开启音乐
-	optional bool voice = 2; //是否开启语音
-	optional bool audio = 3; //是否开启音效
+	optional bool music = 1 [ default = true ]; //是否开启音乐
+	optional bool voice = 2 [ default = true ]; //是否开启语音
+	optional bool audio = 3 [ default = true ]; //是否开启音效
 	optional bool click_push = 4; //是否单击出牌
 }
 
