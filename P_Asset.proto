@@ -149,6 +149,8 @@ message RoomLimit {
 	optional int32 cost_count = 6; //每局消耗欢乐豆数量(非好友房使用)
 	optional int32 base_count = 7; //每番消耗欢乐豆数量(非好友房使用)
 	optional RoomOptions room_options = 8; //额外番型
+	optional int32 reconnect_timeout = 9; //断线重连超时(单位：秒)
+	optional int32 reconnect_count = 10; //断线重连次数
 }
 
 //通用限制
@@ -230,6 +232,7 @@ message CommonConst {
 	optional int32 room_last_time = 13; //房间持续时间(单位：秒)
 	optional int64 room_card_limit_free_activity_id = 14; //房卡限免活动ID[Activity]数据
 	optional int32 guest_forbid_friend_room = 15; //游客是否禁止好友房(0-允许 1-禁止)
+	optional int64 mall_activity_id = 16; //开启商店活动ID[Activity]数据
 }
 
 //通用奖励
@@ -320,7 +323,7 @@ enum FAN_TYPE {
 	FAN_TYPE_HAI_DI_LAO = 6; //海底捞
 	FAN_TYPE_GANG_SHANG_KAI = 7; //杠上开(杠次)
 	FAN_TYPE_LIU_LEI = 8; //流泪
-	FAN_TYPE_LOU_BAO = 9; //搂宝
+	FAN_TYPE_LOU_BAO = 9; //搂宝//摸宝
 	FAN_TYPE_PIAO_HU = 10; //飘胡
 	FAN_TYPE_SI_GUI_YI = 11; //四归一
 	FAN_TYPE_MING_PIAO = 12; //明飘

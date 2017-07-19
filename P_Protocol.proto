@@ -1,4 +1,5 @@
 import "P_Asset.proto";
+import "P_Command.proto";
 
 package Adoter.Asset;
 
@@ -215,6 +216,7 @@ message Player {
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
 	optional PlayerSetting game_setting = 12; //游戏设置
 	repeated RoomHistory room_history = 13; //牌局历史数据，各个玩家冗余存储
+	optional int64 room_id = 14; //玩家所在房间，如果有
 }
 
 //包裹结构
@@ -362,6 +364,7 @@ enum META_TYPE {
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
 	META_TYPE_S2S_KICKOUT_PLAYER = 1002; //踢掉玩家
+	META_TYPE_S2S_GMT_INNER_META = 1003; //内部GMT协议
 }
 
 /////////////////////////////////////////////////////
@@ -868,4 +871,10 @@ message KickOutPlayer {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_KICKOUT_PLAYER ];
 	optional KICK_OUT_REASON reason = 2;
 	optional int64 player_id = 3; 
+}
+
+//GMT命令
+message GmtInnerMeta {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_GMT_INNER_META ];
+	optional InnerMeta inner_meta = 2;
 }
