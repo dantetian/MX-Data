@@ -1,5 +1,4 @@
 import "P_Asset.proto";
-import "P_Command.proto";
 
 package Adoter.Asset;
 
@@ -890,5 +889,5 @@ message KickOutPlayer {
 //GMT命令
 message GmtInnerMeta {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_GMT_INNER_META ];
-	optional InnerMeta inner_meta = 2;
+	optional bytes inner_meta = 2;
 }
