@@ -460,7 +460,8 @@ enum CHAT_TYPE {
 message SystemChat {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_SYSTEM_CHAT ];
 	optional CHAT_TYPE chat_type = 2;
-	optional int32 index = 3; //索引内容
+	optional POSITION_TYPE position = 3; //位置
+	optional int32 index = 4; //索引内容
 }
 
 //房间数据
