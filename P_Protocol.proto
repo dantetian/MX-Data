@@ -325,6 +325,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_GUEST_LOGIN = 13; //游客登录
 	META_TYPE_SHARE_GAME_SETTING = 14; //游戏设置
 	META_TYPE_SHARE_UPDATE_CLIENT_DATA = 15; //Client信息
+	META_TYPE_SHARE_SYSTEM_CHAT = 16; //系统聊天
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -448,6 +449,18 @@ message EnterGame {
 message UpdateClientData {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_UPDATE_CLIENT_DATA ];
 	optional ClientInfomation client_info = 2; 
+}
+
+enum CHAT_TYPE {
+	CHAT_TYPE_TEXT = 1; //文本
+	CHAT_TYPE_FACE = 2; //表情
+}
+
+//系统聊天
+message SystemChat {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_SYSTEM_CHAT ];
+	optional CHAT_TYPE chat_type = 2;
+	optional int32 index = 3; //索引内容
 }
 
 //房间数据
