@@ -215,7 +215,7 @@ message Player {
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
 	optional PlayerSetting game_setting = 12; //游戏设置
 	repeated RoomHistory room_history = 13; //牌局历史数据，各个玩家冗余存储
-	optional int64 room_id = 14; //玩家所在房间，如果有
+	optional int64 room_id = 14; //玩家所在房间
 }
 
 //包裹结构
@@ -428,6 +428,7 @@ message WechatUnion {
 	optional bytes headimgurl = 7; //用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空
 	repeated bytes privilege = 8; //用户特权信息，json数组，如微信沃卡用户为（chinaunicom）
 	optional bytes unionid = 9; //用户统一标识。针对一个微信开放平台帐号下的应用，同一用户的unionid是唯一的。
+	optional bytes json_wechat = 10; //腾讯返回用户数据 
 }
 
 //退出游戏
