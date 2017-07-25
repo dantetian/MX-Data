@@ -361,6 +361,8 @@ enum META_TYPE {
 	META_TYPE_S2C_WECHAT_INFOMATION = 521; //微信信息
 	META_TYPE_S2C_GAME_START = 522; //开局数据
 	META_TYPE_S2C_ROOM_CALCULATE = 523; //房间结束结算
+	META_TYPE_S2C_ROOM_DISMISS = 524; //解散房间
+	META_TYPE_S2C_ROOM_STATE = 525; //玩家房间状态
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -872,6 +874,23 @@ message GameStart {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_START ];
 	optional int32 total_rounds = 2; //总局数
 	optional int32 current_rounds = 3; //当前局数
+}
+
+message RoomDisMiss {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_DISMISS ];
+	optional int64 room_id = 2;
+	message RoomElement {
+		optional int64 player_id = 1;
+		optional POSITION_TYPE position = 2; //玩家当前座次
+		optional GAME_OPER_TYPE oper_type = 3; 
+	}
+	repeated RoomElement list = 3;
+}
+
+//玩家房间状态
+message RoomState {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_STATE ];
+	optional GAME_OPER_TYPE oper_type = 2;
 }
 /////////////////////////////////////////////////////
 //
