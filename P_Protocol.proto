@@ -214,7 +214,7 @@ message Player {
 	repeated int64 mail_list_system = 10; //系统邮件列表
 	repeated Mail mail_list_customized = 11; //定制化邮件列表
 	optional PlayerSetting game_setting = 12; //游戏设置
-	repeated RoomHistory room_history = 13; //牌局历史数据，各个玩家冗余存储
+	repeated int64 room_history = 13; //牌局历史数据
 	optional int64 room_id = 14; //玩家所在房间
 }
 
@@ -620,6 +620,8 @@ enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_START = 2; //开始游戏
 	GAME_OPER_TYPE_LEAVE = 3; //离开游戏
 	GAME_OPER_TYPE_KICKOUT = 4; //踢人
+	GAME_OPER_TYPE_DISMISS_AGREE = 5; //解散房间：同意//如果是第一个就是发起者
+	GAME_OPER_TYPE_DISMISS_DISAGREE = 6; //解散房间：不同意
 }
 
 //游戏操作
@@ -628,6 +630,7 @@ message GameOperation {
 	optional GAME_OPER_TYPE oper_type = 2; //操作类型
 	optional int64 source_player_id = 3; //来自XX玩家的操作
 	optional int64 destination_player_id = 4; //针对XX玩家的操作：踢人
+	optional ERROR_CODE error_code = 5;
 }
 
 //商城购买
