@@ -325,6 +325,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_GAME_SETTING = 14; //游戏设置
 	META_TYPE_SHARE_UPDATE_CLIENT_DATA = 15; //Client信息
 	META_TYPE_SHARE_SYSTEM_CHAT = 16; //系统聊天
+	META_TYPE_SHARE_ROOM_HISTORY = 17; //历史对战表
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -560,6 +561,12 @@ message PlayerSetting {
 message GameSetting {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_SETTING ];
 	optional PlayerSetting game_setting = 2;
+}
+
+//历史对战表
+message BattleHistory {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_ROOM_HISTORY ];
+	repeated RoomHistory history_list = 2; //最新5条历史记录
 }
 
 //获取奖励
