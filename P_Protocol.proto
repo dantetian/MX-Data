@@ -364,6 +364,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ROOM_CALCULATE = 523; //房间结束结算
 	META_TYPE_S2C_ROOM_DISMISS = 524; //解散房间
 	META_TYPE_S2C_ROOM_STATE = 525; //玩家房间状态
+	META_TYPE_S2C_ROOM_HISTORY = 526; //历史记录
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -900,6 +901,12 @@ message RoomDisMiss {
 message RoomState {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_STATE ];
 	optional GAME_OPER_TYPE oper_type = 2;
+}
+
+//玩家历史对战表
+message BattleList {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_HISTORY ];
+	repeated int64 room_list = 2; //列表
 }
 /////////////////////////////////////////////////////
 //
