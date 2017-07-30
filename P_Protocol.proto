@@ -780,8 +780,10 @@ message RoomInformation {
 
 //结算类型
 enum CALCULATE_TYPE {
-	CALCULATE_TYPE_HUPAI = 1; //胡牌
-	CALCULATE_TYPE_LIUJU = 2; //流局
+	CALCULATE_TYPE_HUPAI = 1; //单局//胡牌
+	CALCULATE_TYPE_LIUJU = 2; //单局//流局
+	CALCULATE_TYPE_FULL = 3; //房间内总结算//满局//即正常玩完8局或者16局
+	CALCULATE_TYPE_DISMISS = 4; //房间内总结算//解散房间
 }
 
 //单场游戏结算
@@ -806,7 +808,8 @@ message RoomRecord {
 
 message RoomCalculate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_CALCULATE ];
-	repeated RoomRecord record = 2; //好友房战绩
+	optional CALCULATE_TYPE calculte_type = 2;
+	repeated RoomRecord record = 3; //好友房战绩
 }
 
 //房间数据
