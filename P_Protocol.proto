@@ -365,6 +365,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ROOM_DISMISS = 524; //解散房间
 	META_TYPE_S2C_ROOM_STATE = 525; //玩家房间状态
 	META_TYPE_S2C_ROOM_HISTORY = 526; //历史记录
+	META_TYPE_S2C_ROOM_ALL = 527; //房间全部数据同步
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -913,6 +914,23 @@ message BattleList {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_HISTORY ];
 	repeated int64 room_list = 2; //列表
 }
+
+//房间全部数据
+message RoomAll {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_ALL ];
+	optional int64 room_id = 2;
+	message Player {
+		optional int64 player_id = 1; //玩家
+		optional POSITION_TYPE position = 2; //位置
+		optional int32 pai_count_inhand = 3; //墙里牌数量//如果非自己则显示数量
+		repeated MultiplePai pai_inhand = 4; //墙里牌数据//如果自己则显示牌值
+		repeated PaiElement pai_outhand = 5; //墙外牌数据
+		repeated PaiElement pai_pool = 6; //门前牌池
+	}
+	repeated Player player_list = 3;
+	optional POSITION_TYPE curr_operator_position = 4; //当前操作玩家位置
+}
+
 /////////////////////////////////////////////////////
 //
 //服务器内部协议定义
