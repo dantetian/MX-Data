@@ -790,9 +790,10 @@ enum CALCULATE_TYPE {
 message GameCalculate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_CALCULATE ];
 	optional CALCULATE_TYPE calculte_type = 2;
-	optional GameRecord record = 3; //积分结算
-	optional FAN_TYPE max_fan_type = 4; //最大番数
-	optional PaiElement baopai = 5; //宝牌
+	optional POSITION_TYPE dianpao_player_position = 3;
+	optional PaiElement baopai = 4; //宝牌
+	optional GameRecord record = 5; //积分结算
+	optional FAN_TYPE max_fan_type = 6; //最大番数
 }
 
 //好友房游戏结算
