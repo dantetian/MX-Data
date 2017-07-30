@@ -792,6 +792,7 @@ message GameCalculate {
 	optional CALCULATE_TYPE calculte_type = 2;
 	optional GameRecord record = 3; //积分结算
 	optional FAN_TYPE max_fan_type = 4; //最大番数
+	optional PaiElement baopai = 5; //宝牌
 }
 
 //好友房游戏结算
