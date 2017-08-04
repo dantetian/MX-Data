@@ -926,7 +926,11 @@ message RoomAll {
 		optional int32 pai_count_inhand = 3; //墙里牌数量//如果非自己则显示数量
 		repeated MultiplePai pai_inhand = 4; //墙里牌数据//如果自己则显示牌值
 		repeated MultiplePai pai_outhand = 5; //墙外牌数据
-		repeated PaiElement pai_pool = 6; //门前牌池
+		repeated PaiElement minggang_list = 6; //明杠列表//只有一个牌
+		repeated PaiElement angang_list = 7; //暗杠列表//只有一个牌
+		optional int32 fenggang_count = 8; //风杠数量
+		optional int32 jiangang_count = 9; //箭杠数量
+		repeated PaiElement pai_pool = 10; //门前牌池
 	}
 	repeated Player player_list = 3;
 	optional POSITION_TYPE curr_operator_position = 4; //当前操作玩家位置
