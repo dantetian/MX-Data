@@ -233,6 +233,8 @@ message CommonConst {
 	optional int64 room_card_limit_free_activity_id = 14; //房卡限免活动ID[Activity]数据
 	optional int32 guest_forbid_friend_room = 15; //游客是否禁止好友房(0-允许 1-禁止)
 	optional int64 mall_activity_id = 16; //开启商店活动ID[Activity]数据
+	optional int32 room_dismiss_timeout = 17 [ default = 120 ]; //解散房间超时时间(单位：秒)
+	optional int64 room_dismiss_cooldown = 18 [ default = 180 ]; //解散房间冷却时间(单位：秒)
 }
 
 //通用奖励
