@@ -111,6 +111,7 @@ message PlayerProp {
 	optional GAME_OPER_TYPE game_oper_state = 4; //玩家状态(准备//开局)
 	optional int32 pai_oper_count = 5; //玩家操作次数
 	optional bool has_tinged = 6; //是否听牌
+	optional bool offline = 7; //是否离线
 }
 
 //游戏记录
