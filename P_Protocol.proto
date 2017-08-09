@@ -932,6 +932,7 @@ message RoomAll {
 		optional int32 fenggang_count = 8; //风杠数量
 		optional int32 jiangang_count = 9; //箭杠数量
 		repeated PaiElement pai_pool = 10; //门前牌池
+		optional PaiElement baopai = 11; //宝牌//如果玩家听牌则有
 	}
 	repeated Player player_list = 3;
 	optional POSITION_TYPE curr_operator_position = 4; //当前操作玩家位置
