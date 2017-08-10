@@ -938,7 +938,7 @@ message RoomAll {
 	optional int32 current_rounds = 4; //当前局数
 	optional POSITION_TYPE zhuang_position = 5; //庄家位置
 	optional POSITION_TYPE curr_operator_position = 6; //当前操作玩家位置
-	optional RoomHistory history_record = 7; //战绩
+	repeated GameRecord list = 7; //游戏数据列表
 }
 
 /////////////////////////////////////////////////////
