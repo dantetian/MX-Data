@@ -920,7 +920,7 @@ message BattleList {
 //房间全部数据
 message RoomAll {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_ALL ];
-	optional int64 room_id = 2;
+	optional int32 current_rounds = 2; //当前局数
 	message Player {
 		optional int64 player_id = 1; //玩家
 		optional POSITION_TYPE position = 2; //位置
@@ -935,10 +935,9 @@ message RoomAll {
 		optional PaiElement baopai = 11; //宝牌//如果玩家听牌则有
 	}
 	repeated Player player_list = 3;
-	optional int32 current_rounds = 4; //当前局数
-	optional POSITION_TYPE zhuang_position = 5; //庄家位置
-	optional POSITION_TYPE curr_operator_position = 6; //当前操作玩家位置
-	repeated GameRecord list = 7; //游戏数据列表
+	optional POSITION_TYPE zhuang_position = 4; //庄家位置
+	optional POSITION_TYPE curr_operator_position = 5; //当前操作玩家位置
+	repeated GameRecord list = 6; //游戏数据列表
 }
 
 /////////////////////////////////////////////////////
