@@ -935,7 +935,10 @@ message RoomAll {
 		optional PaiElement baopai = 11; //宝牌//如果玩家听牌则有
 	}
 	repeated Player player_list = 3;
-	optional POSITION_TYPE curr_operator_position = 4; //当前操作玩家位置
+	optional int32 current_rounds = 4; //当前局数
+	optional POSITION_TYPE zhuang_position = 5; //庄家位置
+	optional POSITION_TYPE curr_operator_position = 6; //当前操作玩家位置
+	optional RoomHistory history_record = 7; //战绩
 }
 
 /////////////////////////////////////////////////////
