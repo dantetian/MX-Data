@@ -641,6 +641,7 @@ enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_DISMISS_AGREE = 5; //解散房间：同意//如果是第一个就是发起者
 	GAME_OPER_TYPE_DISMISS_DISAGREE = 6; //解散房间：不同意
 	GAME_OPER_TYPE_HOSTER_DISMISS = 7; //房主解散
+	GAME_OPER_TYPE_OFFLINE = 8; //离线
 }
 
 //游戏操作
@@ -934,7 +935,7 @@ message RoomAll {
 		optional POSITION_TYPE position = 2; //位置
 		optional int32 pai_count_inhand = 3; //墙里牌数量//如果非自己则显示数量
 		repeated MultiplePai pai_inhand = 4; //墙里牌数据//如果自己则显示牌值
-		repeated MultiplePai pai_outhand = 5; //墙外牌数据
+		repeated PaiElement pai_outhand = 5; //墙外牌数据
 		repeated PaiElement minggang_list = 6; //明杠列表//只有一个牌
 		repeated PaiElement angang_list = 7; //暗杠列表//只有一个牌
 		optional int32 fenggang_count = 8; //风杠数量
