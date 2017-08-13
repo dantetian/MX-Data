@@ -947,7 +947,7 @@ message RoomAll {
 }
 
 //玩家房间变更
-message RoomIn {
+message RoomBeenIn {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_IN ];
 	optional int64 room_id = 2;
 }
