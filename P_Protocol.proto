@@ -370,6 +370,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ROOM_STATE = 525; //玩家房间状态
 	META_TYPE_S2C_ROOM_HISTORY = 526; //历史记录
 	META_TYPE_S2C_ROOM_ALL = 527; //房间全部数据同步
+	META_TYPE_S2C_ROOM_IN = 528; //所在房间
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -943,6 +944,12 @@ message RoomAll {
 	optional POSITION_TYPE zhuang_position = 6; //庄家位置
 	optional POSITION_TYPE curr_operator_position = 7; //当前操作玩家位置
 	repeated GameRecord list = 8; //游戏数据列表
+}
+
+//玩家房间变更
+message RoomIn {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_IN ];
+	optional int64 room_id = 2;
 }
 
 /////////////////////////////////////////////////////
