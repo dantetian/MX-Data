@@ -62,6 +62,8 @@ enum HUANLEDOU_CHANGED_TYPE {
 	HUANLEDOU_CHANGED_TYPE_GMT = 1; //游戏内发放
 	HUANLEDOU_CHANGED_TYPE_MALL = 2; //商城购买
 	HUANLEDOU_CHANGED_TYPE_GENERAL_REWARD = 3; //通用奖励
+	HUANLEDOU_CHANGED_TYPE_ROOM_TICKET = 4; //房间
+	HUANLEDOU_CHANGED_TYPE_GAME = 5; //输赢
 }
 
 //房卡变化
@@ -148,8 +150,8 @@ message CommonProp {
 	optional int32 level = 5 [ default = 1 ]; //级别
 	optional GENDER_TYPE gender = 6 [ default = GENDER_TYPE_MAN]; //性别
 	optional int64 diamond = 7; //钻石总数 
-	optional int64 huanledou = 8; //欢乐豆数 
-	optional int64 room_card_count = 9; //房卡数 
+	optional int64 huanledou = 8 [ default = 10000 ]; //欢乐豆数 
+	optional int64 room_card_count = 9 [ default = 2 ]; //房卡数 
 	optional int64 total_rounds = 10; //参加的总局数 
 	optional int64 total_win_rounds = 11; //赢牌局数
 	optional int64 streak_wins = 12; //最高连胜
@@ -637,6 +639,7 @@ enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_KICKOUT = 4; //踢人
 	GAME_OPER_TYPE_DISMISS_AGREE = 5; //解散房间：同意//如果是第一个就是发起者
 	GAME_OPER_TYPE_DISMISS_DISAGREE = 6; //解散房间：不同意
+	GAME_OPER_TYPE_HOSTER_DISMISS = 7; //房主解散
 }
 
 //游戏操作
