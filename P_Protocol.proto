@@ -947,6 +947,7 @@ message RoomAll {
 	optional POSITION_TYPE zhuang_position = 7; //庄家位置
 	optional POSITION_TYPE curr_operator_position = 8; //当前操作玩家位置
 	repeated GameRecord list = 9; //游戏数据列表
+	optional PaiElement zhuapai = 10; //抓牌
 }
 
 //玩家房间变更
