@@ -153,9 +153,10 @@ message CommonProp {
 	optional int64 huanledou = 8 [ default = 10000 ]; //欢乐豆数 
 	optional int64 room_card_count = 9 [ default = 2 ]; //房卡数 
 	optional int64 total_rounds = 10; //参加的总局数 
-	optional int64 total_win_rounds = 11; //赢牌局数
-	optional int64 streak_wins = 12; //最高连胜
-	optional int64 score = 13; //积分
+	optional int64 room_card_rounds = 11; //房卡局数
+	optional int64 total_win_rounds = 12; //赢牌局数
+	optional int64 streak_wins = 13; //最高连胜
+	optional int64 score = 14; //积分
 }
 
 //通用限制：存盘数据
