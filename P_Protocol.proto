@@ -343,6 +343,7 @@ enum META_TYPE {
 	META_TYPE_C2S_RECONNECT = 58; //断线重连
 	META_TYPE_C2S_WECHAT_LOGIN = 59; //微信登陆
 	META_TYPE_C2S_SWITCH_ACCOUNT = 60; //切换账号
+	META_TYPE_C2S_GET_ROOM_DATA = 61; //获取当前房间数据
 	META_TYPE_C2S_COUNT = 255; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -377,6 +378,7 @@ enum META_TYPE {
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
 	META_TYPE_S2S_KICKOUT_PLAYER = 1002; //踢掉玩家
 	META_TYPE_S2S_GMT_INNER_META = 1003; //内部GMT协议
+	META_TYPE_S2S_PLAYER_STATE = 1004; //服务器间玩家状态同步
 }
 
 /////////////////////////////////////////////////////
@@ -434,6 +436,12 @@ message SwitchAccount {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_SWITCH_ACCOUNT ];
 	optional bytes account_name = 2; //账号
 	optional int64 player_id = 3; //角色
+}
+
+//获取房间数据
+message GetRoomData {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GET_ROOM_DATA ];
+	optional int64 room_id = 2; //房间ID，用于校验
 }
 
 //微信数据
@@ -987,4 +995,10 @@ message KickOutPlayer {
 message GmtInnerMeta {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_GMT_INNER_META ];
 	optional bytes inner_meta = 2;
+}
+
+//玩家状态
+message PlayerState {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_PLAYER_STATE ];
+	optional GAME_OPER_TYPE oper_type = 2;
 }
