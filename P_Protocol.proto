@@ -779,9 +779,15 @@ message SyncCommonReward {
 	optional int64 common_reward_id = 2; //通用奖励ID[CommonReward]数据
 }
 
+enum ROOM_SYNC_TYPE {
+	ROOM_SYNC_TYPE_NORMAL = 1; //正常同步
+	ROOM_SYNC_TYPE_STATE_CHANGED = 2; //玩家状态变化
+}
+
 //房间数据
 message RoomInformation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_INFO ];
+	optional ROOM_SYNC_TYPE sync_type = 2;
 	message Player {
 		optional POSITION_TYPE position = 1; //位置
 		optional GAME_OPER_TYPE oper_type = 2; //操作状态//准备//
@@ -794,7 +800,7 @@ message RoomInformation {
 		}
 		repeated DistanceElement dis_list = 6;
 	}
-	repeated Player player_list = 2;
+	repeated Player player_list = 3;
 }
 
 //结算类型
