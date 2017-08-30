@@ -331,6 +331,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_UPDATE_CLIENT_DATA = 15; //Client信息
 	META_TYPE_SHARE_SYSTEM_CHAT = 16; //系统聊天
 	META_TYPE_SHARE_ROOM_HISTORY = 17; //历史对战表
+	META_TYPE_SHARE_RECHARGE = 18; //充值
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -396,9 +397,15 @@ message CreatePlayer {
 //账号平台
 enum ACCOUNT_TYPE {
 	ACCOUNT_TYPE_8HERE = 1; //官方平台
-	ACCOUNT_TYPE_GUEST = 2; //官方平台
+	ACCOUNT_TYPE_GUEST = 2; //官方平台：游客模式
 	ACCOUNT_TYPE_WECHAT = 3; //微信
 	ACCOUNT_TYPE_QQ = 4; //手机QQ
+}
+
+//充值类型
+enum RECHARGE_TYPE {
+	RECHARGE_TYPE_IOS = 1; //苹果
+	RECHARGE_TYPE_ANDROID = 2; //安卓官方
 }
 
 //登录游戏
@@ -585,6 +592,14 @@ message BattleHistory {
 	optional int32 start_index = 2;
 	optional int32 end_index = 3;
 	repeated RoomHistory history_list = 4; //最新5条历史记录
+}
+
+//充值
+message UserRecharge {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_RECHARGE ];
+	optional RECHARGE_TYPE recharge_type = 2; //充值类型
+	optional bytes product_id = 3; //商品ID//商品名称
+	optional int32 price = 4; //价格
 }
 
 //获取奖励
@@ -779,6 +794,7 @@ message SyncCommonReward {
 	optional int64 common_reward_id = 2; //通用奖励ID[CommonReward]数据
 }
 
+//房间状态同步类型
 enum ROOM_SYNC_TYPE {
 	ROOM_SYNC_TYPE_NORMAL = 1; //正常同步
 	ROOM_SYNC_TYPE_STATE_CHANGED = 2; //玩家状态变化
@@ -787,7 +803,7 @@ enum ROOM_SYNC_TYPE {
 //房间数据
 message RoomInformation {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_INFO ];
-	optional ROOM_SYNC_TYPE sync_type = 2;
+	optional ROOM_SYNC_TYPE sync_type = 2; //同步类型
 	message Player {
 		optional POSITION_TYPE position = 1; //位置
 		optional GAME_OPER_TYPE oper_type = 2; //操作状态//准备//
