@@ -682,7 +682,7 @@ message GameOperation {
 message BuySomething {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_BUY_SOMETHING ];
 	optional int64 mall_id = 2; //购买商品ID[Mall]数据
-	optional int32 result = 3; //购买结果(0-成功)
+	optional ERROR_CODE result = 3; //购买结果(0-成功)
 }
 
 //加载场景
