@@ -303,6 +303,7 @@ message Mall {
 	enum GOODS_TYPE {
 		GOODS_TYPE_HUANLEDOU = 1; //欢乐豆
 		GOODS_TYPE_NORMAL_ITEM = 2; //普通商品
+		GOODS_TYPE_ROOM_CARD = 3; //房卡
 	}
 	optional GOODS_TYPE goods_type = 3; //商品类型
 	optional int64 item_id = 4; //物品ID
