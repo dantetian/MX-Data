@@ -622,8 +622,8 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_PENGPAI = 4; //碰牌
 	PAI_OPER_TYPE_CHIPAI = 5; //吃牌
 	PAI_OPER_TYPE_GIVEUP = 6; //放弃操作
-	PAI_OPER_TYPE_XUANFENG_FENG = 7; //旋风杠-风牌
-	PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠-箭牌
+	PAI_OPER_TYPE_XUANFENG_FENG = 7; //旋风杠//风牌
+	PAI_OPER_TYPE_XUANFENG_JIAN = 8; //旋风杠//箭牌
 	PAI_OPER_TYPE_ANGANGPAI = 9; //暗杠牌
 	PAI_OPER_TYPE_TINGPAI = 10; //听牌
 	PAI_OPER_TYPE_BAOPAI = 11; //宝牌
@@ -997,6 +997,7 @@ message RoomBeenIn {
 /////////////////////////////////////////////////////
 
 enum ROLE_TYPE {
+	ROLE_TYPE_NULL = 0; 
 	ROLE_TYPE_PLAYER = 1; //玩家
 	ROLE_TYPE_GAME_SERVER = 2; //游戏逻辑服务器
 }
