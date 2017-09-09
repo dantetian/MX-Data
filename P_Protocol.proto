@@ -345,6 +345,7 @@ enum META_TYPE {
 	META_TYPE_C2S_WECHAT_LOGIN = 59; //微信登陆
 	META_TYPE_C2S_SWITCH_ACCOUNT = 60; //切换账号
 	META_TYPE_C2S_GET_ROOM_DATA = 61; //获取当前房间数据
+	META_TYPE_C2S_UPDATE_ROOM = 62; //更新房间数据
 	META_TYPE_C2S_COUNT = 255; //客户端协议最大数量
 	///////////服务器发送数据///////////
 	META_TYPE_S2C_BEGIN = 501; //服务器开始协议
@@ -449,6 +450,12 @@ message SwitchAccount {
 message GetRoomData {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GET_ROOM_DATA ];
 	optional int64 room_id = 2; //房间ID，用于校验
+}
+
+//更新房间数据
+message UpdateRoom {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_UPDATE_ROOM ];
+	optional int64 voice_member_id = 2; //房间语音成员ID
 }
 
 //微信数据
@@ -815,6 +822,7 @@ message RoomInformation {
 			optional double distance = 2; //相对距离
 		}
 		repeated DistanceElement dis_list = 6;
+		optional int64 voice_member_id = 7; //房间语音成员ID
 	}
 	repeated Player player_list = 3;
 }
