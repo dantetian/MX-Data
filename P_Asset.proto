@@ -137,6 +137,7 @@ message RoomOptions {
 	repeated ROOM_EXTEND_TYPE extend_type = 3; //额外番型
 	optional int32 top_mutiple = 4; //封顶番数
 	optional int32 open_rands = 5 [ default = 4 ]; //局数
+	optional bool voice_open = 6 [ default = true ]; //实时语音
 }
 
 //房间设置

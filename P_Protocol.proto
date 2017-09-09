@@ -114,6 +114,7 @@ message PlayerProp {
 	optional int32 pai_oper_count = 5; //玩家操作次数
 	optional bool has_tinged = 6; //是否听牌
 	optional bool offline = 7; //是否离线
+	optional int64 voice_member_id = 8; //语音成员ID
 }
 
 //游戏记录
