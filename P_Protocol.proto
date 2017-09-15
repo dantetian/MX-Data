@@ -437,7 +437,7 @@ message WechatError {
 //微信登陆
 message WechatLogin {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_WECHAT_LOGIN ];
-	optional bytes access_code = 2; 
+	optional WechatUnion wechat = 2; 
 }
 
 //切换账号
