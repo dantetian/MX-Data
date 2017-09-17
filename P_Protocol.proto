@@ -83,9 +83,9 @@ enum ROOM_CARD_CHANGED_TYPE {
 message User {
 	optional Account account = 1; //账号
 	repeated int64 player_list = 2; //玩家角色
-	optional WechatAccessToken wechat_token = 3; //微信登录认证数据
-	optional WechatUnion wechat = 4; //微信个人信息
-	optional ClientInfomation client_info = 5; //Client数据
+	//optional WechatAccessToken wechat_token = 3; //微信登录认证数据
+	optional WechatUnion wechat = 3; //微信个人信息
+	optional ClientInfomation client_info = 4; //Client数据
 }
 
 //玩家座次
@@ -116,6 +116,13 @@ message PlayerProp {
 	optional bool offline = 7; //是否离线
 	optional int64 voice_member_id = 8; //语音成员ID
 }
+	
+//玩家简要信息
+message PlayerBrief {
+	optional int64 player_id = 1; //玩家ID
+	optional bytes nickname = 2; //玩家名称
+	optional bytes headimgurl = 3; //头像
+}
 
 //游戏记录
 message GameRecord {
@@ -139,7 +146,7 @@ message RoomHistory {
 	optional int64 room_id = 1; //房间ID
 	optional int32 create_time = 2; //房间创建时间
 	optional RoomOptions options = 3; //房间设置
-	repeated GameRecord list = 4; //游戏数据列表
+	repeated GameRecord record_list = 4; //游戏数据列表
 }
 
 //玩家公共数据 
@@ -973,6 +980,7 @@ message RoomAll {
 	optional int32 remain_cards_count = 3; //当前剩余牌数
 	repeated int32 saizi_random_result = 4; //开局股子数值
 	optional PaiElement baopai = 5; //宝牌//如果玩家听牌则有
+	repeated PlayerBrief player_list = 6; //玩家列表
 	message Player {
 		optional int64 player_id = 1; //玩家
 		optional POSITION_TYPE position = 2; //位置
@@ -986,11 +994,11 @@ message RoomAll {
 		repeated PaiElement pai_pool = 10; //门前牌池
 		optional bool tingpai = 11; //玩家是否听牌
 	}
-	repeated Player player_list = 6;
-	optional POSITION_TYPE zhuang_position = 7; //庄家位置
-	optional POSITION_TYPE curr_operator_position = 8; //当前操作玩家位置
-	repeated GameRecord list = 9; //游戏数据列表
-	optional PaiElement zhuapai = 10; //抓牌
+	repeated Player player_detail_list = 7; //玩家详细信息
+	optional POSITION_TYPE zhuang_position = 8; //庄家位置
+	optional POSITION_TYPE curr_operator_position = 9; //当前操作玩家位置
+	repeated GameRecord record_list = 10; //本次游戏历史战绩列表
+	optional PaiElement zhuapai = 11; //当前玩家最近一次抓牌
 }
 
 //玩家房间变更
