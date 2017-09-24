@@ -645,15 +645,16 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_COUNT = 12; //操作总数
 }
 
-//牌操作超时限制
-message PaiOperationLimit {
+//牌操作缓存
+message PaiOperationCache {
 	optional int64 player_id = 1; //操作玩家
 	optional int64 from_player_id = 2; //牌来自玩家
 	optional int32 time_out = 3; //超时时间
 	optional PaiElement pai = 4; //待处理的牌
-	optional PAI_OPER_TYPE oper_type = 5; //最高操作权限
+	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
 }
 
+/*
 message PaiOperationList {
 	optional int64 player_id = 1; //操作玩家
 	optional int64 from_player_id = 2; //牌来自玩家
@@ -661,6 +662,7 @@ message PaiOperationList {
 	optional PaiElement pai = 4; //待处理的牌
 	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
 }
+*/
 
 //牌操作
 message PaiOperation {
