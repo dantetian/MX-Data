@@ -652,6 +652,7 @@ message PaiOperationCache {
 	optional int32 time_out = 3; //超时时间
 	optional PaiElement pai = 4; //待处理的牌
 	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
+	repeated PaiElement ting_pais = 6; //听牌列表
 }
 
 /*
