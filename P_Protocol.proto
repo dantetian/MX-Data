@@ -147,6 +147,7 @@ message RoomHistory {
 	optional int32 create_time = 2; //房间创建时间
 	optional RoomOptions options = 3; //房间设置
 	repeated GameRecord list = 4; //游戏数据列表
+	repeated PlayerBrief player_brief_list = 5; //玩家列表
 }
 
 //玩家公共数据 
