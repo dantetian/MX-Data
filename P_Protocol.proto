@@ -343,6 +343,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_SYSTEM_CHAT = 16; //系统聊天
 	META_TYPE_SHARE_ROOM_HISTORY = 17; //历史对战表
 	META_TYPE_SHARE_RECHARGE = 18; //充值
+	META_TYPE_SHARE_PLAY_BACK = 19; //回放
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -618,6 +619,20 @@ message UserRecharge {
 	optional RECHARGE_TYPE recharge_type = 2; //充值类型
 	optional bytes product_id = 3; //商品ID//商品名称
 	optional int32 price = 4; //价格
+}
+
+//回放
+message PlayBack {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_PLAY_BACK ];
+	optional int64 room_id = 2; //房间ID
+	optional int32 game_index = 3; //牌局数：1~8/16
+	message PlayerElement {
+		optional int64 player_id = 1; //玩家ID
+		optional POSITION_TYPE position = 2; //玩家当前座次
+		repeated MultiplePai pai_list = 3; //开局牌数据
+	}
+	repeated PlayerElement player_list = 4; //开局牌数据
+	repeated PaiOperation oper_list = 5; //牌局各个玩家操作
 }
 
 //获取奖励
