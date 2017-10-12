@@ -661,7 +661,8 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_TINGPAI = 10; //听牌
 	PAI_OPER_TYPE_BAOPAI = 11; //宝牌
 	PAI_OPER_TYPE_QIANGGANG = 12; //抢杠胡
-	PAI_OPER_TYPE_COUNT = 13; //操作总数
+	PAI_OPER_TYPE_FAPAI = 13; //发牌
+	PAI_OPER_TYPE_COUNT = 14; //操作总数
 }
 
 //牌操作缓存
@@ -673,16 +674,6 @@ message PaiOperationCache {
 	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
 	repeated PaiElement ting_pais = 6; //听牌列表
 }
-
-/*
-message PaiOperationList {
-	optional int64 player_id = 1; //操作玩家
-	optional int64 from_player_id = 2; //牌来自玩家
-	optional int32 time_out = 3; //超时时间
-	optional PaiElement pai = 4; //待处理的牌
-	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
-}
-*/
 
 //牌操作
 message PaiOperation {
