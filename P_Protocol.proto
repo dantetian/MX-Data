@@ -747,9 +747,9 @@ message PlayerInformation {
 //错误码提示
 message AlertMessage {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ALERT_ERROR ];
-	optional ERROR_TYPE error_type = 2;
+	optional ERROR_TYPE error_type = 2; 
 	optional ERROR_SHOW_TYPE error_show_type = 3;
-	optional ERROR_CODE error_code = 4;
+	optional int32 error_code = 4; //ERROR_CODE
 }
 
 //流局
