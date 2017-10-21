@@ -138,6 +138,7 @@ message RoomOptions {
 	optional int32 top_mutiple = 4; //封顶番数
 	optional int32 open_rands = 5 [ default = 8 ]; //局数
 	optional int32 voice_open = 6; //实时语音
+	optional bool gmt_opened = 7; //是否代开房
 }
 
 //房间设置
