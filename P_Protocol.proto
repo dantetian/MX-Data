@@ -920,13 +920,15 @@ message SyncActivity {
 	repeated ActivityElement activity_list = 2; //活动列表
 }
 
+//广播类型
+enum SYSTEM_BROADCAST_TYPE { 
+	SYSTEM_BROADCAST_TYPE_SCROLL = 1; //滚动屏幕//跑马灯
+	SYSTEM_BROADCAST_TYPE_CHAT = 2; //聊天窗
+} 
+
 //系统广播
 message SystemBroadcasting {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_SYSTEM_BROADCAST ];
-	enum SYSTEM_BROADCAST_TYPE { //广播类型
-		SYSTEM_BROADCAST_TYPE_SCROLL = 1; //滚动屏幕
-		SYSTEM_BROADCAST_TYPE_CHAT = 2; //聊天窗
-	} 
 	optional SYSTEM_BROADCAST_TYPE broad_cast_type = 2; //广播类型 
 	optional bytes content = 3; //内容
 }
