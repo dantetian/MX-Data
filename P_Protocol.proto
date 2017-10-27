@@ -83,9 +83,9 @@ enum ROOM_CARD_CHANGED_TYPE {
 message User {
 	optional Account account = 1; //账号
 	repeated int64 player_list = 2; //玩家角色
-	//optional WechatAccessToken wechat_token = 3; //微信登录认证数据
 	optional WechatUnion wechat = 3; //微信个人信息
-	optional ClientInfomation client_info = 4; //Client数据
+	optional ClientInfomation client_info = 4; //Client相关数据
+	optional int32 created_time = 5; //创建时间
 }
 
 //玩家座次
@@ -312,6 +312,7 @@ enum ERROR_CODE {
 	ERROR_ROOM_DISMISS_COOLDOWN = 31; //解散房间冷却中
 	ERROR_ROOM_BEEN_OVER = 32; //战局结束
 	ERROR_ROOM_BEEN_DISMISS = 33; //房间已经解散
+	ERROR_ROOM_PLAYBACK_NO_RECORD = 34; //尚未存储记录
 	
 	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
 	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
