@@ -130,6 +130,12 @@ enum ROOM_MODEL_TYPE {
 	ROOM_MODEL_TYPE_MULTIPLE = 2; //高番模式
 }
 
+//付费方式
+enum ROOM_PAY_TYPE {
+	ROOM_PAY_TYPE_HOSTER = 1; //房主付费//房卡
+	ROOM_PAY_TYPE_AA = 2; //AA付费
+}
+
 //房间设置-番型选择
 message RoomOptions {
 	optional ROOM_MODEL_TYPE model = 1; //模式选择
@@ -139,6 +145,7 @@ message RoomOptions {
 	optional int32 open_rands = 5 [ default = 8 ]; //局数
 	optional int32 voice_open = 6; //实时语音
 	optional bool gmt_opened = 7; //是否代开房
+	optional ROOM_PAY_TYPE pay_type = 8; //付费方式
 }
 
 //房间设置
@@ -237,6 +244,7 @@ message CommonConst {
 	optional int64 mall_activity_id = 16; //开启商店活动ID[Activity]数据
 	optional int32 room_dismiss_timeout = 17 [ default = 120 ]; //解散房间超时时间(单位：秒)
 	optional int64 room_dismiss_cooldown = 18 [ default = 180 ]; //解散房间冷却时间(单位：秒)
+	optional int32 room_aapay_diamond = 19 [ default = 3 ]; //AA开房钻石消耗(房卡倍数)
 }
 
 //通用奖励
