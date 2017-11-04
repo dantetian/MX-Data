@@ -167,6 +167,7 @@ message CommonProp {
 	optional int64 total_win_rounds = 12; //赢牌局数
 	optional int64 streak_wins = 13; //最高连胜
 	optional int64 score = 14; //积分
+	optional int32 score_win_rounds = 15; //总积分胜利局数(8/16局胜利数)
 }
 
 //通用限制：存盘数据
@@ -194,10 +195,12 @@ message Location {
 
 //Client数据
 message ClientInfomation {
-	optional bytes client_ip = 1; //IP地址
-	optional bytes system = 2; //系统
-	optional bytes phone_type = 3; //手机型号
+	optional bytes ip_address = 1; //IP地址
+	optional bytes system = 2; //系统//IOS8.1//Android4.2
+	optional bytes phone_type = 3; //手机型号//IPTHONE6/6S//小米6
 	optional Location location = 4; //位置
+	optional int32 version = 5; //版本
+	optional bytes imei = 6; //IMEI//手机唯一识别码
 }
 
 //
