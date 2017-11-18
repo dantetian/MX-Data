@@ -224,6 +224,13 @@ message MJCard {
 	repeated Card cards = 6;
 }
 
+//活动页签
+message ActivityPage {
+	optional int64 activity_id = 1; //活动ID
+	optional bytes page_name = 2; //页签名称
+	optional bytes url = 3; //链接
+}
+
 //通用常量定义
 message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
@@ -246,6 +253,8 @@ message CommonConst {
 	optional int64 room_dismiss_cooldown = 18 [ default = 180 ]; //解散房间冷却时间(单位：秒)
 	optional int32 room_aapay_diamond = 19 [ default = 3 ]; //AA开房钻石消耗(房卡倍数)
 	optional int32 limit_version = 20; //Client最低版本限制
+	optional int32 page_list_count = 21 [ default = 5 ]; //活动页签数量
+	repeated ActivityPage page_list = 22; //活动页签
 }
 
 //通用奖励
