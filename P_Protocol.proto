@@ -72,6 +72,7 @@ enum ROOM_CARD_CHANGED_TYPE {
 	ROOM_CARD_CHANGED_TYPE_GMT = 1; //游戏内发放
 	ROOM_CARD_CHANGED_TYPE_MALL = 2; //商城购买
 	ROOM_CARD_CHANGED_TYPE_OPEN_ROOM = 3; //开房
+	ROOM_CARD_CHANGED_TYPE_FANBEI = 4; //翻倍
 }
 
 /////////////////////////////////////////////////////
@@ -233,6 +234,7 @@ message Player {
 	optional PlayerSetting game_setting = 12; //游戏设置
 	repeated int64 room_history = 13; //牌局历史数据
 	optional int64 room_id = 14; //玩家所在房间
+	optional bool card_count_changed = 15 [ default = false ]; //是否房卡加倍
 }
 
 //包裹结构
@@ -608,10 +610,25 @@ message PlayerSetting {
 	optional bool click_push = 4; //是否单击出牌
 }
 
+//桌布颜色
+enum ZHUOBU_TYPE {
+	ZHUOBU_TYPE_GREEN = 1; //绿色
+	ZHUOBU_TYPE_BLUE = 2; //蓝色
+	ZHUOBU_TYPE_RED = 3; //红色
+}
+
+//牌背颜色
+enum CARD_COLOR_TYPE {
+	CARD_COLOR_TYPE_GREEN = 1; //绿色
+	CARD_COLOR_TYPE_BLUE = 2; //蓝色
+}
+
 //游戏设置
 message GameSetting {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_GAME_SETTING ];
 	optional PlayerSetting game_setting = 2;
+	optional ZHUOBU_TYPE zhuobu_type = 3;
+	optional CARD_COLOR_TYPE card_color_type = 4;
 }
 
 //历史对战表
