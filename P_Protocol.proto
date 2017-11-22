@@ -621,6 +621,7 @@ enum ZHUOBU_TYPE {
 enum CARD_COLOR_TYPE {
 	CARD_COLOR_TYPE_GREEN = 1; //绿色
 	CARD_COLOR_TYPE_BLUE = 2; //蓝色
+	CARD_COLOR_TYPE_GOLDEN = 3; //金色
 }
 
 //游戏设置
