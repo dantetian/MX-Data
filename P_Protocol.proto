@@ -908,6 +908,8 @@ message RoomRecord {
 	optional int32 banker_count = 6; //庄家数
 	optional int32 win_count = 7; //胜局数
 	optional int32 dianpao_count = 8; //点炮数
+	optional int32 loubao_count = 9; //搂宝次数
+	optional int32 jinbao_count = 10; //进宝次数
 }
 
 message RoomCalculate {
