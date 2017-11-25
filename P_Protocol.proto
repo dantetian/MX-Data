@@ -865,16 +865,17 @@ message RoomInformation {
 	optional ROOM_SYNC_TYPE sync_type = 2; //同步类型
 	message Player {
 		optional POSITION_TYPE position = 1; //位置
-		optional GAME_OPER_TYPE oper_type = 2; //操作状态//准备//
-		optional CommonProp common_prop = 3; //玩家基本数据
-		optional WechatUnion wechat = 4; //微信个人信息
-		optional bytes ip_address = 5; //IP地址
+		optional int64 player_id = 2;
+		optional GAME_OPER_TYPE oper_type = 3; //操作状态//准备//
+		optional CommonProp common_prop = 4; //玩家基本数据
+		optional WechatUnion wechat = 5; //微信个人信息
+		optional bytes ip_address = 6; //IP地址
 		message DistanceElement {
 			optional POSITION_TYPE position = 1; //玩家位置
 			optional double distance = 2; //相对距离
 		}
-		repeated DistanceElement dis_list = 6;
-		optional int64 voice_member_id = 7; //房间语音成员ID
+		repeated DistanceElement dis_list = 7;
+		optional int64 voice_member_id = 8; //房间语音成员ID
 	}
 	repeated Player player_list = 3;
 }
