@@ -278,6 +278,11 @@ message CommonReward {
 	optional int32 rewards_count = 3 [ default = 10 ]; //奖励数量
 	repeated Reward rewards = 4; //奖励
 	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
+	enum DELIVER_TYPE {
+		DELIVER_TYPE_AUTO = 1; //自动发奖
+		DELIVER_TYPE_GET = 2; //手动领奖
+	}
+	optional DELIVER_TYPE deliver_type = 6; //领取方式
 }
 
 //通用消耗
