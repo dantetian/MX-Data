@@ -671,6 +671,7 @@ message GetReward {
 	enum GET_REWARD_REASON {
 		GET_REWARD_REASON_DAILY_BONUS = 1; //每日登陆奖励
 		GET_REWARD_REASON_DAILY_ALLOWANCE = 2; //每日补助奖励
+		GET_REWARD_REASON_SHARED = 3; //朋友圈分享
 	}
 	optional GET_REWARD_REASON reason = 2;
 	optional int64 reward_id = 3;

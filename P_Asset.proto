@@ -169,6 +169,7 @@ message CommonLimit {
 		COMMON_LIMIT_TYPE_PLANT = 1; //种植次数限制
 		COMMON_LIMIT_TYPE_LUCKY_PLATE = 2; //幸运转盘
 		COMMON_LIMIT_TYPE_DIALY_BONUS = 3; //每日福利
+		COMMON_LIMIT_TYPE_SHARED = 4; //朋友圈分享
 	}
 	//冷却时间
 	enum COOL_DOWN_TYPE {
