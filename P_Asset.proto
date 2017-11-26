@@ -256,6 +256,7 @@ message CommonConst {
 	optional int32 page_list_count = 21 [ default = 5 ]; //活动页签数量
 	repeated ActivityPage page_list = 22; //活动页签
 	optional int32 room_card_beishu = 23 [ default = 4 ]; //房卡倍数
+	optional int32 shared_reward_id = 24; //分享朋友圈通用奖励ID[CommonReward]数据
 }
 
 //通用奖励
