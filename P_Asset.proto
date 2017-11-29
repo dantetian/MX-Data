@@ -284,6 +284,7 @@ message CommonReward {
 		DELIVER_TYPE_GET = 2; //手动领奖
 	}
 	optional DELIVER_TYPE deliver_type = 6; //领取方式
+	optional int64 activity_id = 7; //关联活动控制ID[Activity]数据
 }
 
 //通用消耗
