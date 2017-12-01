@@ -159,7 +159,7 @@ message CommonProp {
 	optional bytes name = 3; //名字
 	optional int32 iphoto = 4; //头像ID
 	optional int32 level = 5 [ default = 1 ]; //级别
-	optional GENDER_TYPE gender = 6 [ default = GENDER_TYPE_MAN]; //性别
+	optional GENDER_TYPE gender = 6 [ default = GENDER_TYPE_WOMAN]; //性别
 	optional int64 diamond = 7; //钻石总数 
 	optional int64 huanledou = 8 [ default = 10000 ]; //欢乐豆数 
 	optional int64 room_card_count = 9 [ default = 2 ]; //房卡数 
