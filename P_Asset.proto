@@ -267,7 +267,8 @@ message CommonReward {
 	enum REWARD_TYPE {
 		REWARD_TYPE_DIAMOND = 1; //钻石
 		REWARD_TYPE_HUANLEDOU = 2; //欢乐豆
-		REWARD_TYPE_ITEM = 3; //物品
+		REWARD_TYPE_ROOM_CARD = 3; //房卡
+		REWARD_TYPE_ITEM = 4; //物品
 	}
 	message Reward {
 		optional REWARD_TYPE reward_type = 1; //奖励类型 
