@@ -130,14 +130,22 @@ enum ROOM_MODEL_TYPE {
 	ROOM_MODEL_TYPE_MULTIPLE = 2; //高番模式
 }
 
+//付费方式
+enum ROOM_PAY_TYPE {
+	ROOM_PAY_TYPE_HOSTER = 1; //房主付费//房卡
+	ROOM_PAY_TYPE_AA = 2; //AA付费
+}
+
 //房间设置-番型选择
 message RoomOptions {
 	optional ROOM_MODEL_TYPE model = 1; //模式选择
 	optional int32 extend_type_count = 2 [ default = 10 ]; //番型数量
 	repeated ROOM_EXTEND_TYPE extend_type = 3; //额外番型
 	optional int32 top_mutiple = 4; //封顶番数
-	optional int32 open_rands = 5 [ default = 4 ]; //局数
-	optional bool voice_open = 6 [ default = true ]; //实时语音
+	optional int32 open_rands = 5 [ default = 8 ]; //局数
+	optional int32 voice_open = 6; //实时语音
+	optional bool gmt_opened = 7; //是否代开房
+	optional ROOM_PAY_TYPE pay_type = 8; //付费方式
 }
 
 //房间设置
@@ -161,6 +169,7 @@ message CommonLimit {
 		COMMON_LIMIT_TYPE_PLANT = 1; //种植次数限制
 		COMMON_LIMIT_TYPE_LUCKY_PLATE = 2; //幸运转盘
 		COMMON_LIMIT_TYPE_DIALY_BONUS = 3; //每日福利
+		COMMON_LIMIT_TYPE_SHARED = 4; //朋友圈分享
 	}
 	//冷却时间
 	enum COOL_DOWN_TYPE {
@@ -216,6 +225,13 @@ message MJCard {
 	repeated Card cards = 6;
 }
 
+//活动页签
+message ActivityPage {
+	optional int64 activity_id = 1; //活动ID
+	optional bytes page_name = 2; //页签名称
+	optional bytes url = 3; //链接
+}
+
 //通用常量定义
 message CommonConst {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_COMMON_CONST ];
@@ -236,6 +252,12 @@ message CommonConst {
 	optional int64 mall_activity_id = 16; //开启商店活动ID[Activity]数据
 	optional int32 room_dismiss_timeout = 17 [ default = 120 ]; //解散房间超时时间(单位：秒)
 	optional int64 room_dismiss_cooldown = 18 [ default = 180 ]; //解散房间冷却时间(单位：秒)
+	optional int32 room_aapay_diamond = 19 [ default = 3 ]; //AA开房钻石消耗(房卡倍数)//废弃
+	optional int32 limit_version = 20; //Client最低版本限制
+	optional int32 page_list_count = 21 [ default = 5 ]; //活动页签数量
+	repeated ActivityPage page_list = 22; //活动页签
+	optional int32 room_card_beishu = 23 [ default = 4 ]; //房卡倍数
+	optional int32 shared_reward_id = 24; //分享朋友圈通用奖励ID[CommonReward]数据
 }
 
 //通用奖励
@@ -245,7 +267,8 @@ message CommonReward {
 	enum REWARD_TYPE {
 		REWARD_TYPE_DIAMOND = 1; //钻石
 		REWARD_TYPE_HUANLEDOU = 2; //欢乐豆
-		REWARD_TYPE_ITEM = 3; //物品
+		REWARD_TYPE_ROOM_CARD = 3; //房卡
+		REWARD_TYPE_ITEM = 4; //物品
 	}
 	message Reward {
 		optional REWARD_TYPE reward_type = 1; //奖励类型 
@@ -257,6 +280,12 @@ message CommonReward {
 	optional int32 rewards_count = 3 [ default = 10 ]; //奖励数量
 	repeated Reward rewards = 4; //奖励
 	optional int64 common_limit_id = 5; //通用限制ID[CommonLimit]数据
+	enum DELIVER_TYPE {
+		DELIVER_TYPE_AUTO = 1; //自动发奖
+		DELIVER_TYPE_GET = 2; //手动领奖
+	}
+	optional DELIVER_TYPE deliver_type = 6; //领取方式
+	optional int64 activity_id = 7; //关联活动控制ID[Activity]数据
 }
 
 //通用消耗
