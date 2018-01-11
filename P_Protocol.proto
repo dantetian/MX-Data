@@ -696,7 +696,8 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_BAOPAI = 12; //宝牌
 	PAI_OPER_TYPE_FAPAI = 13; //发牌
 	PAI_OPER_TYPE_LIUJU = 14; //流局
-	PAI_OPER_TYPE_COUNT = 15; //操作总数
+	PAI_OPER_TYPE_CANCEL = 15; //取消
+	PAI_OPER_TYPE_COUNT = 16; //操作总数
 }
 
 //牌操作缓存
