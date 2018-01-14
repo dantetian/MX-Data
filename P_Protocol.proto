@@ -31,6 +31,10 @@ message PaiElement {
 	optional int64 source_player_id = 4; //来自玩家
 }
 
+message ShunZi {
+	repeated PaiElement pai = 1; //顺子
+}
+
 //物品
 message ItemElement { 
 	optional INVENTORY_TYPE inventory_type = 1; //包裹
