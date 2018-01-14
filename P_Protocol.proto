@@ -28,6 +28,7 @@ message PaiElement {
 	optional CARD_TYPE card_type = 1; //牌类型：饼、条...
 	optional int32 card_value = 2; //牌值
 	optional int32 card_index = 3; //牌在表中索引:校验用
+	optional int64 source_player_id = 4; //来自玩家
 }
 
 //物品

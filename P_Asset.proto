@@ -128,6 +128,7 @@ enum ROOM_EXTEND_TYPE {
 	ROOM_EXTEND_TYPE_HUANGZHUANGHUANGGANG = 11; //荒庄杠//建平玩法
 	ROOM_EXTEND_TYPE_YIBIANGAO = 12; //一边高//建平玩法
 	ROOM_EXTEND_TYPE_SIGUIYI = 13; //四归一//建平玩法
+	ROOM_EXTEND_TYPE_YIJIAFU = 14; //点炮一家付//建平玩法
 }
 
 //模式选择-服务器尚无用途
