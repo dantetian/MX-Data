@@ -764,6 +764,7 @@ message LoadScene {
 message ReConnect {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_RECONNECT ];
 	optional int64 player_id = 2; //角色ID
+	optional Account account = 3; //账号数据
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
