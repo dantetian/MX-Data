@@ -330,6 +330,7 @@ enum ERROR_CODE {
 	ERROR_ROOM_PLAYBACK_NO_RECORD = 34; //尚未存储记录
 	ERROR_ROOM_AA_DIAMOND_NOT_ENOUGH = 35; //AA开房钻石不足
 	ERROR_ROOM_FRIEND_NOT_FORBID = 36; //禁止进入好友房
+	ERROR_ROOM_QUERY_NOT_FORBID = 37; //没有查询到房间信息
 	
 	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
 	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
@@ -406,6 +407,7 @@ enum META_TYPE {
 	META_TYPE_S2C_ROOM_HISTORY = 526; //历史记录
 	META_TYPE_S2C_ROOM_ALL = 527; //房间全部数据同步
 	META_TYPE_S2C_ROOM_IN = 528; //所在房间
+	META_TYPE_S2C_ROOM_QUERY = 529; //房间查询
 	META_TYPE_S2C_COUNT = 1000; //服务器协议最大数量
 	///////////服务器之间协议数据///////////
 	META_TYPE_S2S_REGISTER = 1001; //注册逻辑服务器
@@ -481,6 +483,7 @@ message SwitchAccount {
 message GetRoomData {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_GET_ROOM_DATA ];
 	optional int64 room_id = 2; //房间ID，用于校验
+	optional ROOM_SYNC_TYPE reason = 3; //同步原因
 }
 
 //更新房间数据
@@ -869,6 +872,7 @@ message SyncCommonReward {
 enum ROOM_SYNC_TYPE {
 	ROOM_SYNC_TYPE_NORMAL = 1; //正常同步
 	ROOM_SYNC_TYPE_STATE_CHANGED = 2; //玩家状态变化
+	ROOM_SYNC_TYPE_QUERY = 3; //查询//外服获取
 }
 
 //房间数据
@@ -1066,6 +1070,15 @@ message RoomAll {
 message RoomBeenIn {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_IN ];
 	optional int64 room_id = 2;
+}
+
+//房间数据查询
+message RoomQueryResult {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_ROOM_QUERY ];
+	optional int64 room_id = 2; //房间ID
+	optional int32 create_time = 3; //房间创建时间
+	optional RoomOptions options = 4; //房间玩法
+	optional RoomInformation information = 5; //玩家数据
 }
 
 /////////////////////////////////////////////////////
