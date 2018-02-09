@@ -364,6 +364,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_ROOM_HISTORY = 17; //历史对战表
 	META_TYPE_SHARE_RECHARGE = 18; //充值
 	META_TYPE_SHARE_PLAY_BACK = 19; //回放
+	META_TYPE_SHARE_MATCHING_STATS = 20; //匹配数据
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -769,6 +770,16 @@ message ReConnect {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_C2S_RECONNECT ];
 	optional int64 player_id = 2; //角色ID
 	optional Account account = 3; //账号数据
+}
+
+//匹配房数据
+message MatchStats {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_MATCHING_STATS ];
+	message MatchingRoom {
+		optional ROOM_TYPE room_type = 1; //匹配房间类型	
+		optional int32 player_count = 2; //匹配玩家
+	}
+	repeated MatchingRoom room_list = 2; //匹配房间信息
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
