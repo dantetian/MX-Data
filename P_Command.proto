@@ -1,0 +1,134 @@
+package Adoter.Asset;
+
+message InnerMeta {
+	optional INNER_TYPE type_t = 1;
+	optional int64 session_id = 2;
+	optional bytes stuff = 3;
+}
+
+/////////////////////////////////////////////////////
+//
+// 服务器之间通用协议类型
+//
+/////////////////////////////////////////////////////
+
+enum INNER_TYPE {
+	INNER_TYPE_BEGIN = 0; //开始协议
+	INNER_TYPE_REGISTER = 1; //注册服务器
+	INNER_TYPE_COMMAND = 2; //GMT指令-钻石//房卡//欢乐豆
+	INNER_TYPE_OPEN_ROOM = 3; //GMT指令-代开房间
+	INNER_TYPE_SEND_MAIL = 4; //GMT指令-发送邮件
+	INNER_TYPE_SYSTEM_BROADCAST = 5; //GMT指令-系统广播
+	INNER_TYPE_ACTIVITY_CONTROL = 6; //GMT指令-活动控制
+	INNER_TYPE_QUERY_PLAYER = 7; //查询玩家信息
+}
+
+/////////////////////////////////////////////////////
+// 通用数据定义区
+/////////////////////////////////////////////////////
+
+//操作类型
+enum COMMAND_TYPE {
+	COMMAND_TYPE_BEGIN = 0; 
+	COMMAND_TYPE_RECHARGE = 1; //充值钻石
+	COMMAND_TYPE_ROOM_CARD = 2; //房卡
+	COMMAND_TYPE_HUANLEDOU = 3; //欢乐豆
+}
+
+enum COMMAND_ERROR_CODE {
+	COMMAND_ERROR_CODE_SUCCESS = 0; //成功
+	COMMAND_ERROR_CODE_NO_PERMISSION = 1; //没有权限
+	COMMAND_ERROR_CODE_PARA = 2; //参数错误
+	COMMAND_ERROR_CODE_NO_ACCOUNT = 3; //没有账号数据
+	COMMAND_ERROR_CODE_NO_PLAYER = 4; //没有玩家数据(即账号存在，但账号下无该角色数据)
+	COMMAND_ERROR_CODE_PLAYER_ONLINE = 5; //玩家在线
+	COMMAND_ERROR_CODE_PLAYER_OFFLINE = 6; //玩家离线
+	COMMAND_ERROR_CODE_ITEM_NOT_FOUND = 7; //物品未能找到
+	COMMAND_ERROR_CODE_SERVER_NOT_FOUND = 8; //未能找到服务器
+	COMMAND_ERROR_CODE_ASSET_NOT_FOUND = 9; //未能找到相关数据，由于策划配置造成
+}
+
+/////////////////////////////////////////////////////
+//
+// 服务器与WEB工具通信协议定义区
+//
+/////////////////////////////////////////////////////
+
+//服务器类型
+enum SERVER_TYPE {
+	SERVER_TYPE_BEGIN = 0;
+	SERVER_TYPE_GMT = 1; //GMT服务器
+	SERVER_TYPE_CENTER = 2; //中心服务器
+	SERVER_TYPE_GAME = 3; //游戏服务器
+}
+
+//注册服务器
+message Register {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_REGISTER];
+	optional SERVER_TYPE server_type = 2; //服务器类型
+	optional int64 server_id = 3; //服务器ID
+}
+
+//GMT指令
+message Command {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_COMMAND];
+	optional COMMAND_TYPE command_type = 2; //操作类型
+	optional COMMAND_ERROR_CODE error_code = 3; //返回码
+
+	optional bytes account = 4; //账号
+	optional int64 player_id = 5; //玩家角色ID
+	optional int64 item_id = 6; //如果是物品，物品ID(房卡是特殊物品)
+	optional int32 count = 7; //数量(根据COMMAND_TYPE有不同的意义)
+}
+
+//代开房间
+message OpenRoom {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_OPEN_ROOM];
+	optional COMMAND_ERROR_CODE error_code = 2; //返回码
+	optional int64 server_id = 3 [default = 1]; //游戏服务器ID
+	optional int64 room_id = 4; //房间ID，如果非0则证明开放成功
+	optional bytes options = 5; //房间设置
+}
+
+//发送邮件
+message SendMail {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_SEND_MAIL];
+	optional COMMAND_ERROR_CODE error_code = 2; //返回码
+	optional int64 player_id = 3; //向玩家发送邮件
+	optional int64 mail_id = 4; //邮件ID[SystemMail]数据，如果不填，则为定制邮件
+	optional bytes title = 5; //标题
+	optional bytes content = 6; //内容
+	optional int32 diamond_count = 7; //钻石数量
+	optional int32 huanledou_count = 8; //欢乐豆数量
+	optional int32 room_card_count = 9; //房卡数量
+}
+
+//系统广播
+message SystemBroadcast {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_SYSTEM_BROADCAST];
+	optional COMMAND_ERROR_CODE error_code = 2; //返回码
+	optional bytes content = 3; //内容
+}
+
+//活动控制
+message ActivityControl {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_ACTIVITY_CONTROL];
+	optional COMMAND_ERROR_CODE error_code = 2; //返回码
+	optional int64 activity_id = 3; //活动ID
+	optional bytes start_time = 4; //开始时间(示例：2017-01-20 20:00:00)
+	optional bytes stop_time = 5; //结束时间(示例：2017-02-20 20:00:00)
+}
+
+//查询玩家信息
+message QueryPlayer {
+	optional INNER_TYPE type_t = 1 [default = INNER_TYPE_QUERY_PLAYER];
+	optional COMMAND_ERROR_CODE error_code = 2; //返回码
+	optional int64 player_id = 3; //角色ID
+	optional bytes common_prop = 4;
+}
+/////////////////////////////////////////////////////
+//
+// 各种服务器相互通信协议定义区
+//
+/////////////////////////////////////////////////////
+

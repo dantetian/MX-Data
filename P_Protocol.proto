@@ -81,6 +81,11 @@ enum ROOM_CARD_CHANGED_TYPE {
 	ROOM_CARD_CHANGED_TYPE_GENERAL_REWARD = 5; //通用奖励
 }
 
+//系统冷却
+enum SYSTEM_COOLDOWN_TYPE {
+	SYSTEM_COOLDOWN_TYPE_MATCHING = 1; //匹配冷却
+};
+
 /////////////////////////////////////////////////////
 //
 // 游戏基本属性定义区
@@ -241,6 +246,7 @@ message Player {
 	repeated int64 room_history = 13; //牌局历史数据
 	optional int64 room_id = 14; //玩家所在房间
 	optional bool card_count_changed = 15 [ default = false ]; //是否房卡加倍
+	optional ROOM_TYPE matching_room_type = 16; //正在匹配房间类型
 }
 
 //包裹结构
@@ -337,6 +343,8 @@ enum ERROR_CODE {
 	
 	ERROR_COMMON_REWARD_DATA = 50; //数据错误
 	ERROR_COMMON_REWARD_HAS_GOT = 51; //奖励已领取
+
+	ERROR_COOLDOWN_MATCHING = 60; //匹配冷却中
 }
 
 /////////////////////////////////////////////////////
@@ -707,7 +715,8 @@ enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_FAPAI = 13; //发牌
 	PAI_OPER_TYPE_LIUJU = 14; //流局
 	PAI_OPER_TYPE_CANCEL = 15; //取消
-	PAI_OPER_TYPE_COUNT = 16; //操作总数
+	PAI_OPER_TYPE_HUIPAI = 16; //会儿牌
+	PAI_OPER_TYPE_COUNT = 17; //操作总数
 }
 
 //牌操作缓存

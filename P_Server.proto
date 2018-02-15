@@ -1,0 +1,98 @@
+import "P_Asset.proto";
+
+package Adoter.Asset;
+
+/////////////////////////////////////////////////////
+//
+// 游戏中服务器自己各种存盘、属性、基础数据结构定义
+//
+// 如果客户端使用，请勿在此定义
+//
+/////////////////////////////////////////////////////
+
+//
+//消息类型
+//
+enum MSG_TYPE {
+	MSG_TYPE_BEGIN = 1;
+	MSG_TYPE_AOI_ENTER = 2;
+	MSG_TYPE_AOI_LEAVE = 3;
+	MSG_TYPE_AOI_MOVE = 4;
+}
+//
+//消息队列
+//
+message MsgItem {
+	optional int64 message_id = 1; //消息ID
+	optional int32 type_t = 2; //消息类型
+	optional int32 priority = 3 [ default = 10 ]; //优先级，值0优先级最大
+	optional int64 sender = 4; //发送者
+	optional int64 receiver = 5; //接收者
+	optional int64 time = 6; //发送时间
+	optional int32 delay = 7; //发送延时(s)
+	optional bytes content = 8; //具体内容
+}
+//
+//消息队列
+//
+//可以用于存盘
+//
+message MsgItems {
+	repeated MsgItem items = 1;
+}
+
+//玩家名称
+message FamilyName {
+	repeated bytes name = 1;
+}
+
+message WomanName {
+	repeated bytes name = 1;
+}
+
+message ManName {
+	repeated bytes name = 1;
+}
+
+//服务器配置数据
+message SeverConfig {
+	optional int32 zone_id = 1;
+	optional bytes description = 2;
+
+	message SeverElement { //服务器信息
+		optional int32 server_id = 1; //全局唯一
+		optional bytes name = 2; //名称
+		optional bytes ip_address = 3 [ default = "0.0.0.0" ]; //地址
+		optional int32 port = 4; //端口
+		optional int32 thread_count = 5; //线程数
+	}
+	optional SeverElement local_server = 3; //逻辑服务器
+	optional SeverElement center_server = 4; //中心服务器
+	optional SeverElement gmt_server = 5; //Gmt服务器
+	optional SeverElement game_server = 6; //逻辑服务器
+}
+
+//白名单
+message WhiteList {
+	optional bool open = 1;
+	repeated bytes ip_address = 2;
+}
+
+//黑名单
+message BlackList {
+	optional bool open = 1;
+	repeated bytes ip_address = 2;
+}
+	
+//匹配房统计数据
+message MatchStatistics {
+	message MatchingRoom {
+		optional int64 server_id = 1; //服务器ID
+		message MatchingElement {
+			optional ROOM_TYPE room_type = 2; //匹配房间类型	
+			optional int32 player_count = 3; //匹配玩家
+		}
+		repeated MatchingElement room_list = 2;
+	}
+	repeated MatchingRoom server_list = 1; //匹配房间信息
+}

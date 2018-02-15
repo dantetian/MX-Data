@@ -129,6 +129,12 @@ enum ROOM_EXTEND_TYPE {
 	ROOM_EXTEND_TYPE_YIBIANGAO = 12; //一边高//建平玩法
 	ROOM_EXTEND_TYPE_SIGUIYI = 13; //四归一//建平玩法
 	ROOM_EXTEND_TYPE_YIJIAFU = 14; //点炮一家付//建平玩法
+	ROOM_EXTEND_TYPE_HUIPAI = 15; //会儿牌//营口玩法
+	ROOM_EXTEND_TYPE_JUETOUHUI = 16; //绝头会儿//营口玩法
+	ROOM_EXTEND_TYPE_QIONGHU = 17; //穷胡//营口玩法
+	ROOM_EXTEND_TYPE_QIDUI = 18; //7对儿//营口玩法
+	ROOM_EXTEND_TYPE_ZHUIFENGGANGA = 19; //追风杠//营口玩法
+	ROOM_EXTEND_TYPE_YIPAOBAOSANJIA = 20; //点炮给三家钱//营口玩法
 }
 
 //模式选择-服务器尚无用途
@@ -146,6 +152,7 @@ enum ROOM_PAY_TYPE {
 enum CITY_TYPE {
 	CITY_TYPE_CHAOYANG = 1; //朝阳
 	CITY_TYPE_JIANPING = 2; //建平
+	CITY_TYPE_YINGKOU = 3; //营口
 }
 
 //房间设置-番型选择
@@ -271,6 +278,8 @@ message CommonConst {
 	repeated ActivityPage page_list = 22; //活动页签
 	optional int32 room_card_beishu = 23 [ default = 4 ]; //房卡倍数
 	optional int32 shared_reward_id = 24; //分享朋友圈通用奖励ID[CommonReward]数据
+	optional int32 player_matching_base_count = 25 [ default = 500 ]; //匹配玩家数量
+	optional int32 player_matching_random_count = 26 [ default = 30 ]; //匹配玩家浮动数量
 }
 
 //通用奖励
@@ -387,6 +396,7 @@ enum FAN_TYPE {
 	FAN_TYPE_PIAO_WEIHU = 24; //明飘未胡
 	FAN_TYPE_BAOSANJIA = 25; //包三家
 	FAN_TYPE_YIJIAFU = 26; //一家付
+	FAN_TYPE_QIDUI = 27; //7对儿
 }
 //番数
 message RoomFan {
