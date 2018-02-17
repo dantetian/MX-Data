@@ -224,13 +224,19 @@ message CoolDown {
 
 //麻将牌类型
 enum CARD_TYPE {
+	//麻将牌
 	CARD_TYPE_WANZI = 1; //万子牌
 	CARD_TYPE_BINGZI = 2; //饼子牌
 	CARD_TYPE_TIAOZI = 3; //条子牌
 	CARD_TYPE_FENG = 4; //风牌
 	CARD_TYPE_JIAN = 5; //箭牌
+	//扑克牌
+	CARD_TYPE_HONGTAO = 6; //红桃
+	CARD_TYPE_FANGPIAN = 7; //方片
+	CARD_TYPE_HEITAO = 8; //黑桃
+	CARD_TYPE_MEIHUA = 9; //梅花
 }
-//麻将牌
+//牌//麻将//扑克
 message MJCard {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_MJ_CARD ];
 	optional AssetCommonProp common_prop = 2; //公共属性
@@ -241,7 +247,7 @@ message MJCard {
 		optional bytes model_path = 2;	//牌模型或者图片路径
 		optional bytes voice_path = 3;	//声源
 	}
-	optional int32 cards_count = 5 [ default = 9 ]; //牌数量
+	optional int32 cards_count = 5 [ default = 15 ]; //牌数量
 	repeated Card cards = 6;
 }
 
@@ -397,6 +403,7 @@ enum FAN_TYPE {
 	FAN_TYPE_BAOSANJIA = 25; //包三家
 	FAN_TYPE_YIJIAFU = 26; //一家付
 	FAN_TYPE_QIDUI = 27; //7对儿
+	FAN_TYPE_QIONGHU = 28; //穷胡
 }
 //番数
 message RoomFan {
