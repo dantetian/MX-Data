@@ -134,7 +134,6 @@ enum ROOM_EXTEND_TYPE {
 	ROOM_EXTEND_TYPE_QIONGHU = 17; //穷胡//营口玩法
 	ROOM_EXTEND_TYPE_QIDUI = 18; //7对儿//营口玩法
 	ROOM_EXTEND_TYPE_ZHUIFENGGANGA = 19; //追风杠//营口玩法
-	ROOM_EXTEND_TYPE_YIPAOBAOSANJIA = 20; //点炮给三家钱//营口玩法
 }
 
 //模式选择-服务器尚无用途
@@ -396,7 +395,7 @@ enum FAN_TYPE {
 	FAN_TYPE_JIN_BAO = 17; //进宝
 	FAN_TYPE_ZHAN_LI = 18; //站立
 	FAN_TYPE_DUAN_MEN = 19; //断门
-	FAN_TYPE_XUAN_FENG_GANG = 20; //旋风杠
+	FAN_TYPE_XUAN_FENG_GANG = 20; //旋风杠//风杠
 	FAN_TYPE_JIA_HU_NORMAL = 21; //普通夹胡
 	FAN_TYPE_JIA_HU_MIDDLE = 22; //中等夹胡(3/7)
 	FAN_TYPE_JIA_HU_HIGHER = 23; //高番夹胡(5)//已废弃
@@ -405,6 +404,7 @@ enum FAN_TYPE {
 	FAN_TYPE_YIJIAFU = 26; //一家付
 	FAN_TYPE_QIDUI = 27; //7对儿
 	FAN_TYPE_QIONGHU = 28; //穷胡
+	FAN_TYPE_XUAN_JIAN_GANG = 29; //旋风杠//箭杠
 }
 //番数
 message RoomFan {
