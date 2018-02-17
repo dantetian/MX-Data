@@ -235,6 +235,7 @@ enum CARD_TYPE {
 	CARD_TYPE_FANGPIAN = 7; //方片
 	CARD_TYPE_HEITAO = 8; //黑桃
 	CARD_TYPE_MEIHUA = 9; //梅花
+	CARD_TYPE_KINGS = 10; //大小王//1:小王,2:大王
 }
 //牌//麻将//扑克
 message MJCard {
