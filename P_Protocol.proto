@@ -79,6 +79,8 @@ enum ROOM_CARD_CHANGED_TYPE {
 	ROOM_CARD_CHANGED_TYPE_OPEN_ROOM = 3; //开房
 	ROOM_CARD_CHANGED_TYPE_FANBEI = 4; //翻倍
 	ROOM_CARD_CHANGED_TYPE_GENERAL_REWARD = 5; //通用奖励
+	ROOM_CARD_CHANGED_TYPE_CREATE_CLAN = 6; //创建茶馆
+	ROOM_CARD_CHANGED_TYPE_RECHARGE_CLAN = 7; //茶馆充值
 }
 
 //系统冷却
@@ -99,6 +101,7 @@ message User {
 	optional WechatUnion wechat = 3; //微信个人信息
 	optional ClientInfomation client_info = 4; //Client相关数据
 	optional int32 created_time = 5; //创建时间
+	optional bytes daili_acount = 6; //对应代理账号
 }
 
 //玩家座次
@@ -247,6 +250,8 @@ message Player {
 	optional int64 room_id = 14; //玩家所在房间
 	optional bool card_count_changed = 15 [ default = false ]; //是否房卡加倍
 	optional ROOM_TYPE matching_room_type = 16; //正在匹配房间类型
+	repeated int64 clan_hosters = 17; //玩家创建的茶馆
+	repeated int64 clan_joiners = 18; //玩家加入的茶馆
 }
 
 //包裹结构
@@ -256,6 +261,47 @@ message Inventory {
 		repeated Item_Item items = 2; //包裹中存储的物品信息
 	}
 	repeated Element inventory = 1; //多个包裹(根据INVENTORY_TYPE_COUNT自动调整数量，所以无用包裹请勿增加[INVENTORY_TYPE]类型)
+}
+
+//茶馆
+//
+//MMO游戏里面的帮派,联盟,战队,俱乐部...
+//
+message SystemMessage {
+	optional int64 player_id = 1; //玩家ID
+	optional bytes name = 2; //玩家名字
+	optional int32 oper_time = 3; //操作时间
+	optional CLAN_OPER_TYPE oper_type = 4; //操作类型
+}
+
+enum CLAN_MEM_STATUS_TYPE {
+	CLAN_MEM_STATUS_TYPE_GAMING = 1; //游戏中
+	CLAN_MEM_STATUS_TYPE_AVAILABLE = 2; //空闲
+	CLAN_MEM_STATUS_TYPE_OFFLINE = 3; //离线
+}
+
+message Clan {
+	optional int64 clan_id = 1; //全局ID
+	optional bytes name = 2; //名字
+	optional int32 created_time = 3; //创建时间
+	optional int64 hoster_id = 4; //馆长
+	optional bytes hoster_name = 5; //馆长名字
+	optional int64 room_card_count = 6; //房卡数量
+	optional bytes announcement = 7; //公告
+	message Member {
+		optional int64 player_id = 1; //玩家ID
+		optional bytes name = 2; //玩家名字
+		optional CLAN_MEM_STATUS_TYPE status = 3;
+	}
+	repeated Member member_list = 8; //成员
+	optional bool dismiss = 9; //是否逻辑解散
+	message RoomHistory {
+		optional int64 room_id = 1; //房间ID	
+		optional int32 battle_time = 2; //对战时间
+	}
+	repeated RoomHistory battle_history = 10; //历史战绩
+	repeated SystemMessage message_list = 11; //消息列表
+	repeated int64 room_list = 12; //房间列表
 }
 
 /////////////////////////////////////////////////////
@@ -345,6 +391,18 @@ enum ERROR_CODE {
 	ERROR_COMMON_REWARD_HAS_GOT = 51; //奖励已领取
 
 	ERROR_COOLDOWN_MATCHING = 60; //匹配冷却中
+
+	ERROR_CLAN_NAME_EMPTY = 71; //茶馆:名字不能为空
+	ERROR_CLAN_NAME_UPPER = 72; //茶馆:名字超过最大限制
+	ERROR_CLAN_HOSTER_UPPER = 73; //茶馆:创建数量超过限制
+	ERROR_CLAN_JOIN_UPPER = 74; //茶馆:加入数量超过限制
+	ERROR_CLAN_CREATE_INNER = 75; //茶馆:创建内部错误
+	ERROR_CLAN_FULL = 76; //茶馆:已满
+	ERROR_CLAN_ROOM_CARD_NOT_ENOUGH = 77; //茶馆:房卡不足
+	ERROR_CLAN_NOT_FOUND = 78; //茶馆:尚未找到
+	ERROR_CLAN_NO_PERMISSION = 79; //茶馆:没有权限
+	ERROR_CLAN_NO_RECORD = 80; //茶馆:没有记录
+	ERROR_CLAN_HAS_JOINED = 81; //茶馆:已在
 }
 
 /////////////////////////////////////////////////////
@@ -373,6 +431,7 @@ enum META_TYPE {
 	META_TYPE_SHARE_RECHARGE = 18; //充值
 	META_TYPE_SHARE_PLAY_BACK = 19; //回放
 	META_TYPE_SHARE_MATCHING_STATS = 20; //匹配数据
+	META_TYPE_SHARE_CLAN_OPERATION = 21; //茶馆操作
 	META_TYPE_SHARE_COUNT = 50; //共享协议最大数量
 	///////////客户端发送数据///////////
 	META_TYPE_C2S_BEGIN = 51; //客户端开始协议
@@ -423,6 +482,8 @@ enum META_TYPE {
 	META_TYPE_S2S_KICKOUT_PLAYER = 1002; //踢掉玩家
 	META_TYPE_S2S_GMT_INNER_META = 1003; //内部GMT协议
 	META_TYPE_S2S_PLAYER_STATE = 1004; //服务器间玩家状态同步
+	META_TYPE_S2S_CLAN_ROOM_START_OR_OVER = 1005; //茶馆房开局或结束//用于在CS处扣除房卡
+	META_TYPE_S2S_CLAN_ROOM_SYNC = 1006; //茶馆房数据实时同步
 }
 
 /////////////////////////////////////////////////////
@@ -553,6 +614,7 @@ message Room {
 	optional ROOM_TYPE room_type = 2; //房间类型
 	optional bytes enter_password = 3; //房间密码：仅好友房存在
 	optional RoomOptions options = 4; //房间设置
+	optional int64 clan_id = 5; //茶馆ID
 }
 
 /////////////////////////////////////////////////////
@@ -790,6 +852,36 @@ message MatchStats {
 		optional int32 player_count = 2; //匹配玩家
 	}
 	repeated MatchingRoom room_list = 2; //匹配房间信息
+}
+
+enum CLAN_OPER_TYPE {
+	CLAN_OPER_TYPE_CREATE = 1; //创建茶馆
+	CLAN_OPER_TYPE_JOIN = 2; //加入茶馆
+	CLAN_OPER_TYPE_EDIT = 3; //修改茶馆公告//名字
+	CLAN_OPER_TYPE_DISMISS = 4; //解散茶馆
+	CLAN_OPER_TYPE_RECHARGE = 5; //成员主动退出茶馆
+	CLAN_OPER_TYPE_MEMEBER_AGEE = 6; //同意成员加入
+	CLAN_OPER_TYPE_MEMEBER_DISAGEE = 7; //拒绝成员加入
+	CLAN_OPER_TYPE_MEMEBER_DELETE = 8; //删除成员
+	CLAN_OPER_TYPE_MEMEBER_QUIT = 9; //成员主动退出茶馆
+	CLAN_OPER_TYPE_MEMEBER_QUERY = 10; //查询玩家状态
+	CLAN_OPER_TYPE_ROOM_LIST_QUERY = 11; //查询房间列表
+}
+
+//茶馆操作
+message ClanOperation {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_SHARE_CLAN_OPERATION ];
+	optional CLAN_OPER_TYPE oper_type = 2; //茶馆操作
+	optional int64 clan_id = 3; //茶馆ID
+	optional int32 oper_result = 4; //操作结果
+	optional bytes name = 5; //名字
+	optional bytes announcement = 6; //公告
+	optional int64 dest_player_id = 7; //目标成员
+	optional int32 recharge_count = 8; //充值
+	optional Clan clan = 9; //茶馆信息//创建成功会返回//查询玩家列表会返回
+	optional int32 room_query_start_index = 10; //房间列表查询:起始索引
+	optional int32 room_query_end_index = 11; //房间列表查询:结束索引
+	repeated RoomQueryResult room_list = 12; //房间列表
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
@@ -1100,6 +1192,7 @@ message RoomQueryResult {
 	optional int32 create_time = 3; //房间创建时间
 	optional RoomOptions options = 4; //房间玩法
 	optional RoomInformation information = 5; //玩家数据
+	optional int64 clan_id = 6; //茶馆ID
 }
 
 /////////////////////////////////////////////////////
@@ -1137,4 +1230,21 @@ message GmtInnerMeta {
 message PlayerState {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_PLAYER_STATE ];
 	optional GAME_OPER_TYPE oper_type = 2;
+}
+
+enum CLAN_ROOM_STATUS_TYPE {
+	CLAN_ROOM_STATUS_TYPE_START = 1; //开局
+	CLAN_ROOM_STATUS_TYPE_OVER = 2; //结束
+}
+//茶馆开局
+message ClanRoomStatusChanged {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_CLAN_ROOM_START_OR_OVER ];
+	optional CLAN_ROOM_STATUS_TYPE status = 2;
+	optional Room room = 3; //房间
+}
+
+//茶馆房实时同步
+message ClanRoomSync {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_CLAN_ROOM_SYNC ];
+	optional bytes room_status = 2; //房间//RoomQueryResult数据包装
 }

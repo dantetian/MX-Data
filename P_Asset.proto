@@ -67,6 +67,7 @@ enum ASSET_TYPE {
 	ASSET_TYPE_DAILY_SIGN = 21; //每日签到
 	ASSET_TYPE_MAIL = 22; //邮件
 	ASSET_TYPE_SYSTEM_SPEAK = 23; //系统喊话，游戏中的广播
+	ASSET_TYPE_CLAN_LIMIT = 24; //茶馆
 	ASSET_TYPE_COUNT = 200; //最大资源数
 	///////////物品类型///////////
 	ITEM_TYPE_BEGIN = 201; //物品开始
@@ -286,6 +287,7 @@ message CommonConst {
 	optional int32 shared_reward_id = 24; //分享朋友圈通用奖励ID[CommonReward]数据
 	optional int32 player_matching_base_count = 25 [ default = 500 ]; //匹配玩家数量
 	optional int32 player_matching_random_count = 26 [ default = 30 ]; //匹配玩家浮动数量
+	optional int64 clan_id = 27; //茶馆限制ID[ClanLimit]数据
 }
 
 //通用奖励
@@ -563,6 +565,16 @@ message SystemSpeak {
 	optional int32 text_index = 3; //StringTable中文本索引
 	optional int32 infomation_list_count = 4 [ default = 2]; //数据列表大小
 	repeated SYSTEM_SPEAK_TYPE infomation_list = 5; //数据列表
+}
+
+//茶馆限制
+message ClanLimit {
+	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_CLAN_LIMIT ];
+	optional AssetCommonProp common_prop = 2;
+	optional int32 create_upper_limit = 3 [ default = 50]; //可创建茶馆上限
+	optional int32 join_limit = 4 [ default = 10]; //可加入茶馆上限
+	optional int32 room_card_limit = 5 [ default = 100]; //要求房卡数量
+	optional int32 name_limit = 6 [ default = 24]; //茶馆名字字数限制
 }
 
 /////////////////////////////////////////////////////
