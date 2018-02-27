@@ -408,7 +408,7 @@ enum FAN_TYPE {
 	FAN_TYPE_QIONGHU = 28; //穷胡
 	FAN_TYPE_XUAN_JIAN_GANG = 29; //旋风杠//箭杠
 }
-//番数
+//麻将番数
 message RoomFan {
 	optional ASSET_TYPE type_t = 1 [ default = ASSET_TYPE_ROOM_FAN ];
 	optional AssetCommonProp common_prop = 2;
@@ -421,6 +421,12 @@ message RoomFan {
 	optional int32 fans_count = 3 [ default = 30 ]; //番数量
 	repeated FanElement fans = 4; //番数据
 	optional CITY_TYPE city_type = 5 [ default = CITY_TYPE_CHAOYANG ]; //城市
+}
+
+enum GAME_TYPE {
+	GAME_TYPE_MAJIANG = 1; //麻将
+	GAME_TYPE_NIUNIU = 2; //牛牛
+	GAME_TYPE_DOUDIZHU = 3; //斗地主
 }
 
 //房间模式
@@ -440,6 +446,7 @@ message RoomOpen {
 	}
 	optional int32 costs_count = 3 [ default = 10 ]; //配置数量
 	repeated CardCost costs = 4; //消耗数据
+	optional GAME_TYPE game_type = 5; //游戏
 }
 
 //声音提示

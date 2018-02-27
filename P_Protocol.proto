@@ -146,7 +146,7 @@ message GameRecord {
 		optional int64 player_id = 1; //玩家ID
 		optional bytes nickname = 2; //玩家名称
 		optional bytes headimgurl = 3; //头像
-		optional int32 score = 4; //积分变化总和
+		optional int32 score = 4; //积分和
 		//详细信息
 		message DetailElement {
 			optional int32 score = 1; //积分
@@ -666,6 +666,7 @@ message RandomSaizi {
 	enum REASON_TYPE {
 		REASON_TYPE_START = 1; //开局
 		REASON_TYPE_TINGPAI = 2; //听牌
+		REASON_TYPE_HUIPAI = 3; //会儿牌
 	}
 	optional REASON_TYPE reason_type = 2; //原因-无特殊处理
 	repeated int32 random_result = 3; //随机值(1-6)
@@ -1017,7 +1018,7 @@ enum CALCULATE_TYPE {
 	CALCULATE_TYPE_DISMISS = 4; //房间内总结算//解散房间
 }
 
-//单场游戏结算
+//麻将单场游戏结算
 message GameCalculate {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2C_GAME_CALCULATE ];
 	optional CALCULATE_TYPE calculte_type = 2;
@@ -1177,6 +1178,7 @@ message RoomAll {
 	optional POSITION_TYPE curr_operator_position = 9; //当前操作玩家位置
 	repeated GameRecord list = 10; //本次游戏历史战绩列表
 	optional PaiElement zhuapai = 11; //当前玩家最近一次抓牌
+	optional PaiElement huipai = 12; //会儿牌//如果选择则有
 }
 
 //玩家房间变更
