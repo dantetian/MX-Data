@@ -407,6 +407,8 @@ enum FAN_TYPE {
 	FAN_TYPE_QIDUI = 27; //7对儿
 	FAN_TYPE_QIONGHU = 28; //穷胡
 	FAN_TYPE_XUAN_JIAN_GANG = 29; //旋风杠//箭杠
+	FAN_TYPE_JUETOUHUI = 30; //绝头会儿
+	FAN_TYPE_HUN_QING_YI_SE = 31; //混清一色
 }
 //麻将番数
 message RoomFan {

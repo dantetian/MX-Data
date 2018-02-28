@@ -131,6 +131,7 @@ message PlayerProp {
 	optional bool has_tinged = 6; //是否听牌
 	optional bool offline = 7; //是否离线
 	optional int64 voice_member_id = 8; //语音成员ID
+	optional int32 beilv = 9; //押注倍率
 }
 	
 //玩家简要信息
@@ -150,7 +151,7 @@ message GameRecord {
 		//详细信息
 		message DetailElement {
 			optional int32 score = 1; //积分
-			optional FAN_TYPE fan_type = 2; //番类型
+			optional int32 fan_type = 2; //番类型
 		}
 		repeated DetailElement details = 5;
 	}
@@ -760,7 +761,7 @@ message GetReward {
 	optional int64 reward_id = 3;
 }
 
-//玩家进行或者可以进行的牌操作
+//麻将：玩家进行或者可以进行的牌操作
 enum PAI_OPER_TYPE {
 	PAI_OPER_TYPE_BEGIN = 0; //无操作
 	PAI_OPER_TYPE_DAPAI = 1; //打牌
@@ -802,7 +803,7 @@ message PaiOperation {
 	optional PaiElement pai = 5; //牌数据
 }
 
-//游戏内操作
+//房间内游戏内操作、状态
 enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_NULL = 1; //无状态
 	GAME_OPER_TYPE_START = 2; //开始游戏
@@ -813,6 +814,7 @@ enum GAME_OPER_TYPE {
 	GAME_OPER_TYPE_HOSTER_DISMISS = 7; //房主解散
 	GAME_OPER_TYPE_OFFLINE = 8; //离线
 	GAME_OPER_TYPE_ONLINE = 9; //在线
+	GAME_OPER_TYPE_JIAOZHUANG = 10; //叫庄
 }
 
 //游戏操作
@@ -822,6 +824,7 @@ message GameOperation {
 	optional int64 source_player_id = 3; //来自XX玩家的操作
 	optional int64 destination_player_id = 4; //针对XX玩家的操作：踢人
 	optional ERROR_CODE error_code = 5;
+	optional int32 beilv = 6; //倍率//GAME_OPER_TYPE_START//GAME_OPER_TYPE_JIAOZHUANG
 }
 
 //商城购买
@@ -1025,7 +1028,7 @@ message GameCalculate {
 	optional POSITION_TYPE dianpao_player_position = 3;
 	optional PaiElement baopai = 4; //宝牌
 	optional GameRecord record = 5; //积分结算
-	optional FAN_TYPE max_fan_type = 6; //最大番数
+	optional int32 max_fan_type = 6; //最大番数
 }
 
 //好友房游戏结算
