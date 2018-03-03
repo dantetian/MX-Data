@@ -151,7 +151,7 @@ message GameRecord {
 		//详细信息
 		message DetailElement {
 			optional int32 score = 1; //积分
-			optional int32 fan_type = 2; //番类型
+			optional FAN_TYPE fan_type = 2; //番类型
 		}
 		repeated DetailElement details = 5;
 	}
@@ -793,6 +793,7 @@ message PaiOperationCache {
 	optional PaiElement pai = 4; //待处理的牌
 	repeated PAI_OPER_TYPE oper_list = 5; //可操作列表
 	repeated PaiElement ting_pais = 6; //听牌列表
+	optional PaiOperationAlert alert = 7; //缓存操作
 }
 
 //牌操作
@@ -1029,7 +1030,7 @@ message GameCalculate {
 	optional POSITION_TYPE dianpao_player_position = 3;
 	optional PaiElement baopai = 4; //宝牌
 	optional GameRecord record = 5; //积分结算
-	optional int32 max_fan_type = 6; //最大番数
+	optional FAN_TYPE max_fan_type = 6; //最大番数
 }
 
 //好友房游戏结算
