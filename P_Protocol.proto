@@ -1066,6 +1066,7 @@ enum KICK_OUT_REASON {
 	KICK_OUT_REASON_OTHER_LOGIN = 2; //玩家登陆
 	KICK_OUT_REASON_CHANGE_SERVER = 3; //切换服务器
 	KICK_OUT_REASON_LOGOUT = 4; //退出登陆
+	KICK_OUT_REASON_LEAVE_ROOM = 5; //离开房间
 }
 //踢出玩家
 message KickOut {
@@ -1177,6 +1178,8 @@ message RoomAll {
 		optional int32 jiangang_count = 9; //箭杠数量
 		repeated PaiElement pai_pool = 10; //门前牌池
 		optional bool tingpai = 11; //玩家是否听牌
+		optional int32 zhuifeng_count = 12; //追风杠数量
+		optional int32 zhuijian_count = 13; //追箭杠数量
 	}
 	repeated Player player_list = 7; //玩家详细信息
 	optional POSITION_TYPE zhuang_position = 8; //庄家位置
