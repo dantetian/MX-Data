@@ -1178,8 +1178,8 @@ message RoomAll {
 		optional int32 jiangang_count = 9; //箭杠数量
 		repeated PaiElement pai_pool = 10; //门前牌池
 		optional bool tingpai = 11; //玩家是否听牌
-		optional int32 zhuifeng_count = 12; //追风杠数量
-		optional int32 zhuijian_count = 13; //追箭杠数量
+		repeated PaiElement zhuifeng_gang_list = 12; //追风杠列表//只有一个牌
+		repeated PaiElement zhuijian_gang_list = 13; //追箭杠列表//只有一个牌
 	}
 	repeated Player player_list = 7; //玩家详细信息
 	optional POSITION_TYPE zhuang_position = 8; //庄家位置
