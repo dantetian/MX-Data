@@ -385,6 +385,7 @@ enum ERROR_CODE {
 	ERROR_ROOM_AA_DIAMOND_NOT_ENOUGH = 35; //AA开房钻石不足
 	ERROR_ROOM_FRIEND_NOT_FORBID = 36; //禁止进入好友房
 	ERROR_ROOM_QUERY_NOT_FORBID = 37; //没有查询到房间信息
+	ERROR_ROOM_NO_RECORD = 38; //没有房间记录
 	
 	ERROR_GAME_NO_PERMISSION = 40; //没有操作权限
 	ERROR_GAME_PAI_UNSATISFIED = 41; //牌不满足
@@ -404,7 +405,8 @@ enum ERROR_CODE {
 	ERROR_CLAN_NOT_FOUND = 78; //茶馆:尚未找到
 	ERROR_CLAN_NO_PERMISSION = 79; //茶馆:没有权限
 	ERROR_CLAN_NO_RECORD = 80; //茶馆:没有记录
-	ERROR_CLAN_HAS_JOINED = 81; //茶馆:已在
+	ERROR_CLAN_HAS_JOINED = 81; //茶馆:已在该茶馆
+	ERROR_CLAN_NAME_INVALID = 82; //茶馆:名字非法
 }
 
 /////////////////////////////////////////////////////
@@ -723,6 +725,7 @@ message BattleHistory {
 	optional int32 start_index = 2;
 	optional int32 end_index = 3;
 	repeated RoomHistory history_list = 4; //最新5条历史记录
+	optional int64 room_id = 5; //房间战绩
 }
 
 //充值
