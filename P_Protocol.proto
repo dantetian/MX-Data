@@ -488,6 +488,7 @@ enum META_TYPE {
 	META_TYPE_S2S_PLAYER_STATE = 1004; //服务器间玩家状态同步
 	META_TYPE_S2S_CLAN_ROOM_START_OR_OVER = 1005; //茶馆房开局或结束//用于在CS处扣除房卡
 	META_TYPE_S2S_CLAN_ROOM_SYNC = 1006; //茶馆房数据实时同步
+	META_TYPE_S2S_CLAN_OPERATION = 1007; //茶馆操作结果数据同步
 }
 
 /////////////////////////////////////////////////////
@@ -876,6 +877,22 @@ enum CLAN_OPER_TYPE {
 	CLAN_OPER_TYPE_MEMEBER_QUIT = 9; //成员主动退出茶馆
 	CLAN_OPER_TYPE_MEMEBER_QUERY = 10; //查询玩家状态
 	CLAN_OPER_TYPE_ROOM_LIST_QUERY = 11; //查询房间列表
+	CLAN_OPER_TYPE_CLAN_LIST_QUERY = 12; //查询茶馆列表
+}
+	
+enum BRIEF_TYPE {
+	BRIEF_TYPE_HOSTER = 1; //馆长
+	BRIEF_TYPE_JOINER = 2; //加入
+}
+
+//茶馆简要讯息//列表显示信息
+message ClanBrief {
+	optional int64 clan_id = 1; //全局ID
+	optional bytes name = 2; //名字
+	optional int32 created_time = 3; //创建时间
+	optional int64 hoster_id = 4; //馆长
+	optional bytes hoster_name = 5; //馆长名字
+	optional int32 mem_count = 6; //成员数量
 }
 
 //茶馆操作
@@ -889,9 +906,11 @@ message ClanOperation {
 	optional int64 dest_player_id = 7; //目标成员
 	optional int32 recharge_count = 8; //充值
 	optional Clan clan = 9; //茶馆信息//创建成功会返回//查询玩家列表会返回
-	optional int32 room_query_start_index = 10; //房间列表查询:起始索引
-	optional int32 room_query_end_index = 11; //房间列表查询:结束索引
+	optional int32 query_start_index = 10; //列表查询:起始索引
+	optional int32 query_end_index = 11; //列表查询:结束索引
 	repeated RoomQueryResult room_list = 12; //房间列表
+	optional BRIEF_TYPE brief_type = 13; //查询列表类型
+	repeated ClanBrief clan_list = 14; //茶馆列表简要讯息//列表显示信息
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
@@ -1207,6 +1226,7 @@ message RoomQueryResult {
 	optional RoomOptions options = 4; //房间玩法
 	optional RoomInformation information = 5; //玩家数据
 	optional int64 clan_id = 6; //茶馆ID
+	optional int32 curr_count = 7; //第X局//如果是0表示尚未开局
 }
 
 /////////////////////////////////////////////////////
@@ -1261,4 +1281,9 @@ message ClanRoomStatusChanged {
 message ClanRoomSync {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_CLAN_ROOM_SYNC ];
 	optional bytes room_status = 2; //房间//RoomQueryResult数据包装
+}
+
+message ClanOperationSync {
+	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_CLAN_OPERATION ];
+	optional ClanOperation operation = 2; 
 }
