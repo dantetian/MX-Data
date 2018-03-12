@@ -752,6 +752,7 @@ message PlayBack {
 	}
 	repeated PlayerElement player_list = 5; //开局牌数据
 	repeated PaiOperation oper_list = 6; //牌局各个玩家操作
+	optional int32 create_time = 7; //房间创建时间
 }
 
 //获取奖励
@@ -911,6 +912,7 @@ message ClanOperation {
 	repeated RoomQueryResult room_list = 12; //房间列表
 	optional BRIEF_TYPE brief_type = 13; //查询列表类型
 	repeated ClanBrief clan_list = 14; //茶馆列表简要讯息//列表显示信息
+	optional int32 server_id = 15; //服务器内服标识
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////

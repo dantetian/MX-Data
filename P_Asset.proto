@@ -288,6 +288,7 @@ message CommonConst {
 	optional int32 player_matching_base_count = 25 [ default = 500 ]; //匹配玩家数量
 	optional int32 player_matching_random_count = 26 [ default = 30 ]; //匹配玩家浮动数量
 	optional int64 clan_id = 27; //茶馆限制ID[ClanLimit]数据
+	optional int32 room_history_last_time = 33 [ default = 7 ]; //历史战绩存储时间(单位：天)
 }
 
 //通用奖励

@@ -97,7 +97,3 @@ message MatchStatistics {
 	repeated MatchingRoom server_list = 1; //匹配房间信息
 }
 
-//屏蔽字库
-message PingBi {
-	repeated bytes name = 1;
-}
