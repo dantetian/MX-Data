@@ -877,8 +877,9 @@ enum CLAN_OPER_TYPE {
 	CLAN_OPER_TYPE_MEMEBER_DELETE = 8; //删除成员
 	CLAN_OPER_TYPE_MEMEBER_QUIT = 9; //成员主动退出茶馆
 	CLAN_OPER_TYPE_MEMEBER_QUERY = 10; //查询玩家状态
-	CLAN_OPER_TYPE_ROOM_LIST_QUERY = 11; //查询房间列表
+	CLAN_OPER_TYPE_ROOM_LIST_QUERY = 11; //查询房间列表：详细信息
 	CLAN_OPER_TYPE_CLAN_LIST_QUERY = 12; //查询茶馆列表
+	CLAN_OPER_TYPE_ROOM_GAMING_LIST_QUERY = 13; //查询房间列表：只是列表信息
 }
 	
 enum BRIEF_TYPE {
@@ -909,10 +910,11 @@ message ClanOperation {
 	optional Clan clan = 9; //茶馆信息//创建成功会返回//查询玩家列表会返回
 	optional int32 query_start_index = 10; //列表查询:起始索引
 	optional int32 query_end_index = 11; //列表查询:结束索引
-	repeated RoomQueryResult room_list = 12; //房间列表
-	optional BRIEF_TYPE brief_type = 13; //查询列表类型
-	repeated ClanBrief clan_list = 14; //茶馆列表简要讯息//列表显示信息
-	optional int32 server_id = 15; //服务器内服标识
+	repeated int64 room_gaming_list = 12; //进行中房间列表
+	repeated RoomQueryResult room_list = 13; //房间详细信息列表
+	optional BRIEF_TYPE brief_type = 14; //查询列表类型
+	repeated ClanBrief clan_list = 15; //茶馆列表简要讯息//列表显示信息
+	optional int32 server_id = 16; //服务器内服标识
 }
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
