@@ -254,6 +254,7 @@ message Player {
 	repeated int64 clan_hosters = 17; //玩家创建的茶馆
 	repeated int64 clan_joiners = 18; //玩家加入的茶馆
 	optional bytes agent_account = 19; //代理账号
+	optional int64 selected_clan_id = 20; //当前选择茶馆
 }
 
 //包裹结构
