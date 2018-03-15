@@ -294,7 +294,8 @@ message Clan {
 	message Member {
 		optional int64 player_id = 1; //玩家ID
 		optional bytes name = 2; //玩家名字
-		optional CLAN_MEM_STATUS_TYPE status = 3;
+		optional CLAN_MEM_STATUS_TYPE status = 3; //成员状态
+		optional bytes headimgurl = 4; //头像 
 	}
 	repeated Member member_list = 8; //成员
 	optional bool dismiss = 9; //是否逻辑解散
@@ -304,7 +305,7 @@ message Clan {
 	}
 	repeated RoomHistory battle_history = 10; //历史战绩
 	repeated SystemMessage message_list = 11; //消息列表
-	repeated int64 room_list = 12; //房间列表
+	//repeated int64 room_list = 12; //房间列表
 }
 
 /////////////////////////////////////////////////////
