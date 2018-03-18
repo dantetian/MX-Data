@@ -305,7 +305,7 @@ message Clan {
 	}
 	repeated RoomHistory battle_history = 10; //历史战绩
 	repeated SystemMessage message_list = 11; //消息列表
-	//repeated int64 room_list = 12; //房间列表
+	optional int32 online_mem_count = 12; //在线成员数量
 }
 
 /////////////////////////////////////////////////////
@@ -409,6 +409,8 @@ enum ERROR_CODE {
 	ERROR_CLAN_NO_RECORD = 80; //茶馆:没有记录
 	ERROR_CLAN_HAS_JOINED = 81; //茶馆:已在该茶馆
 	ERROR_CLAN_NAME_INVALID = 82; //茶馆:名字非法
+	ERROR_CLAN_ANNOUCEMENT_INVALID = 83; //茶馆:公告含有非法字符
+	ERROR_CLAN_NO_MEM = 84; //茶馆:没有成员
 }
 
 /////////////////////////////////////////////////////
@@ -897,6 +899,7 @@ message ClanBrief {
 	optional int64 hoster_id = 4; //馆长
 	optional bytes hoster_name = 5; //馆长名字
 	optional int32 mem_count = 6; //成员数量
+	optional int32 online_mem_count = 7; //在线成员数量
 }
 
 //茶馆操作
