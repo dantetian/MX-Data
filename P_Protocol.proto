@@ -1285,6 +1285,7 @@ message ClanRoomStatusChanged {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_CLAN_ROOM_START_OR_OVER ];
 	optional CLAN_ROOM_STATUS_TYPE status = 2;
 	optional Room room = 3; //房间
+	optional int32 created_time = 4; //创建房间
 }
 
 //茶馆房实时同步
