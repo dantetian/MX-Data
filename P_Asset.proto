@@ -586,6 +586,7 @@ message ClanLimit {
 	optional int32 join_limit = 4 [ default = 10]; //可加入茶馆上限
 	optional int32 room_card_limit = 5 [ default = 100]; //要求房卡数量
 	optional int32 name_limit = 6 [ default = 24]; //茶馆名字字数限制
+	optional int32 annoucement_limit = 7  [ default = 300]; //公告字数限制
 }
 
 /////////////////////////////////////////////////////
