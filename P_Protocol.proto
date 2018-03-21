@@ -139,6 +139,7 @@ message PlayerBrief {
 	optional int64 player_id = 1; //玩家ID
 	optional bytes nickname = 2; //玩家名称
 	optional bytes headimgurl = 3; //头像
+	optional int32 score = 4; //积分和
 }
 
 //游戏记录
@@ -277,12 +278,14 @@ message SystemMessage {
 	optional CLAN_OPER_TYPE oper_type = 4; //操作类型
 }
 
+//茶馆成员状态
 enum CLAN_MEM_STATUS_TYPE {
 	CLAN_MEM_STATUS_TYPE_GAMING = 1; //游戏中
 	CLAN_MEM_STATUS_TYPE_AVAILABLE = 2; //空闲
 	CLAN_MEM_STATUS_TYPE_OFFLINE = 3; //离线
 }
 
+//茶馆存盘数据
 message Clan {
 	optional int64 clan_id = 1; //全局ID
 	optional bytes name = 2; //名字
@@ -302,6 +305,7 @@ message Clan {
 	message RoomHistory {
 		optional int64 room_id = 1; //房间ID	
 		optional int32 battle_time = 2; //对战时间
+		repeated PlayerBrief player_list = 3; //玩家分数信息
 	}
 	repeated RoomHistory battle_history = 10; //历史战绩
 	repeated SystemMessage message_list = 11; //消息列表
@@ -1280,12 +1284,14 @@ enum CLAN_ROOM_STATUS_TYPE {
 	CLAN_ROOM_STATUS_TYPE_START = 1; //开局
 	CLAN_ROOM_STATUS_TYPE_OVER = 2; //结束
 }
-//茶馆开局
+
+//茶馆房间开局结束
 message ClanRoomStatusChanged {
 	optional META_TYPE type_t = 1 [ default = META_TYPE_S2S_CLAN_ROOM_START_OR_OVER ];
 	optional CLAN_ROOM_STATUS_TYPE status = 2;
 	optional Room room = 3; //房间
 	optional int32 created_time = 4; //创建房间
+	repeated PlayerBrief player_list = 5; //玩家分数信息
 }
 
 //茶馆房实时同步
