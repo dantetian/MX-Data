@@ -122,6 +122,13 @@ enum ROOM_EXTEND_TYPE {
 	ROOM_EXTEND_TYPE_DUANMEN = 5; //可断门
 	ROOM_EXTEND_TYPE_QIYISE = 6; //清一色
 	ROOM_EXTEND_TYPE_BAOSANJIA = 7; //点炮包三家
+	ROOM_EXTEND_TYPE_ANBAO = 8; //暗宝
+	ROOM_EXTEND_TYPE_28ZUOZHANG = 9; //2、8万/饼/条不可以做掌//建平玩法
+	ROOM_EXTEND_TYPE_MINGPIAO = 10; //明飘//中发白其中之一只要碰就算明飘，本局必须胡飘，不勾选则正常//建平玩法
+	ROOM_EXTEND_TYPE_HUANGZHUANGHUANGGANG = 11; //荒庄杠//建平玩法
+	ROOM_EXTEND_TYPE_YIBIANGAO = 12; //一边高//建平玩法
+	ROOM_EXTEND_TYPE_SIGUIYI = 13; //四归一//建平玩法
+	ROOM_EXTEND_TYPE_YIJIAFU = 14; //点炮一家付//建平玩法
 }
 
 //模式选择-服务器尚无用途
@@ -136,6 +143,12 @@ enum ROOM_PAY_TYPE {
 	ROOM_PAY_TYPE_AA = 2; //AA付费
 }
 
+enum CITY_TYPE {
+	CITY_TYPE_CHAOYANG = 1; //朝阳
+	CITY_TYPE_JIANPING = 2; //建平
+	CITY_TYPE_YINGKOU = 3; //营口
+}
+
 //房间设置-番型选择
 message RoomOptions {
 	optional ROOM_MODEL_TYPE model = 1; //模式选择
@@ -146,6 +159,7 @@ message RoomOptions {
 	optional int32 voice_open = 6; //实时语音
 	optional bool gmt_opened = 7; //是否代开房
 	optional ROOM_PAY_TYPE pay_type = 8; //付费方式
+	optional CITY_TYPE city_type = 9; //城市
 }
 
 //房间设置
@@ -386,6 +400,7 @@ message RoomFan {
 	}
 	optional int32 fans_count = 3 [ default = 30 ]; //番数量
 	repeated FanElement fans = 4; //番数据
+	optional CITY_TYPE city_type = 5 [ default = CITY_TYPE_CHAOYANG ]; //城市
 }
 
 //房间模式
